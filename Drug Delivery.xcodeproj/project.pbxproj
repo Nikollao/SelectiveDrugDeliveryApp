@@ -9,13 +9,27 @@
 /* Begin PBXBuildFile section */
 		6818EF721E36448700407BDA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6818EF711E36448700407BDA /* main.m */; };
 		6818EF751E36448700407BDA /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6818EF741E36448700407BDA /* AppDelegate.m */; };
-		6818EF781E36448700407BDA /* FirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6818EF771E36448700407BDA /* FirstViewController.m */; };
-		6818EF7B1E36448700407BDA /* SecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6818EF7A1E36448700407BDA /* SecondViewController.m */; };
 		6818EF7E1E36448700407BDA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6818EF7C1E36448700407BDA /* Main.storyboard */; };
 		6818EF801E36448700407BDA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6818EF7F1E36448700407BDA /* Assets.xcassets */; };
 		6818EF831E36448700407BDA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6818EF811E36448700407BDA /* LaunchScreen.storyboard */; };
 		6818EF8E1E36448700407BDA /* Drug_DeliveryTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6818EF8D1E36448700407BDA /* Drug_DeliveryTests.m */; };
 		6818EF991E36448700407BDA /* Drug_DeliveryUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6818EF981E36448700407BDA /* Drug_DeliveryUITests.m */; };
+		6818EFA81E364B7900407BDA /* PatientViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6818EFA71E364B7900407BDA /* PatientViewController.m */; };
+		6818EFAD1E364F5100407BDA /* PatientTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6818EFAC1E364F5100407BDA /* PatientTableViewController.m */; };
+		6818EFB01E36606600407BDA /* MedicationTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6818EFAF1E36606600407BDA /* MedicationTableViewController.m */; };
+		6818EFB31E36607B00407BDA /* MedicationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6818EFB21E36607B00407BDA /* MedicationViewController.m */; };
+		6818EFB71E36667C00407BDA /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 6818EFB51E36667C00407BDA /* Model.xcdatamodeld */; };
+		6818EFC01E36677E00407BDA /* Patient.m in Sources */ = {isa = PBXBuildFile; fileRef = 6818EFB91E36677E00407BDA /* Patient.m */; };
+		6818EFC21E36677E00407BDA /* Medication.m in Sources */ = {isa = PBXBuildFile; fileRef = 6818EFBD1E36677E00407BDA /* Medication.m */; };
+		6818EFC71E3668CB00407BDA /* CoreDataHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 6818EFC61E3668CB00407BDA /* CoreDataHelper.m */; };
+		6818EFCA1E3668E900407BDA /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6818EFC91E3668E900407BDA /* CoreData.framework */; };
+		6818EFCC1E3668F100407BDA /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6818EFCB1E3668F100407BDA /* CoreBluetooth.framework */; };
+		6818EFCF1E366B3700407BDA /* CoreDataTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6818EFCE1E366B3700407BDA /* CoreDataTableViewController.m */; };
+		6818EFD21E367AFA00407BDA /* CoreDataPickerTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 6818EFD11E367AFA00407BDA /* CoreDataPickerTextField.m */; };
+		6818EFD61E36814600407BDA /* MedicationPickerTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 6818EFD51E36814600407BDA /* MedicationPickerTextField.m */; };
+		6818EFDA1E3798D200407BDA /* CBCentralManagerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6818EFD91E3798D200407BDA /* CBCentralManagerViewController.m */; };
+		6818EFDC1E37A1B400407BDA /* BLE image.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 6818EFDB1E37A1B400407BDA /* BLE image.jpg */; };
+		682BA34F1E3A78AA0013CC9A /* DataExchangeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 682BA34E1E3A78AA0013CC9A /* DataExchangeViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,10 +54,6 @@
 		6818EF711E36448700407BDA /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		6818EF731E36448700407BDA /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		6818EF741E36448700407BDA /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		6818EF761E36448700407BDA /* FirstViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FirstViewController.h; sourceTree = "<group>"; };
-		6818EF771E36448700407BDA /* FirstViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FirstViewController.m; sourceTree = "<group>"; };
-		6818EF791E36448700407BDA /* SecondViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SecondViewController.h; sourceTree = "<group>"; };
-		6818EF7A1E36448700407BDA /* SecondViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SecondViewController.m; sourceTree = "<group>"; };
 		6818EF7D1E36448700407BDA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		6818EF7F1E36448700407BDA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6818EF821E36448700407BDA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -54,6 +64,34 @@
 		6818EF941E36448700407BDA /* Drug DeliveryUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Drug DeliveryUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6818EF981E36448700407BDA /* Drug_DeliveryUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Drug_DeliveryUITests.m; sourceTree = "<group>"; };
 		6818EF9A1E36448700407BDA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6818EFA61E364B7900407BDA /* PatientViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PatientViewController.h; sourceTree = "<group>"; };
+		6818EFA71E364B7900407BDA /* PatientViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PatientViewController.m; sourceTree = "<group>"; };
+		6818EFAB1E364F5100407BDA /* PatientTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PatientTableViewController.h; sourceTree = "<group>"; };
+		6818EFAC1E364F5100407BDA /* PatientTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PatientTableViewController.m; sourceTree = "<group>"; };
+		6818EFAE1E36606600407BDA /* MedicationTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MedicationTableViewController.h; sourceTree = "<group>"; };
+		6818EFAF1E36606600407BDA /* MedicationTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MedicationTableViewController.m; sourceTree = "<group>"; };
+		6818EFB11E36607B00407BDA /* MedicationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MedicationViewController.h; sourceTree = "<group>"; };
+		6818EFB21E36607B00407BDA /* MedicationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MedicationViewController.m; sourceTree = "<group>"; };
+		6818EFB61E36667C00407BDA /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
+		6818EFB81E36677E00407BDA /* Patient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Patient.h; path = ../Patient.h; sourceTree = "<group>"; };
+		6818EFB91E36677E00407BDA /* Patient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Patient.m; path = ../Patient.m; sourceTree = "<group>"; };
+		6818EFBC1E36677E00407BDA /* Medication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Medication.h; path = ../Medication.h; sourceTree = "<group>"; };
+		6818EFBD1E36677E00407BDA /* Medication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Medication.m; path = ../Medication.m; sourceTree = "<group>"; };
+		6818EFC51E3668CB00407BDA /* CoreDataHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreDataHelper.h; sourceTree = "<group>"; };
+		6818EFC61E3668CB00407BDA /* CoreDataHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreDataHelper.m; sourceTree = "<group>"; };
+		6818EFC91E3668E900407BDA /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		6818EFCB1E3668F100407BDA /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
+		6818EFCD1E366B3700407BDA /* CoreDataTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreDataTableViewController.h; sourceTree = "<group>"; };
+		6818EFCE1E366B3700407BDA /* CoreDataTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreDataTableViewController.m; sourceTree = "<group>"; };
+		6818EFD01E367AFA00407BDA /* CoreDataPickerTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreDataPickerTextField.h; sourceTree = "<group>"; };
+		6818EFD11E367AFA00407BDA /* CoreDataPickerTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreDataPickerTextField.m; sourceTree = "<group>"; };
+		6818EFD41E36814600407BDA /* MedicationPickerTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MedicationPickerTextField.h; sourceTree = "<group>"; };
+		6818EFD51E36814600407BDA /* MedicationPickerTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MedicationPickerTextField.m; sourceTree = "<group>"; };
+		6818EFD81E3798D200407BDA /* CBCentralManagerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBCentralManagerViewController.h; sourceTree = "<group>"; };
+		6818EFD91E3798D200407BDA /* CBCentralManagerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBCentralManagerViewController.m; sourceTree = "<group>"; };
+		6818EFDB1E37A1B400407BDA /* BLE image.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "BLE image.jpg"; path = "../../../University of Leeds UoL/Level 3 Group design project WRC/BLE image.jpg"; sourceTree = "<group>"; };
+		682BA34D1E3A78AA0013CC9A /* DataExchangeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataExchangeViewController.h; sourceTree = "<group>"; };
+		682BA34E1E3A78AA0013CC9A /* DataExchangeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataExchangeViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,6 +99,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6818EFCC1E3668F100407BDA /* CoreBluetooth.framework in Frameworks */,
+				6818EFCA1E3668E900407BDA /* CoreData.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -88,6 +128,7 @@
 				6818EF8C1E36448700407BDA /* Drug DeliveryTests */,
 				6818EF971E36448700407BDA /* Drug DeliveryUITests */,
 				6818EF6E1E36448700407BDA /* Products */,
+				6818EFC81E3668E800407BDA /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -104,12 +145,14 @@
 		6818EF6F1E36448700407BDA /* Drug Delivery */ = {
 			isa = PBXGroup;
 			children = (
+				6818EFD71E37935200407BDA /* Core Bluetooth */,
+				6818EFD31E36811D00407BDA /* PickerTextField */,
+				6818EFC41E3668B900407BDA /* Generic Classes */,
+				6818EFB41E36667000407BDA /* DataModel */,
+				6818EFAA1E364F3800407BDA /* TableViewControllers */,
+				6818EFA91E364BB500407BDA /* ViewControllers */,
 				6818EF731E36448700407BDA /* AppDelegate.h */,
 				6818EF741E36448700407BDA /* AppDelegate.m */,
-				6818EF761E36448700407BDA /* FirstViewController.h */,
-				6818EF771E36448700407BDA /* FirstViewController.m */,
-				6818EF791E36448700407BDA /* SecondViewController.h */,
-				6818EF7A1E36448700407BDA /* SecondViewController.m */,
 				6818EF7C1E36448700407BDA /* Main.storyboard */,
 				6818EF7F1E36448700407BDA /* Assets.xcassets */,
 				6818EF811E36448700407BDA /* LaunchScreen.storyboard */,
@@ -143,6 +186,99 @@
 				6818EF9A1E36448700407BDA /* Info.plist */,
 			);
 			path = "Drug DeliveryUITests";
+			sourceTree = "<group>";
+		};
+		6818EFA91E364BB500407BDA /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				6818EFA61E364B7900407BDA /* PatientViewController.h */,
+				6818EFA71E364B7900407BDA /* PatientViewController.m */,
+				6818EFB11E36607B00407BDA /* MedicationViewController.h */,
+				6818EFB21E36607B00407BDA /* MedicationViewController.m */,
+			);
+			name = ViewControllers;
+			sourceTree = "<group>";
+		};
+		6818EFAA1E364F3800407BDA /* TableViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				6818EFAB1E364F5100407BDA /* PatientTableViewController.h */,
+				6818EFAC1E364F5100407BDA /* PatientTableViewController.m */,
+				6818EFAE1E36606600407BDA /* MedicationTableViewController.h */,
+				6818EFAF1E36606600407BDA /* MedicationTableViewController.m */,
+			);
+			name = TableViewControllers;
+			sourceTree = "<group>";
+		};
+		6818EFB41E36667000407BDA /* DataModel */ = {
+			isa = PBXGroup;
+			children = (
+				6818EFB81E36677E00407BDA /* Patient.h */,
+				6818EFB91E36677E00407BDA /* Patient.m */,
+				6818EFBC1E36677E00407BDA /* Medication.h */,
+				6818EFBD1E36677E00407BDA /* Medication.m */,
+				6818EFB51E36667C00407BDA /* Model.xcdatamodeld */,
+			);
+			name = DataModel;
+			sourceTree = "<group>";
+		};
+		6818EFC41E3668B900407BDA /* Generic Classes */ = {
+			isa = PBXGroup;
+			children = (
+				6818EFC51E3668CB00407BDA /* CoreDataHelper.h */,
+				6818EFC61E3668CB00407BDA /* CoreDataHelper.m */,
+				6818EFCD1E366B3700407BDA /* CoreDataTableViewController.h */,
+				6818EFCE1E366B3700407BDA /* CoreDataTableViewController.m */,
+				6818EFD01E367AFA00407BDA /* CoreDataPickerTextField.h */,
+				6818EFD11E367AFA00407BDA /* CoreDataPickerTextField.m */,
+			);
+			name = "Generic Classes";
+			sourceTree = "<group>";
+		};
+		6818EFC81E3668E800407BDA /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				6818EFCB1E3668F100407BDA /* CoreBluetooth.framework */,
+				6818EFC91E3668E900407BDA /* CoreData.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		6818EFD31E36811D00407BDA /* PickerTextField */ = {
+			isa = PBXGroup;
+			children = (
+				6818EFD41E36814600407BDA /* MedicationPickerTextField.h */,
+				6818EFD51E36814600407BDA /* MedicationPickerTextField.m */,
+			);
+			name = PickerTextField;
+			sourceTree = "<group>";
+		};
+		6818EFD71E37935200407BDA /* Core Bluetooth */ = {
+			isa = PBXGroup;
+			children = (
+				682BA34C1E3A78900013CC9A /* ViewControllers */,
+				682BA34B1E3A787F0013CC9A /* TableViewControllers */,
+				6818EFD81E3798D200407BDA /* CBCentralManagerViewController.h */,
+				6818EFD91E3798D200407BDA /* CBCentralManagerViewController.m */,
+				6818EFDB1E37A1B400407BDA /* BLE image.jpg */,
+			);
+			name = "Core Bluetooth";
+			sourceTree = "<group>";
+		};
+		682BA34B1E3A787F0013CC9A /* TableViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = TableViewControllers;
+			sourceTree = "<group>";
+		};
+		682BA34C1E3A78900013CC9A /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				682BA34D1E3A78AA0013CC9A /* DataExchangeViewController.h */,
+				682BA34E1E3A78AA0013CC9A /* DataExchangeViewController.m */,
+			);
+			name = ViewControllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -256,6 +392,7 @@
 			files = (
 				6818EF831E36448700407BDA /* LaunchScreen.storyboard in Resources */,
 				6818EF801E36448700407BDA /* Assets.xcassets in Resources */,
+				6818EFDC1E37A1B400407BDA /* BLE image.jpg in Resources */,
 				6818EF7E1E36448700407BDA /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -281,10 +418,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6818EF7B1E36448700407BDA /* SecondViewController.m in Sources */,
 				6818EF751E36448700407BDA /* AppDelegate.m in Sources */,
-				6818EF781E36448700407BDA /* FirstViewController.m in Sources */,
+				6818EFD61E36814600407BDA /* MedicationPickerTextField.m in Sources */,
+				682BA34F1E3A78AA0013CC9A /* DataExchangeViewController.m in Sources */,
+				6818EFDA1E3798D200407BDA /* CBCentralManagerViewController.m in Sources */,
+				6818EFA81E364B7900407BDA /* PatientViewController.m in Sources */,
+				6818EFCF1E366B3700407BDA /* CoreDataTableViewController.m in Sources */,
+				6818EFB01E36606600407BDA /* MedicationTableViewController.m in Sources */,
+				6818EFC21E36677E00407BDA /* Medication.m in Sources */,
+				6818EFC01E36677E00407BDA /* Patient.m in Sources */,
+				6818EFB71E36667C00407BDA /* Model.xcdatamodeld in Sources */,
+				6818EFB31E36607B00407BDA /* MedicationViewController.m in Sources */,
 				6818EF721E36448700407BDA /* main.m in Sources */,
+				6818EFC71E3668CB00407BDA /* CoreDataHelper.m in Sources */,
+				6818EFD21E367AFA00407BDA /* CoreDataPickerTextField.m in Sources */,
+				6818EFAD1E364F5100407BDA /* PatientTableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -522,6 +670,7 @@
 				6818EF9F1E36448700407BDA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		6818EFA01E36448700407BDA /* Build configuration list for PBXNativeTarget "Drug DeliveryTests" */ = {
 			isa = XCConfigurationList;
@@ -530,6 +679,7 @@
 				6818EFA21E36448700407BDA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		6818EFA31E36448700407BDA /* Build configuration list for PBXNativeTarget "Drug DeliveryUITests" */ = {
 			isa = XCConfigurationList;
@@ -538,8 +688,22 @@
 				6818EFA51E36448700407BDA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		6818EFB51E36667C00407BDA /* Model.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				6818EFB61E36667C00407BDA /* Model.xcdatamodel */,
+			);
+			currentVersion = 6818EFB61E36667C00407BDA /* Model.xcdatamodel */;
+			path = Model.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 6818EF651E36448700407BDA /* Project object */;
 }
