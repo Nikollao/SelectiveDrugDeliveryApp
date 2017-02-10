@@ -7,11 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <CoreBluetooth/CoreBluetooth.h>
 
-@interface DevicesTableViewController : UITableViewController
-
+@interface DevicesTableViewController : UITableViewController 
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *testButton;
 @property (strong, nonatomic) NSString *sendString;
+
+@property (strong, nonatomic) CBCentralManager *centralManager;
 
 @property (strong, nonatomic) NSMutableArray *peripheralsArray;
 

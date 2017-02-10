@@ -22,15 +22,11 @@
 
 @property (weak, nonatomic) IBOutlet UIButton *disconnectButton;
 @property (weak, nonatomic) IBOutlet UIButton *scanButton;
-@property (weak, nonatomic) IBOutlet UIBarButtonItem *devicesButton;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *indicator;
 
 @property (strong, nonatomic) CBCentralManager *centralManager;
-@property (strong, nonatomic) CBPeripheral *peripheral;
+// @property (strong, nonatomic) CBPeripheral *peripheral;
 
-@property (strong, nonatomic) NSString *connected;
-@property (strong, nonatomic) NSString *deviceData;
-@property (nonatomic, strong) NSString *manufacturer;
 @property (strong, nonatomic) NSString *numberOfDrugs;
 
 - (IBAction)didPressScanButton:(id)sender;

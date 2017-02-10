@@ -16,7 +16,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self.tableView reloadData];
+    // [self.tableView reloadData];
 }
 
 #pragma mark - TableView Data Source methods
@@ -45,8 +45,21 @@
     UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
     
     NSString *title = [[self.peripheralsArray objectAtIndex:indexPath.row] name];
+    NSString *subTitle = [[NSString alloc] init];
+    
+    CBPeripheral *peripheral = [self.peripheralsArray objectAtIndex:indexPath.row];
+    
+    if (peripheral.state == CBPeripheralStateConnected) {
+        subTitle = @"Connected: YES";
+    }
+    else if (peripheral.state == CBPeripheralStateDisconnected) {
+        subTitle = @"Connected: NO";
+    } else {
+        subTitle = @"Unknown State";
+    }
+    
     cell.textLabel.text = title;
-    cell.detailTextLabel.text = @""; // connected button
+    cell.detailTextLabel.text = subTitle; // connected button
     
     return cell;
 }
@@ -60,4 +73,8 @@
         dvc.rxString = self.sendString;
     }
 }
+
+#pragma mark - CBCentralManagerDelegate
+
+
 @end

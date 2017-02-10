@@ -23,6 +23,11 @@
     self.disconnectButton.enabled = NO;
 }
 
+-(void)didReceiveMemoryWarning {
+    
+    NSLog(@"Memory issue!");
+}
+
 - (void)viewDidDisappear:(BOOL)animated {
     [super viewDidDisappear:animated];
     
@@ -36,6 +41,7 @@
     
     self.indicator.hidden = NO;
     [self.indicator startAnimating];
+    [self.peripheralsArray removeAllObjects];
     // NSDictionary *options = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithBool:NO], CBCentralManagerOptionShowPowerAlertKey, nil];
 
     self.scanTimer = [NSTimer scheduledTimerWithTimeInterval:10 target:self selector:@selector(scanStopped) userInfo:nil repeats:NO];
@@ -51,9 +57,11 @@
 
 - (IBAction)didPressDisconnectButton:(id)sender {
  
-    if (self.peripheral.state == CBPeripheralStateConnected) {
+    CBPeripheral *peripheral = [self.peripheralsArray firstObject];
+    
+    if (peripheral.state == CBPeripheralStateConnected) {
         
-        [self.centralManager cancelPeripheralConnection:self.peripheral];
+        [self.centralManager cancelPeripheralConnection:peripheral];
         self.disconnectButton.enabled = NO;
         
         UIAlertController *controller = [UIAlertController alertControllerWithTitle:@"Disconnect" message:@"You have been disconnected from the device!" preferredStyle:UIAlertControllerStyleAlert];
@@ -61,10 +69,10 @@
         [controller addAction:okAction];
         [self presentViewController:controller animated:YES completion:nil];
     }
-    self.connected = [NSString stringWithFormat:@"Connected: %@", _peripheral.state == CBPeripheralStateConnected ? @"YES" : @"NO"];
-        NSLog(@"Connected? %@", self.connected);
     [self.peripheralsArray removeObject:[self.peripheralsArray firstObject]];
 }
+
+
 - (void)scanStopped
 {
     [self.centralManager stopScan];
@@ -105,14 +113,17 @@
     
     [peripheral setDelegate:self];
     [peripheral discoverServices:nil];
-    self.connected = [NSString stringWithFormat:@"Connected: %@", peripheral.state == CBPeripheralStateConnected ? @"YES" : @"NO"];
-    NSLog(@"%@", self.connected);
     self.disconnectButton.enabled = YES;
 }
 
 -(void)centralManager:(CBCentralManager *)central didFailToConnectPeripheral:(CBPeripheral *)peripheral error:(NSError *)error {
     
     NSLog(@"Failed to connect to peripheral!");
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Fail" message:@"Failed to connect to peripheral. Please try again" preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleCancel handler:nil];
+    [alert addAction:okAction];
+    [self presentViewController:alert animated:YES completion:nil];
+    
 }
 
 - (void)centralManager:(CBCentralManager *)central didDiscoverPeripheral:(CBPeripheral *)peripheral advertisementData:(NSDictionary<NSString *,id> *)advertisementData RSSI:(NSNumber *)RSSI {
@@ -124,40 +135,60 @@
     localName = peripheral.name;
     
     if ([localName length] > 0) {
-        
         NSLog(@"Found one device: %@", localName);
-        [self.centralManager stopScan];
+        // [self.centralManager stopScan];
         peripheral.delegate = self;
-         self.peripheral = peripheral;
-        [self.indicator stopAnimating];
-        self.indicator.hidden = YES;
-        UIAlertController *controller = [UIAlertController alertControllerWithTitle:@"BLE Found" message:[NSString stringWithFormat:@"The %@ BLE device has been found",peripheral.name] preferredStyle:UIAlertControllerStyleAlert];
-        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil];
         
-        UIAlertAction *connectAction = [UIAlertAction actionWithTitle:@"Connect" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
-            
-            [_peripheralsArray addObject:peripheral];
-            [central connectPeripheral:[self.peripheralsArray objectAtIndex:0] options:nil];
-            self.connectivityTimer = [NSTimer scheduledTimerWithTimeInterval:5.0 target:self selector:@selector(checkConnectivity) userInfo:nil repeats:YES];
-        }];
-        [controller addAction:cancelAction];
-        [controller addAction:connectAction];
-        [self presentViewController:controller animated:YES completion:nil];
+        if ([self.peripheralsArray count] > 0) { // ensure that device has not been detected or displayed more than once
+            for (int i = 0; i < [self.peripheralsArray count]; i++) { //loop through the elements of the array and check if the peripheral is equal to any of the peripherals in the array
+                int count = 0; // start by count = 0
+                if (peripheral.identifier == [self.peripheralsArray objectAtIndex:i]) {
+                    count++;// if ther peripheral is equal to any of the objects than count increases
+                }
+                if (count == 0) {// only if count remains zero the peripheral will be added to the array
+                    [self.peripheralsArray addObject:peripheral];
+                }
+            }
+        } else {
+            [self.peripheralsArray addObject:peripheral];// if array is empty than just add an object
+        }
+        self.connectivityTimer = [NSTimer scheduledTimerWithTimeInterval:5.0 target:self selector:@selector(checkConnectivity) userInfo:nil repeats:NO]; //check if connection is established
     }
+    [NSTimer scheduledTimerWithTimeInterval:5.0 target:self selector:@selector(devicesFoundStopScan) userInfo:nil repeats:NO];//find all the possible devices and stop scan to save power
+}
+
+- (void)devicesFoundStopScan { // stop scan function after devices have been discovered
+    
+    [self.indicator stopAnimating];
+    self.indicator.hidden = YES;
+    [_centralManager stopScan];
+    NSLog(@"Devices have been found, scan has stopped!");
+    
+    UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    
+    DevicesTableViewController *dtvc = [storyBoard instantiateViewControllerWithIdentifier:@"devices tableView"];
+    
+    if (!dtvc.centralManager) {
+        dtvc.centralManager = self.centralManager;
+    }
+    dtvc.peripheralsArray = _peripheralsArray;
+    [self.navigationController pushViewController:dtvc animated:YES];
 }
 
 -(void)checkConnectivity {
     
-    if (self.peripheral.state == CBPeripheralStateConnecting) {
+    CBPeripheral *peripheral = [self.peripheralsArray firstObject];
+    
+    if (peripheral.state == CBPeripheralStateConnecting) {
         NSLog(@"Connecting!");
     }
-    else if (self.peripheral.state == CBPeripheralStateConnected) {
+    else if (peripheral.state == CBPeripheralStateConnected) {
         NSLog(@"Connected!");
     }
-    else if (self.peripheral.state == CBPeripheralStateDisconnecting) {
+    else if (peripheral.state == CBPeripheralStateDisconnecting) {
         NSLog(@"Disconnecting!");
     }
-    else if (self.peripheral.state == CBPeripheralStateDisconnected) {
+    else if (peripheral.state == CBPeripheralStateDisconnected) {
         NSLog(@"Disconnected!");
     }
 }
@@ -172,6 +203,8 @@
     }
 }
 
+
+
 -(void)peripheral:(CBPeripheral *)peripheral didDiscoverCharacteristicsForService:(CBService *)service error:(NSError *)error {
     
     NSLog(@"Entered didDiscoverCharacteristics");
@@ -180,7 +213,7 @@
         for (CBCharacteristic *aChar in service.characteristics)
         {
             //if ([aChar.UUID isEqual:[CBUUID UUIDWithString:DEVICE_INFO_SERVICE_UUID]]) { // 2
-            [self.peripheral setNotifyValue:YES forCharacteristic:aChar];
+            [peripheral setNotifyValue:YES forCharacteristic:aChar];
             NSLog(@"%d Discovered characteristic %@",i,aChar);
             i++;
             //}
@@ -220,8 +253,9 @@
     
     DevicesTableViewController *dtvc = [segue destinationViewController];
     
-    if ([[segue identifier] isEqualToString:@"device cell"]) {
+    if ([[segue identifier] isEqualToString:@"device segue"]) {
         
+         dtvc.centralManager = self.centralManager;
         dtvc.peripheralsArray = _peripheralsArray;
     }
 }
