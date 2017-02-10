@@ -13,11 +13,31 @@
 @end
 
 @implementation DataExchangeViewController
+/*
++ (NSTimer *)scheduledTimerWithTimeInterval:(NSTimeInterval)ti
+                                 invocation:(NSInvocation *)invocation
+                                    repeats:(BOOL)yesOrNo {
+    NSTimer *timer = [[NSTimer alloc] initWithFireDate:nil interval:ti target:self selector:@selector(updateTextFieldButton) userInfo:nil repeats:YES];
+    return timer;
+}
+*/
+- (void)updateTextFieldButton {
+    
+    if ([self.textField.text isEqualToString:@""]) {
+        self.sendButton.enabled = NO;
+    }if ([self.textField.text length] > 0) {
+        self.sendButton.enabled = YES;
+    }
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self hideKeyboardWhenBackgroundIsTapped];
-    
+    // self.sendButton.enabled = NO;
+    self.textField.delegate = self;
+    self.chatLabel.hidden = YES;
+    self.rxLabel.text = self.rxString;
+    [NSTimer scheduledTimerWithTimeInterval:0.2 target:self selector:@selector(updateTextFieldButton) userInfo:nil repeats:YES];
 }
 
 -(void)hideKeyboardWhenBackgroundIsTapped {
@@ -100,7 +120,18 @@
             [self setViewMovedUp:YES];
         }
     }
+   /*
+    }*/
 }
+
+/*- (void)textFieldDidEngEditing:(UITextField *)sender
+{
+    if ([self.textField.text isEqualToString:@""]) {
+        self.sendButton.enabled = NO;
+    }if ([self.textField.text length] > 0) {
+        self.sendButton.enabled = YES;
+    }
+}*/
 
 -(void)setViewMovedUp:(BOOL)movedUp {
     
@@ -121,4 +152,11 @@
     self.textFieldView.frame = rect;
 }
 
+- (IBAction)didPressSendButton:(id)sender {
+    
+    //[self hideKeyboard];
+    self.chatLabel.hidden = NO;
+    self.chatLabel.text = self.textField.text;
+    self.textField.text = @"";
+}
 @end

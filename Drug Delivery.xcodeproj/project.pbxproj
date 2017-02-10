@@ -27,9 +27,10 @@
 		6818EFCF1E366B3700407BDA /* CoreDataTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6818EFCE1E366B3700407BDA /* CoreDataTableViewController.m */; };
 		6818EFD21E367AFA00407BDA /* CoreDataPickerTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 6818EFD11E367AFA00407BDA /* CoreDataPickerTextField.m */; };
 		6818EFD61E36814600407BDA /* MedicationPickerTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 6818EFD51E36814600407BDA /* MedicationPickerTextField.m */; };
-		6818EFDA1E3798D200407BDA /* CBCentralManagerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6818EFD91E3798D200407BDA /* CBCentralManagerViewController.m */; };
-		6818EFDC1E37A1B400407BDA /* BLE image.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 6818EFDB1E37A1B400407BDA /* BLE image.jpg */; };
 		682BA34F1E3A78AA0013CC9A /* DataExchangeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 682BA34E1E3A78AA0013CC9A /* DataExchangeViewController.m */; };
+		683A43401E3BC80800B18384 /* ScanBLEViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 683A433F1E3BC80800B18384 /* ScanBLEViewController.m */; };
+		683A43431E3BE7CC00B18384 /* DevicesTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 683A43421E3BE7CC00B18384 /* DevicesTableViewController.m */; };
+		68E09B391E4DC6DA003F1874 /* ble_image.png in Resources */ = {isa = PBXBuildFile; fileRef = 68E09B381E4DC6DA003F1874 /* ble_image.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -87,11 +88,13 @@
 		6818EFD11E367AFA00407BDA /* CoreDataPickerTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreDataPickerTextField.m; sourceTree = "<group>"; };
 		6818EFD41E36814600407BDA /* MedicationPickerTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MedicationPickerTextField.h; sourceTree = "<group>"; };
 		6818EFD51E36814600407BDA /* MedicationPickerTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MedicationPickerTextField.m; sourceTree = "<group>"; };
-		6818EFD81E3798D200407BDA /* CBCentralManagerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBCentralManagerViewController.h; sourceTree = "<group>"; };
-		6818EFD91E3798D200407BDA /* CBCentralManagerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBCentralManagerViewController.m; sourceTree = "<group>"; };
-		6818EFDB1E37A1B400407BDA /* BLE image.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "BLE image.jpg"; path = "../../../University of Leeds UoL/Level 3 Group design project WRC/BLE image.jpg"; sourceTree = "<group>"; };
 		682BA34D1E3A78AA0013CC9A /* DataExchangeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataExchangeViewController.h; sourceTree = "<group>"; };
 		682BA34E1E3A78AA0013CC9A /* DataExchangeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataExchangeViewController.m; sourceTree = "<group>"; };
+		683A433E1E3BC80800B18384 /* ScanBLEViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScanBLEViewController.h; sourceTree = "<group>"; };
+		683A433F1E3BC80800B18384 /* ScanBLEViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScanBLEViewController.m; sourceTree = "<group>"; };
+		683A43411E3BE7CC00B18384 /* DevicesTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DevicesTableViewController.h; sourceTree = "<group>"; };
+		683A43421E3BE7CC00B18384 /* DevicesTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DevicesTableViewController.m; sourceTree = "<group>"; };
+		68E09B381E4DC6DA003F1874 /* ble_image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ble_image.png; path = ../ble_image.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -157,6 +160,7 @@
 				6818EF7F1E36448700407BDA /* Assets.xcassets */,
 				6818EF811E36448700407BDA /* LaunchScreen.storyboard */,
 				6818EF841E36448700407BDA /* Info.plist */,
+				68E09B381E4DC6DA003F1874 /* ble_image.png */,
 				6818EF701E36448700407BDA /* Supporting Files */,
 			);
 			path = "Drug Delivery";
@@ -258,9 +262,6 @@
 			children = (
 				682BA34C1E3A78900013CC9A /* ViewControllers */,
 				682BA34B1E3A787F0013CC9A /* TableViewControllers */,
-				6818EFD81E3798D200407BDA /* CBCentralManagerViewController.h */,
-				6818EFD91E3798D200407BDA /* CBCentralManagerViewController.m */,
-				6818EFDB1E37A1B400407BDA /* BLE image.jpg */,
 			);
 			name = "Core Bluetooth";
 			sourceTree = "<group>";
@@ -268,6 +269,8 @@
 		682BA34B1E3A787F0013CC9A /* TableViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				683A43411E3BE7CC00B18384 /* DevicesTableViewController.h */,
+				683A43421E3BE7CC00B18384 /* DevicesTableViewController.m */,
 			);
 			name = TableViewControllers;
 			sourceTree = "<group>";
@@ -277,6 +280,8 @@
 			children = (
 				682BA34D1E3A78AA0013CC9A /* DataExchangeViewController.h */,
 				682BA34E1E3A78AA0013CC9A /* DataExchangeViewController.m */,
+				683A433E1E3BC80800B18384 /* ScanBLEViewController.h */,
+				683A433F1E3BC80800B18384 /* ScanBLEViewController.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -391,8 +396,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				6818EF831E36448700407BDA /* LaunchScreen.storyboard in Resources */,
+				68E09B391E4DC6DA003F1874 /* ble_image.png in Resources */,
 				6818EF801E36448700407BDA /* Assets.xcassets in Resources */,
-				6818EFDC1E37A1B400407BDA /* BLE image.jpg in Resources */,
 				6818EF7E1E36448700407BDA /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -421,12 +426,13 @@
 				6818EF751E36448700407BDA /* AppDelegate.m in Sources */,
 				6818EFD61E36814600407BDA /* MedicationPickerTextField.m in Sources */,
 				682BA34F1E3A78AA0013CC9A /* DataExchangeViewController.m in Sources */,
-				6818EFDA1E3798D200407BDA /* CBCentralManagerViewController.m in Sources */,
 				6818EFA81E364B7900407BDA /* PatientViewController.m in Sources */,
 				6818EFCF1E366B3700407BDA /* CoreDataTableViewController.m in Sources */,
 				6818EFB01E36606600407BDA /* MedicationTableViewController.m in Sources */,
 				6818EFC21E36677E00407BDA /* Medication.m in Sources */,
 				6818EFC01E36677E00407BDA /* Patient.m in Sources */,
+				683A43401E3BC80800B18384 /* ScanBLEViewController.m in Sources */,
+				683A43431E3BE7CC00B18384 /* DevicesTableViewController.m in Sources */,
 				6818EFB71E36667C00407BDA /* Model.xcdatamodeld in Sources */,
 				6818EFB31E36607B00407BDA /* MedicationViewController.m in Sources */,
 				6818EF721E36448700407BDA /* main.m in Sources */,
