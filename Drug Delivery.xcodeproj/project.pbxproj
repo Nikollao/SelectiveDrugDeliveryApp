@@ -30,6 +30,7 @@
 		682BA34F1E3A78AA0013CC9A /* DataExchangeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 682BA34E1E3A78AA0013CC9A /* DataExchangeViewController.m */; };
 		683A43401E3BC80800B18384 /* ScanBLEViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 683A433F1E3BC80800B18384 /* ScanBLEViewController.m */; };
 		683A43431E3BE7CC00B18384 /* DevicesTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 683A43421E3BE7CC00B18384 /* DevicesTableViewController.m */; };
+		68742BCD1E5DE2B7008B5624 /* medication background.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 68742BCC1E5DE2B7008B5624 /* medication background.jpeg */; };
 		68E09B391E4DC6DA003F1874 /* ble_image.png in Resources */ = {isa = PBXBuildFile; fileRef = 68E09B381E4DC6DA003F1874 /* ble_image.png */; };
 		68E09B3D1E4E074D003F1874 /* BLEDeviceTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 68E09B3C1E4E074D003F1874 /* BLEDeviceTableViewCell.m */; };
 		68E09B3F1E4E0D15003F1874 /* BLE_SMALL_IMAGE.png in Resources */ = {isa = PBXBuildFile; fileRef = 68E09B3E1E4E0D15003F1874 /* BLE_SMALL_IMAGE.png */; };
@@ -96,6 +97,7 @@
 		683A433F1E3BC80800B18384 /* ScanBLEViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScanBLEViewController.m; sourceTree = "<group>"; };
 		683A43411E3BE7CC00B18384 /* DevicesTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DevicesTableViewController.h; sourceTree = "<group>"; };
 		683A43421E3BE7CC00B18384 /* DevicesTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DevicesTableViewController.m; sourceTree = "<group>"; };
+		68742BCC1E5DE2B7008B5624 /* medication background.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "medication background.jpeg"; sourceTree = "<group>"; };
 		68E09B381E4DC6DA003F1874 /* ble_image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ble_image.png; path = ../ble_image.png; sourceTree = "<group>"; };
 		68E09B3B1E4E074D003F1874 /* BLEDeviceTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLEDeviceTableViewCell.h; sourceTree = "<group>"; };
 		68E09B3C1E4E074D003F1874 /* BLEDeviceTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLEDeviceTableViewCell.m; sourceTree = "<group>"; };
@@ -166,6 +168,7 @@
 				6818EF811E36448700407BDA /* LaunchScreen.storyboard */,
 				6818EF841E36448700407BDA /* Info.plist */,
 				68E09B381E4DC6DA003F1874 /* ble_image.png */,
+				68742BCC1E5DE2B7008B5624 /* medication background.jpeg */,
 				68E09B3E1E4E0D15003F1874 /* BLE_SMALL_IMAGE.png */,
 				6818EF701E36448700407BDA /* Supporting Files */,
 			);
@@ -412,6 +415,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6818EF831E36448700407BDA /* LaunchScreen.storyboard in Resources */,
+				68742BCD1E5DE2B7008B5624 /* medication background.jpeg in Resources */,
 				68E09B391E4DC6DA003F1874 /* ble_image.png in Resources */,
 				6818EF801E36448700407BDA /* Assets.xcassets in Resources */,
 				6818EF7E1E36448700407BDA /* Main.storyboard in Resources */,

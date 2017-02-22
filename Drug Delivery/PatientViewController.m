@@ -38,6 +38,7 @@
     self.lastNameTextField.delegate = self;
     self.diseaseTextField.delegate = self;
     self.dateOfBirthTextField.delegate = self;
+    
     self.medicationPickerTextField.delegate = self;
     self.medicationPickerTextField.pickerDelegate = self;
     self.medicationTwoPickerTextField.delegate = self;
@@ -110,15 +111,9 @@
         self.lastNameTextField.text = patient.lastName;
         self.diseaseTextField.text = patient.disease;
         self.dateOfBirthTextField.text = patient.dateOfBirth;
+        
         self.medicationPickerTextField.text = patient.medication.name;
         self.medicationPickerTextField.selectedObjectID = patient.medication.objectID;
-        
-        self.medicationTwoPickerTextField.text = patient.medication.name;
-        self.medicationTwoPickerTextField.selectedObjectID = patient.medication.objectID;
-        
-        self.medicationThreePickerTextField.text = patient.medication.name;
-        self.medicationThreePickerTextField.selectedObjectID = patient.medication.objectID;
-        //[self hideKeyboard];
     }
 }
 
@@ -183,19 +178,6 @@
             
             Medication *medication = (Medication *)[cdh.context existingObjectWithID:objectID error:nil];
             patient.medication = medication;
-            self.medicationPickerTextField.text = patient.medication.name;
-        }
-        else if (pickerTextField == self.medicationTwoPickerTextField) {
-            
-            Medication *medication = (Medication *)[cdh.context existingObjectWithID:objectID error:nil];
-            patient.medication = medication;
-            self.medicationPickerTextField.text = patient.medication.name;
-        }
-        else if (pickerTextField == self.medicationThreePickerTextField) {
-            
-            Medication *medication = (Medication *)[cdh.context existingObjectWithID:objectID error:nil];
-            patient.medication = medication;
-            self.medicationPickerTextField.text = patient.medication.name;
         }
         [self refreshInterface];
     }
@@ -213,17 +195,6 @@
             patient.medication = nil;
             self.medicationPickerTextField.text = @"";
         }
-        else if (pickerTextField == self.medicationTwoPickerTextField) {
-            
-            patient.medication = nil;
-            self.medicationTwoPickerTextField.text = @"";
-        }
-        else if (pickerTextField == self.medicationThreePickerTextField) {
-            
-            patient.medication = nil;
-            self.medicationPickerTextField.text = @"";
-        }
-
         [self refreshInterface];
     }
 }
@@ -234,7 +205,7 @@
     
     
     if (textField == _medicationPickerTextField && _medicationPickerTextField.picker) {
-        
+
         [_medicationPickerTextField fetch];
         [_medicationPickerTextField.picker reloadAllComponents];
     }

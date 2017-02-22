@@ -99,6 +99,8 @@
     
     [self hideKeyboard];
     [self.navigationController popViewControllerAnimated:YES];
+    CoreDataHelper *cdh = [(AppDelegate *) [[UIApplication sharedApplication] delegate] cdh];
+    [cdh.context rollback];
 }
 
 -(BOOL)textFieldShouldReturn:(UITextField *)textField {
