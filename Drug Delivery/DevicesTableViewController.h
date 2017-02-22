@@ -8,13 +8,18 @@
 
 #import <UIKit/UIKit.h>
 #import <CoreBluetooth/CoreBluetooth.h>
+#import "BLEDeviceTableViewCell.h"
 
-@interface DevicesTableViewController : UITableViewController 
-@property (weak, nonatomic) IBOutlet UIBarButtonItem *testButton;
+@interface DevicesTableViewController : UITableViewController <CBCentralManagerDelegate, CBPeripheralDelegate>
+
+@property (strong, nonatomic) BLEDeviceTableViewCell *cell;
+
 @property (strong, nonatomic) NSString *sendString;
 
 @property (strong, nonatomic) CBCentralManager *centralManager;
 
 @property (strong, nonatomic) NSMutableArray *peripheralsArray;
+
+- (IBAction)didPressConnectButton:(id)sender;
 
 @end

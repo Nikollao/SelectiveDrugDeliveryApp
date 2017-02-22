@@ -25,12 +25,14 @@
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *indicator;
 
 @property (strong, nonatomic) CBCentralManager *centralManager;
-// @property (strong, nonatomic) CBPeripheral *peripheral;
+@property (strong, nonatomic) CBPeripheral *peripheral;
 
 @property (strong, nonatomic) NSString *numberOfDrugs;
 
 - (IBAction)didPressScanButton:(id)sender;
 - (IBAction)didPressDisconnectButton:(id)sender;
+
+-(void)didPressConnectButtonInCell;
 
 /*
 - (void) centralManagerDidUpdateState:(CBCentralManager *)central;

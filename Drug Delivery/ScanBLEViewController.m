@@ -24,7 +24,7 @@
 }
 
 -(void)didReceiveMemoryWarning {
-    
+    [super didReceiveMemoryWarning];
     NSLog(@"Memory issue!");
 }
 
@@ -35,6 +35,11 @@
         [self.indicator stopAnimating];
     }
     self.indicator.hidden = YES;
+}
+
+-(void)didPressConnectButtonInCell {
+    
+    [self.centralManager connectPeripheral:self.peripheral options:nil];
 }
 
 - (IBAction)didPressScanButton:(id)sender {
@@ -56,12 +61,10 @@
 }
 
 - (IBAction)didPressDisconnectButton:(id)sender {
- 
-    CBPeripheral *peripheral = [self.peripheralsArray firstObject];
     
-    if (peripheral.state == CBPeripheralStateConnected) {
+    if (_peripheral.state == CBPeripheralStateConnected) {
         
-        [self.centralManager cancelPeripheralConnection:peripheral];
+        [self.centralManager cancelPeripheralConnection:_peripheral];
         self.disconnectButton.enabled = NO;
         
         UIAlertController *controller = [UIAlertController alertControllerWithTitle:@"Disconnect" message:@"You have been disconnected from the device!" preferredStyle:UIAlertControllerStyleAlert];
@@ -110,8 +113,10 @@
 - (void)centralManager:(CBCentralManager *)central didConnectPeripheral:(CBPeripheral *)peripheral {
     
     NSLog(@"Entered didConnectPeripheral");
-    
+    self.centralManager = central; // update central manager
     [peripheral setDelegate:self];
+    self.peripheral = peripheral;
+    // [self.peripheralsArray replaceObjectAtIndex:0 withObject:self.peripheral];
     [peripheral discoverServices:nil];
     self.disconnectButton.enabled = YES;
 }
@@ -138,7 +143,7 @@
         NSLog(@"Found one device: %@", localName);
         // [self.centralManager stopScan];
         peripheral.delegate = self;
-        
+        self.peripheral = peripheral;
         if ([self.peripheralsArray count] > 0) { // ensure that device has not been detected or displayed more than once
             for (int i = 0; i < [self.peripheralsArray count]; i++) { //loop through the elements of the array and check if the peripheral is equal to any of the peripherals in the array
                 int count = 0; // start by count = 0
@@ -152,9 +157,10 @@
         } else {
             [self.peripheralsArray addObject:peripheral];// if array is empty than just add an object
         }
-        self.connectivityTimer = [NSTimer scheduledTimerWithTimeInterval:5.0 target:self selector:@selector(checkConnectivity) userInfo:nil repeats:NO]; //check if connection is established
+        self.connectivityTimer = [NSTimer scheduledTimerWithTimeInterval:5.0 target:self selector:@selector(checkConnectivity) userInfo:nil repeats:YES]; //check if connection is established
     }
     [NSTimer scheduledTimerWithTimeInterval:5.0 target:self selector:@selector(devicesFoundStopScan) userInfo:nil repeats:NO];//find all the possible devices and stop scan to save power
+    self.centralManager = central;
 }
 
 - (void)devicesFoundStopScan { // stop scan function after devices have been discovered
@@ -177,18 +183,16 @@
 
 -(void)checkConnectivity {
     
-    CBPeripheral *peripheral = [self.peripheralsArray firstObject];
-    
-    if (peripheral.state == CBPeripheralStateConnecting) {
+    if (_peripheral.state == CBPeripheralStateConnecting) {
         NSLog(@"Connecting!");
     }
-    else if (peripheral.state == CBPeripheralStateConnected) {
+    else if (_peripheral.state == CBPeripheralStateConnected) {
         NSLog(@"Connected!");
     }
-    else if (peripheral.state == CBPeripheralStateDisconnecting) {
+    else if (_peripheral.state == CBPeripheralStateDisconnecting) {
         NSLog(@"Disconnecting!");
     }
-    else if (peripheral.state == CBPeripheralStateDisconnected) {
+    else if (_peripheral.state == CBPeripheralStateDisconnected) {
         NSLog(@"Disconnected!");
     }
 }
@@ -256,7 +260,7 @@
     if ([[segue identifier] isEqualToString:@"device segue"]) {
         
          dtvc.centralManager = self.centralManager;
-        dtvc.peripheralsArray = _peripheralsArray;
+         dtvc.peripheralsArray = _peripheralsArray;
     }
 }
 

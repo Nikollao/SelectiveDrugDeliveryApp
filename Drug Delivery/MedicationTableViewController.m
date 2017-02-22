@@ -27,7 +27,7 @@
                                [NSSortDescriptor sortDescriptorWithKey:@"instructions" ascending:YES],
                                nil];
     [request setFetchBatchSize:15];
-    self.frc = [[NSFetchedResultsController alloc] initWithFetchRequest:request managedObjectContext:cdh.context sectionNameKeyPath:nil cacheName:nil];
+    self.frc = [[NSFetchedResultsController alloc] initWithFetchRequest:request managedObjectContext:cdh.context sectionNameKeyPath:@"name" cacheName:nil];
     self.frc.delegate = self;
 }
 

@@ -40,6 +40,10 @@
     self.dateOfBirthTextField.delegate = self;
     self.medicationPickerTextField.delegate = self;
     self.medicationPickerTextField.pickerDelegate = self;
+    self.medicationTwoPickerTextField.delegate = self;
+    self.medicationTwoPickerTextField.pickerDelegate = self;
+    self.medicationThreePickerTextField.delegate = self;
+    self.medicationThreePickerTextField.pickerDelegate = self;
     
     if (self.addPressed) {
      self.navigationItem.title = @"Add Patient";
@@ -53,6 +57,18 @@
     [self refreshInterface];
     [self ensureMedicationIsNotNone];
     [self.firstNameTextField becomeFirstResponder];
+    
+    //keyboard setup
+    // register for keyboard notifications
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWillShow)
+                                                 name:UIKeyboardWillShowNotification
+                                               object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWillHide)
+                                                 name:UIKeyboardWillHideNotification
+                                               object:nil];
 }
 
 -(void)ensureMedicationIsNotNone {
@@ -96,6 +112,12 @@
         self.dateOfBirthTextField.text = patient.dateOfBirth;
         self.medicationPickerTextField.text = patient.medication.name;
         self.medicationPickerTextField.selectedObjectID = patient.medication.objectID;
+        
+        self.medicationTwoPickerTextField.text = patient.medication.name;
+        self.medicationTwoPickerTextField.selectedObjectID = patient.medication.objectID;
+        
+        self.medicationThreePickerTextField.text = patient.medication.name;
+        self.medicationThreePickerTextField.selectedObjectID = patient.medication.objectID;
         //[self hideKeyboard];
     }
 }
@@ -105,6 +127,14 @@
     [self ensureMedicationIsNotNone];
     CoreDataHelper *cdh = [(AppDelegate *) [[UIApplication sharedApplication] delegate] cdh];
     [cdh saveContext];
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:UIKeyboardWillShowNotification
+                                                  object:nil];
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:UIKeyboardWillHideNotification
+                                                  object:nil];
 }
 
 
@@ -120,9 +150,24 @@
 - (IBAction)save:(id)sender {
     
     [self hideKeyboard];
-    [self.navigationController popViewControllerAnimated:YES];
-    CoreDataHelper *cdh = [(AppDelegate *) [[UIApplication sharedApplication] delegate] cdh];
-    [cdh saveContext];
+    
+    if (![self.firstNameTextField.text length] || ![self.lastNameTextField.text length]) {
+        
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Error" message:@"Patient information required" preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleCancel handler:nil];
+        [alert addAction:okAction];
+        [self presentViewController:alert animated:YES completion:nil];
+    } else {
+        CoreDataHelper *cdh = [(AppDelegate *) [[UIApplication sharedApplication] delegate] cdh];
+        [cdh saveContext];
+        Patient *patient = (Patient *)[cdh.context existingObjectWithID:self.selectedObjectID error:nil];
+        if ([patient.lastName length] > 0) {
+        
+        NSString *firstCharPatient = [patient.lastName substringToIndex:1];
+        NSLog(@"Got first char for patient, %@",firstCharPatient);
+        }
+        [self.navigationController popViewControllerAnimated:YES];
+    }
 }
 
 #pragma mark - PICKERS
@@ -135,6 +180,18 @@
         Patient *patient = (Patient *)[cdh.context existingObjectWithID:self.selectedObjectID error:nil];
         
         if (pickerTextField == self.medicationPickerTextField) {
+            
+            Medication *medication = (Medication *)[cdh.context existingObjectWithID:objectID error:nil];
+            patient.medication = medication;
+            self.medicationPickerTextField.text = patient.medication.name;
+        }
+        else if (pickerTextField == self.medicationTwoPickerTextField) {
+            
+            Medication *medication = (Medication *)[cdh.context existingObjectWithID:objectID error:nil];
+            patient.medication = medication;
+            self.medicationPickerTextField.text = patient.medication.name;
+        }
+        else if (pickerTextField == self.medicationThreePickerTextField) {
             
             Medication *medication = (Medication *)[cdh.context existingObjectWithID:objectID error:nil];
             patient.medication = medication;
@@ -156,6 +213,17 @@
             patient.medication = nil;
             self.medicationPickerTextField.text = @"";
         }
+        else if (pickerTextField == self.medicationTwoPickerTextField) {
+            
+            patient.medication = nil;
+            self.medicationTwoPickerTextField.text = @"";
+        }
+        else if (pickerTextField == self.medicationThreePickerTextField) {
+            
+            patient.medication = nil;
+            self.medicationPickerTextField.text = @"";
+        }
+
         [self refreshInterface];
     }
 }
@@ -170,6 +238,11 @@
         [_medicationPickerTextField fetch];
         [_medicationPickerTextField.picker reloadAllComponents];
     }
+    if  (self.scrollView.frame.origin.y >= 0)
+    {
+        [self setViewMovedUp:YES];
+    }
+
 }
 
 -(void)textFieldDidEndEditing:(UITextField *)textField{
@@ -208,5 +281,51 @@
     [self hideKeyboard];
     return YES;
 }
+
+#pragma mark - UIScrollView and Keyboard setup
+
+-(void)keyboardWillShow {
+    
+    if (self.scrollView.frame.origin.y >= 0) {
+        
+        [self setViewMovedUp:YES];
+    }
+    else if (self.scrollView.frame.origin.y < 0) {
+        
+        [self setViewMovedUp:NO];
+    }
+}
+
+-(void)keyboardWillHide {
+    
+    if (self.scrollView.frame.origin.y >= 0) {
+        
+        [self setViewMovedUp:YES];
+    }
+    else if (self.scrollView.frame.origin.y < 0) {
+        
+        [self setViewMovedUp:NO];
+    }
+}
+
+-(void)setViewMovedUp:(BOOL)movedUp {
+    
+    CGRect rect = self.scrollView.frame;
+    if (movedUp)
+    {
+        // 1. move the view's origin up so that the text field that will be hidden come above the keyboard
+        // 2. increase the size of the view so that the area behind the keyboard is covered up.
+        rect.origin.y -= kOFFSET_FOR_KEYBOARD;
+        //rect.size.height += kOFFSET_FOR_KEYBOARD;
+    }
+    else
+    {
+        // revert back to the normal state.
+        rect.origin.y += kOFFSET_FOR_KEYBOARD;
+        //rect.size.height -= kOFFSET_FOR_KEYBOARD;
+    }
+    self.scrollView.frame = rect;
+}
+
 
 @end

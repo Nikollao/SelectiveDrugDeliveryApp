@@ -43,16 +43,14 @@
 }
 
 - (NSString *) tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-    NSString *header = [[[self.frc sections] objectAtIndex:section] name];
-   /* UIView *headerView = [[UIView alloc] initWithFrame:CGRectZero];
-    CGRect frame = headerView.frame;
-    frame.size.width = 300;
-    frame.size.height = UIViewAutoresizingFlexibleHeight;
-    headerView.frame = frame;
-    [headerView sizeToFit];
-    [tableView setTableHeaderView:headerView];*/
-    //return [[[self.frc sections] objectAtIndex:section] name];
-    return header;
+    
+    NSString *lastNameOfPatient = [[[self.frc sections] objectAtIndex:section] name];
+    
+    if ([lastNameOfPatient length] > 0) {
+        NSString *firstCharFromLastName = [lastNameOfPatient substringToIndex:1];
+        return firstCharFromLastName;
+    } else
+        return @" ";
 }
 
 /*- (NSArray *) sectionIndexTitlesForTableView:(UITableView *)tableView{

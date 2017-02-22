@@ -31,6 +31,8 @@
 		683A43401E3BC80800B18384 /* ScanBLEViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 683A433F1E3BC80800B18384 /* ScanBLEViewController.m */; };
 		683A43431E3BE7CC00B18384 /* DevicesTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 683A43421E3BE7CC00B18384 /* DevicesTableViewController.m */; };
 		68E09B391E4DC6DA003F1874 /* ble_image.png in Resources */ = {isa = PBXBuildFile; fileRef = 68E09B381E4DC6DA003F1874 /* ble_image.png */; };
+		68E09B3D1E4E074D003F1874 /* BLEDeviceTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 68E09B3C1E4E074D003F1874 /* BLEDeviceTableViewCell.m */; };
+		68E09B3F1E4E0D15003F1874 /* BLE_SMALL_IMAGE.png in Resources */ = {isa = PBXBuildFile; fileRef = 68E09B3E1E4E0D15003F1874 /* BLE_SMALL_IMAGE.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -95,6 +97,9 @@
 		683A43411E3BE7CC00B18384 /* DevicesTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DevicesTableViewController.h; sourceTree = "<group>"; };
 		683A43421E3BE7CC00B18384 /* DevicesTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DevicesTableViewController.m; sourceTree = "<group>"; };
 		68E09B381E4DC6DA003F1874 /* ble_image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ble_image.png; path = ../ble_image.png; sourceTree = "<group>"; };
+		68E09B3B1E4E074D003F1874 /* BLEDeviceTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLEDeviceTableViewCell.h; sourceTree = "<group>"; };
+		68E09B3C1E4E074D003F1874 /* BLEDeviceTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLEDeviceTableViewCell.m; sourceTree = "<group>"; };
+		68E09B3E1E4E0D15003F1874 /* BLE_SMALL_IMAGE.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BLE_SMALL_IMAGE.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -161,6 +166,7 @@
 				6818EF811E36448700407BDA /* LaunchScreen.storyboard */,
 				6818EF841E36448700407BDA /* Info.plist */,
 				68E09B381E4DC6DA003F1874 /* ble_image.png */,
+				68E09B3E1E4E0D15003F1874 /* BLE_SMALL_IMAGE.png */,
 				6818EF701E36448700407BDA /* Supporting Files */,
 			);
 			path = "Drug Delivery";
@@ -269,6 +275,7 @@
 		682BA34B1E3A787F0013CC9A /* TableViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				68E09B3A1E4E071D003F1874 /* Custom Cell */,
 				683A43411E3BE7CC00B18384 /* DevicesTableViewController.h */,
 				683A43421E3BE7CC00B18384 /* DevicesTableViewController.m */,
 			);
@@ -284,6 +291,15 @@
 				683A433F1E3BC80800B18384 /* ScanBLEViewController.m */,
 			);
 			name = ViewControllers;
+			sourceTree = "<group>";
+		};
+		68E09B3A1E4E071D003F1874 /* Custom Cell */ = {
+			isa = PBXGroup;
+			children = (
+				68E09B3B1E4E074D003F1874 /* BLEDeviceTableViewCell.h */,
+				68E09B3C1E4E074D003F1874 /* BLEDeviceTableViewCell.m */,
+			);
+			name = "Custom Cell";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -399,6 +415,7 @@
 				68E09B391E4DC6DA003F1874 /* ble_image.png in Resources */,
 				6818EF801E36448700407BDA /* Assets.xcassets in Resources */,
 				6818EF7E1E36448700407BDA /* Main.storyboard in Resources */,
+				68E09B3F1E4E0D15003F1874 /* BLE_SMALL_IMAGE.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -433,6 +450,7 @@
 				6818EFC01E36677E00407BDA /* Patient.m in Sources */,
 				683A43401E3BC80800B18384 /* ScanBLEViewController.m in Sources */,
 				683A43431E3BE7CC00B18384 /* DevicesTableViewController.m in Sources */,
+				68E09B3D1E4E074D003F1874 /* BLEDeviceTableViewCell.m in Sources */,
 				6818EFB71E36667C00407BDA /* Model.xcdatamodeld in Sources */,
 				6818EFB31E36607B00407BDA /* MedicationViewController.m in Sources */,
 				6818EF721E36448700407BDA /* main.m in Sources */,

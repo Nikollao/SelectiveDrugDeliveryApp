@@ -25,11 +25,12 @@
     CoreDataHelper *cdh = [(AppDelegate *) [[UIApplication sharedApplication] delegate] cdh];
     NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:@"Patient"];
     request.sortDescriptors = [NSArray arrayWithObjects:
-                              [NSSortDescriptor sortDescriptorWithKey:@"medication.name" ascending:YES],
-                               [NSSortDescriptor sortDescriptorWithKey:@"firstName" ascending:YES],
+                              //[NSSortDescriptor sortDescriptorWithKey:@"medication.name" ascending:YES],
+                               //[NSSortDescriptor sortDescriptorWithKey:@"firstName" ascending:YES],
+                               [NSSortDescriptor sortDescriptorWithKey:@"lastName" ascending:YES],
                                nil];
     [request setFetchBatchSize:15];
-    self.frc = [[NSFetchedResultsController alloc] initWithFetchRequest:request managedObjectContext:cdh.context sectionNameKeyPath:@"medication.name" cacheName:nil];
+    self.frc = [[NSFetchedResultsController alloc] initWithFetchRequest:request managedObjectContext:cdh.context sectionNameKeyPath:@"lastName" cacheName:nil];
     self.frc.delegate = self;
 }
 
@@ -38,6 +39,19 @@
     [super viewDidLoad];
     [self configureFetch];
     [self performFetch];
+    [self hideKeyboardWhenBackgroundIsTapped];
+}
+
+-(void) hideKeyboardWhenBackgroundIsTapped {
+    
+    UITapGestureRecognizer *tgr = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideKeyboard)];
+    [tgr setCancelsTouchesInView:NO];
+    [self.tableView addGestureRecognizer:tgr];
+}
+
+-(void) hideKeyboard {
+    
+    [self.tableView endEditing:YES];
 }
 
 -(UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
