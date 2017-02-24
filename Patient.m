@@ -13,6 +13,7 @@
 
 @dynamic firstName;
 @dynamic lastName;
+@dynamic lastNameFirstChar;
 @dynamic dateOfBirth;
 @dynamic disease;
 @dynamic medication;

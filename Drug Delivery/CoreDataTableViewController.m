@@ -44,13 +44,14 @@
 
 - (NSString *) tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
     
-    NSString *lastNameOfPatient = [[[self.frc sections] objectAtIndex:section] name];
+    /*NSString *lastNameOfPatient = [[[self.frc sections] objectAtIndex:section] name];
     
     if ([lastNameOfPatient length] > 0) {
         NSString *firstCharFromLastName = [lastNameOfPatient substringToIndex:1];
         return firstCharFromLastName;
     } else
-        return @" ";
+        return @" ";*/
+    return [[[self.frc sections] objectAtIndex:section] name];
 }
 
 /*- (NSArray *) sectionIndexTitlesForTableView:(UITableView *)tableView{

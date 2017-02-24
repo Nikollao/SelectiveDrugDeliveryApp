@@ -61,6 +61,7 @@ NSString *storeFileName = @"Drug-Delivery.sqlite";
     
     if (!_store) {
         _store = [_coordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:[self storesURL] options:nil error:nil];
+        NSLog(@"Store Loaded");
     }
 }
 

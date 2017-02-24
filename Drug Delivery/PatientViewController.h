@@ -30,6 +30,12 @@
 @property (weak, nonatomic) IBOutlet MedicationPickerTextField *medicationTwoPickerTextField;
 @property (weak, nonatomic) IBOutlet MedicationPickerTextField *medicationThreePickerTextField;
 
+@property (strong, nonatomic) NSString *medicationTwo;
+@property (strong, nonatomic) NSString *medicationThree;
+
+@property (strong, nonatomic) NSManagedObjectID *medicationTwoID;
+@property (strong, nonatomic) NSManagedObjectID *medicationThreeID;
+
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 
 

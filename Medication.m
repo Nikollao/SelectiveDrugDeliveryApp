@@ -12,6 +12,7 @@
 @implementation Medication
 
 @dynamic name;
+@dynamic nameFirstChar;
 @dynamic instructions;
 @dynamic patients;
 

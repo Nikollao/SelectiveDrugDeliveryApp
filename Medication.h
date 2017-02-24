@@ -14,6 +14,7 @@
 @interface Medication : NSManagedObject
 
 @property (nullable, nonatomic, copy) NSString *name;
+@property (nullable, nonatomic, copy) NSString *nameFirstChar;
 @property (nullable, nonatomic, copy) NSString *instructions;
 @property (nullable, nonatomic, retain) NSSet<Patient *> *patients;
 

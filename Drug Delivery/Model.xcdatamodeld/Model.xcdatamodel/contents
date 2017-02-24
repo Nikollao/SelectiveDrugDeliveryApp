@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="11759" systemVersion="16C67" minimumToolsVersion="Xcode 8.0" sourceLanguage="Objective-C" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="11759" systemVersion="16D32" minimumToolsVersion="Xcode 8.0" sourceLanguage="Objective-C" userDefinedModelVersionIdentifier="">
     <entity name="Medication" representedClassName="Medication" syncable="YES">
         <attribute name="instructions" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="nameFirstChar" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="patients" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Patient" inverseName="medication" inverseEntity="Patient" syncable="YES"/>
     </entity>
     <entity name="Patient" representedClassName="Patient" syncable="YES">
@@ -10,11 +11,12 @@
         <attribute name="disease" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="firstName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="lastName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="lastNameFirstChar" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="medication" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Medication" inverseName="patients" inverseEntity="Medication" syncable="YES"/>
     </entity>
     <fetchRequest name="NoMedication" entity="Medication" predicateString="name == &quot;No Medication&quot;"/>
     <elements>
-        <element name="Patient" positionX="-270" positionY="-45" width="128" height="118"/>
-        <element name="Medication" positionX="-18" positionY="27" width="128" height="88"/>
+        <element name="Medication" positionX="-18" positionY="27" width="128" height="103"/>
+        <element name="Patient" positionX="-270" positionY="-45" width="128" height="133"/>
     </elements>
 </model>

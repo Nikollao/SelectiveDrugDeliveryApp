@@ -24,10 +24,10 @@
     NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:@"Medication"];
     request.sortDescriptors = [NSArray arrayWithObjects:
                                [NSSortDescriptor sortDescriptorWithKey:@"name" ascending:YES],
-                               [NSSortDescriptor sortDescriptorWithKey:@"instructions" ascending:YES],
+                               [NSSortDescriptor sortDescriptorWithKey:@"nameFirstChar" ascending:YES],
                                nil];
     [request setFetchBatchSize:15];
-    self.frc = [[NSFetchedResultsController alloc] initWithFetchRequest:request managedObjectContext:cdh.context sectionNameKeyPath:@"name" cacheName:nil];
+    self.frc = [[NSFetchedResultsController alloc] initWithFetchRequest:request managedObjectContext:cdh.context sectionNameKeyPath:@"nameFirstChar" cacheName:nil];
     self.frc.delegate = self;
 }
 

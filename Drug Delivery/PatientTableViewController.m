@@ -27,10 +27,10 @@
     request.sortDescriptors = [NSArray arrayWithObjects:
                               //[NSSortDescriptor sortDescriptorWithKey:@"medication.name" ascending:YES],
                                //[NSSortDescriptor sortDescriptorWithKey:@"firstName" ascending:YES],
-                               [NSSortDescriptor sortDescriptorWithKey:@"lastName" ascending:YES],
+                               [NSSortDescriptor sortDescriptorWithKey:@"lastNameFirstChar" ascending:YES],
                                nil];
     [request setFetchBatchSize:15];
-    self.frc = [[NSFetchedResultsController alloc] initWithFetchRequest:request managedObjectContext:cdh.context sectionNameKeyPath:@"lastName" cacheName:nil];
+    self.frc = [[NSFetchedResultsController alloc] initWithFetchRequest:request managedObjectContext:cdh.context sectionNameKeyPath:@"lastNameFirstChar" cacheName:nil];
     self.frc.delegate = self;
 }
 

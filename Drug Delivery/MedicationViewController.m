@@ -82,12 +82,14 @@
             
             Medication *newMedication = [NSEntityDescription insertNewObjectForEntityForName:@"Medication" inManagedObjectContext:cdh.context];
             newMedication.name = self.drugNameTextField.text;
+            newMedication.nameFirstChar = [newMedication.name substringToIndex:1];
             newMedication.instructions = self.drugInstructionsTextView.text;
         }
         else if (self.selectedObjectID) {
             
             Medication *medication = (Medication *)[cdh.context existingObjectWithID:self.selectedObjectID error:nil];
             medication.name = self.drugNameTextField.text;
+            medication.nameFirstChar = [medication.name substringToIndex:1];
             medication.instructions = self.drugInstructionsTextView.text;
         }
         [cdh saveContext];

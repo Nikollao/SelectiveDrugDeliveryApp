@@ -46,6 +46,13 @@
     self.medicationThreePickerTextField.delegate = self;
     self.medicationThreePickerTextField.pickerDelegate = self;
     
+    self.medicationTwo = [[NSUserDefaults standardUserDefaults] stringForKey:@"medication two"];
+    //self.medicationTwoID = [[NSUserDefaults standardUserDefaults] objectForKey:@"medication two ID"];
+    
+    self.medicationThree = [[NSUserDefaults standardUserDefaults] stringForKey:@"medication three"];
+    //self.medicationThreeID = [[NSUserDefaults standardUserDefaults] objectForKey:@"medication three ID"];
+    
+    
     if (self.addPressed) {
      self.navigationItem.title = @"Add Patient";
     } else {
@@ -114,6 +121,12 @@
         
         self.medicationPickerTextField.text = patient.medication.name;
         self.medicationPickerTextField.selectedObjectID = patient.medication.objectID;
+        
+        self.medicationTwoPickerTextField.text = self.medicationTwo;
+        self.medicationTwoPickerTextField.selectedObjectID = self.medicationTwoID;
+
+        self.medicationThreePickerTextField.text = self.medicationThree;
+        self.medicationThreePickerTextField.selectedObjectID = self.medicationThreeID;
     }
 }
 
@@ -179,6 +192,25 @@
             Medication *medication = (Medication *)[cdh.context existingObjectWithID:objectID error:nil];
             patient.medication = medication;
         }
+        else if (pickerTextField == self.medicationTwoPickerTextField) {
+            
+            Medication *medication = (Medication *)[cdh.context existingObjectWithID:objectID error:nil];
+            self.medicationTwo = medication.name;
+            self.medicationTwoID = medication.objectID;
+            [[NSUserDefaults standardUserDefaults] setObject:self.medicationTwo forKey:@"medication two"];
+            //[[NSUserDefaults standardUserDefaults] setObject:self.medicationTwoID forKey:@"medication two ID"];
+            [[NSUserDefaults standardUserDefaults] synchronize];
+        }
+        else if (pickerTextField == self.medicationThreePickerTextField) {
+            
+            Medication *medication = (Medication *)[cdh.context existingObjectWithID:objectID error:nil];
+            self.medicationThree = medication.name;
+            self.medicationThreeID = medication.objectID;
+            [[NSUserDefaults standardUserDefaults] setObject:self.medicationThree forKey:@"medication three"];
+            //[[NSUserDefaults standardUserDefaults] setObject:self.medicationThreeID forKey:@"medication three ID"];
+            [[NSUserDefaults standardUserDefaults] synchronize];
+
+        }
         [self refreshInterface];
     }
 }
@@ -235,6 +267,8 @@
     if (textField == self.lastNameTextField) {
 
         patient.lastName = self.lastNameTextField.text;
+        patient.lastNameFirstChar = [patient.lastName substringToIndex:1];
+        NSLog(@"First char: %@",patient.lastNameFirstChar);
     }
     
     if (textField == self.diseaseTextField) {
