@@ -46,13 +46,6 @@
     self.medicationThreePickerTextField.delegate = self;
     self.medicationThreePickerTextField.pickerDelegate = self;
     
-    self.medicationTwo = [[NSUserDefaults standardUserDefaults] stringForKey:@"medication two"];
-    //self.medicationTwoID = [[NSUserDefaults standardUserDefaults] objectForKey:@"medication two ID"];
-    
-    self.medicationThree = [[NSUserDefaults standardUserDefaults] stringForKey:@"medication three"];
-    //self.medicationThreeID = [[NSUserDefaults standardUserDefaults] objectForKey:@"medication three ID"];
-    
-    
     if (self.addPressed) {
      self.navigationItem.title = @"Add Patient";
     } else {
@@ -122,11 +115,11 @@
         self.medicationPickerTextField.text = patient.medication.name;
         self.medicationPickerTextField.selectedObjectID = patient.medication.objectID;
         
-        self.medicationTwoPickerTextField.text = self.medicationTwo;
-        self.medicationTwoPickerTextField.selectedObjectID = self.medicationTwoID;
+        self.medicationTwoPickerTextField.text = patient.medicationTwo.name;
+        self.medicationTwoPickerTextField.selectedObjectID = patient.medicationTwo.objectID;
 
-        self.medicationThreePickerTextField.text = self.medicationThree;
-        self.medicationThreePickerTextField.selectedObjectID = self.medicationThreeID;
+        self.medicationThreePickerTextField.text = patient.medicationThree.name;
+        self.medicationThreePickerTextField.selectedObjectID = patient.medicationThree.objectID;
     }
 }
 
@@ -168,12 +161,6 @@
     } else {
         CoreDataHelper *cdh = [(AppDelegate *) [[UIApplication sharedApplication] delegate] cdh];
         [cdh saveContext];
-        Patient *patient = (Patient *)[cdh.context existingObjectWithID:self.selectedObjectID error:nil];
-        if ([patient.lastName length] > 0) {
-        
-        NSString *firstCharPatient = [patient.lastName substringToIndex:1];
-        NSLog(@"Got first char for patient, %@",firstCharPatient);
-        }
         [self.navigationController popViewControllerAnimated:YES];
     }
 }
@@ -195,21 +182,12 @@
         else if (pickerTextField == self.medicationTwoPickerTextField) {
             
             Medication *medication = (Medication *)[cdh.context existingObjectWithID:objectID error:nil];
-            self.medicationTwo = medication.name;
-            self.medicationTwoID = medication.objectID;
-            [[NSUserDefaults standardUserDefaults] setObject:self.medicationTwo forKey:@"medication two"];
-            //[[NSUserDefaults standardUserDefaults] setObject:self.medicationTwoID forKey:@"medication two ID"];
-            [[NSUserDefaults standardUserDefaults] synchronize];
+            patient.medicationTwo = medication;
         }
         else if (pickerTextField == self.medicationThreePickerTextField) {
             
             Medication *medication = (Medication *)[cdh.context existingObjectWithID:objectID error:nil];
-            self.medicationThree = medication.name;
-            self.medicationThreeID = medication.objectID;
-            [[NSUserDefaults standardUserDefaults] setObject:self.medicationThree forKey:@"medication three"];
-            //[[NSUserDefaults standardUserDefaults] setObject:self.medicationThreeID forKey:@"medication three ID"];
-            [[NSUserDefaults standardUserDefaults] synchronize];
-
+            patient.medicationThree = medication;
         }
         [self refreshInterface];
     }
@@ -227,6 +205,16 @@
             patient.medication = nil;
             self.medicationPickerTextField.text = @"";
         }
+        else if (pickerTextField == self.medicationTwoPickerTextField) {
+            
+            patient.medicationTwo = nil;
+            self.medicationTwoPickerTextField.text = @"";
+        }
+        else if (pickerTextField == self.medicationThreePickerTextField) {
+            
+            patient.medicationThree = nil;
+            self.medicationThreePickerTextField.text = @"";
+        }
         [self refreshInterface];
     }
 }
@@ -240,6 +228,16 @@
 
         [_medicationPickerTextField fetch];
         [_medicationPickerTextField.picker reloadAllComponents];
+    }
+    else if (textField == _medicationTwoPickerTextField && _medicationTwoPickerTextField.picker) {
+        
+        [_medicationTwoPickerTextField fetch];
+        [_medicationTwoPickerTextField.picker reloadAllComponents];
+    }
+    else if (textField == _medicationThreePickerTextField && _medicationThreePickerTextField.picker) {
+        
+        [_medicationThreePickerTextField fetch];
+        [_medicationThreePickerTextField.picker reloadAllComponents];
     }
     if  (self.scrollView.frame.origin.y >= 0)
     {

@@ -16,6 +16,9 @@
 @dynamic lastNameFirstChar;
 @dynamic dateOfBirth;
 @dynamic disease;
+
 @dynamic medication;
+@dynamic medicationTwo;
+@dynamic medicationThree;
 
 @end

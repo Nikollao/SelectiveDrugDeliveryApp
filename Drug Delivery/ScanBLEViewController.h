@@ -6,12 +6,13 @@
 //  Copyright © 2017 University of Leeds. All rights reserved.
 //
 
+#import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 #import <CoreBluetooth/CoreBluetooth.h>
 #define DEVICE_INFO_SERVICE_UUID @"713D0000-503E-4C75-BA94-3148F18D941E"
 
 //@import CoreBluetooth;
-@import QuartzCore;
+@import QuartzCore; // graphics and animation framework
 
 @interface ScanBLEViewController : UIViewController <CBCentralManagerDelegate, CBPeripheralDelegate>
 
@@ -24,7 +25,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *scanButton;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *indicator;
 
-@property (strong, nonatomic) CBCentralManager *centralManager;
+//@property (strong, nonatomic) CBCentralManager *centralManager;
 @property (strong, nonatomic) CBPeripheral *peripheral;
 
 @property (strong, nonatomic) NSString *numberOfDrugs;
@@ -33,6 +34,8 @@
 - (IBAction)didPressDisconnectButton:(id)sender;
 
 -(void)didPressConnectButtonInCell;
+
++(CBCentralManager *)centralManager;
 
 /*
 - (void) centralManagerDidUpdateState:(CBCentralManager *)central;

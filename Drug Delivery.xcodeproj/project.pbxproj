@@ -31,6 +31,8 @@
 		683A43401E3BC80800B18384 /* ScanBLEViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 683A433F1E3BC80800B18384 /* ScanBLEViewController.m */; };
 		683A43431E3BE7CC00B18384 /* DevicesTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 683A43421E3BE7CC00B18384 /* DevicesTableViewController.m */; };
 		68742BCD1E5DE2B7008B5624 /* medication background.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 68742BCC1E5DE2B7008B5624 /* medication background.jpeg */; };
+		68742BD01E605950008B5624 /* MedicationTwoPickerTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 68742BCF1E605950008B5624 /* MedicationTwoPickerTextField.m */; };
+		68742BD31E60596D008B5624 /* MedicationThreePickerTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 68742BD21E60596D008B5624 /* MedicationThreePickerTextField.m */; };
 		68E09B391E4DC6DA003F1874 /* ble_image.png in Resources */ = {isa = PBXBuildFile; fileRef = 68E09B381E4DC6DA003F1874 /* ble_image.png */; };
 		68E09B3D1E4E074D003F1874 /* BLEDeviceTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 68E09B3C1E4E074D003F1874 /* BLEDeviceTableViewCell.m */; };
 		68E09B3F1E4E0D15003F1874 /* BLE_SMALL_IMAGE.png in Resources */ = {isa = PBXBuildFile; fileRef = 68E09B3E1E4E0D15003F1874 /* BLE_SMALL_IMAGE.png */; };
@@ -98,6 +100,10 @@
 		683A43411E3BE7CC00B18384 /* DevicesTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DevicesTableViewController.h; sourceTree = "<group>"; };
 		683A43421E3BE7CC00B18384 /* DevicesTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DevicesTableViewController.m; sourceTree = "<group>"; };
 		68742BCC1E5DE2B7008B5624 /* medication background.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "medication background.jpeg"; sourceTree = "<group>"; };
+		68742BCE1E605950008B5624 /* MedicationTwoPickerTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MedicationTwoPickerTextField.h; sourceTree = "<group>"; };
+		68742BCF1E605950008B5624 /* MedicationTwoPickerTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MedicationTwoPickerTextField.m; sourceTree = "<group>"; };
+		68742BD11E60596D008B5624 /* MedicationThreePickerTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MedicationThreePickerTextField.h; sourceTree = "<group>"; };
+		68742BD21E60596D008B5624 /* MedicationThreePickerTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MedicationThreePickerTextField.m; sourceTree = "<group>"; };
 		68E09B381E4DC6DA003F1874 /* ble_image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ble_image.png; path = ../ble_image.png; sourceTree = "<group>"; };
 		68E09B3B1E4E074D003F1874 /* BLEDeviceTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLEDeviceTableViewCell.h; sourceTree = "<group>"; };
 		68E09B3C1E4E074D003F1874 /* BLEDeviceTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLEDeviceTableViewCell.m; sourceTree = "<group>"; };
@@ -262,6 +268,10 @@
 			children = (
 				6818EFD41E36814600407BDA /* MedicationPickerTextField.h */,
 				6818EFD51E36814600407BDA /* MedicationPickerTextField.m */,
+				68742BCE1E605950008B5624 /* MedicationTwoPickerTextField.h */,
+				68742BCF1E605950008B5624 /* MedicationTwoPickerTextField.m */,
+				68742BD11E60596D008B5624 /* MedicationThreePickerTextField.h */,
+				68742BD21E60596D008B5624 /* MedicationThreePickerTextField.m */,
 			);
 			name = PickerTextField;
 			sourceTree = "<group>";
@@ -450,11 +460,13 @@
 				6818EFA81E364B7900407BDA /* PatientViewController.m in Sources */,
 				6818EFCF1E366B3700407BDA /* CoreDataTableViewController.m in Sources */,
 				6818EFB01E36606600407BDA /* MedicationTableViewController.m in Sources */,
+				68742BD31E60596D008B5624 /* MedicationThreePickerTextField.m in Sources */,
 				6818EFC21E36677E00407BDA /* Medication.m in Sources */,
 				6818EFC01E36677E00407BDA /* Patient.m in Sources */,
 				683A43401E3BC80800B18384 /* ScanBLEViewController.m in Sources */,
 				683A43431E3BE7CC00B18384 /* DevicesTableViewController.m in Sources */,
 				68E09B3D1E4E074D003F1874 /* BLEDeviceTableViewCell.m in Sources */,
+				68742BD01E605950008B5624 /* MedicationTwoPickerTextField.m in Sources */,
 				6818EFB71E36667C00407BDA /* Model.xcdatamodeld in Sources */,
 				6818EFB31E36607B00407BDA /* MedicationViewController.m in Sources */,
 				6818EF721E36448700407BDA /* main.m in Sources */,

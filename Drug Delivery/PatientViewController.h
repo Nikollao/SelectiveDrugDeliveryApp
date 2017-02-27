@@ -12,6 +12,8 @@
 #import "Patient.h"
 #import "Medication.h"
 #import "MedicationPickerTextField.h"
+#import "MedicationTwoPickerTextField.h"
+#import "MedicationThreePickerTextField.h"
 
 #define kOFFSET_FOR_KEYBOARD 36;
 
@@ -27,14 +29,8 @@
 @property (nonatomic) BOOL addPressed;
 
 @property (weak, nonatomic) IBOutlet MedicationPickerTextField *medicationPickerTextField;
-@property (weak, nonatomic) IBOutlet MedicationPickerTextField *medicationTwoPickerTextField;
-@property (weak, nonatomic) IBOutlet MedicationPickerTextField *medicationThreePickerTextField;
-
-@property (strong, nonatomic) NSString *medicationTwo;
-@property (strong, nonatomic) NSString *medicationThree;
-
-@property (strong, nonatomic) NSManagedObjectID *medicationTwoID;
-@property (strong, nonatomic) NSManagedObjectID *medicationThreeID;
+@property (weak, nonatomic) IBOutlet MedicationTwoPickerTextField *medicationTwoPickerTextField;
+@property (weak, nonatomic) IBOutlet MedicationThreePickerTextField *medicationThreePickerTextField;
 
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 

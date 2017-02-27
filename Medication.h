@@ -16,7 +16,12 @@
 @property (nullable, nonatomic, copy) NSString *name;
 @property (nullable, nonatomic, copy) NSString *nameFirstChar;
 @property (nullable, nonatomic, copy) NSString *instructions;
+
 @property (nullable, nonatomic, retain) NSSet<Patient *> *patients;
+@property (nullable, nonatomic, retain) NSSet<Patient *> *patientsTwo;
+@property (nullable, nonatomic, retain) NSSet<Patient *> *patientsThree;
+
+
 
 @end
 

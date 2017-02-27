@@ -14,6 +14,9 @@
 @dynamic name;
 @dynamic nameFirstChar;
 @dynamic instructions;
+
 @dynamic patients;
+@dynamic patientsTwo;
+@dynamic patientsThree;
 
 @end

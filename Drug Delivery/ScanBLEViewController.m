@@ -15,11 +15,21 @@
 
 @implementation ScanBLEViewController
 
+static CBCentralManager *_centralManager;
+
++(CBCentralManager *) centralManager {
+    
+    if (!_centralManager) {
+        _centralManager = [[CBCentralManager alloc] init];
+    }
+    return _centralManager;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.indicator.hidden = YES;
     self.peripheralsArray = [NSMutableArray array];
-    self.centralManager = [[CBCentralManager alloc] initWithDelegate:self queue:nil];
+    _centralManager = [[CBCentralManager alloc] initWithDelegate:self queue:nil];
     self.disconnectButton.enabled = NO;
 }
 
@@ -39,7 +49,7 @@
 
 -(void)didPressConnectButtonInCell {
     
-    [self.centralManager connectPeripheral:self.peripheral options:nil];
+    [_centralManager connectPeripheral:self.peripheral options:nil];
 }
 
 - (IBAction)didPressScanButton:(id)sender {
@@ -57,14 +67,13 @@
     if ([_centralManager isScanning]) {
         NSLog(@"Scan Started (:");
     }
-
 }
 
 - (IBAction)didPressDisconnectButton:(id)sender {
     
     if (_peripheral.state == CBPeripheralStateConnected) {
         
-        [self.centralManager cancelPeripheralConnection:_peripheral];
+        [_centralManager cancelPeripheralConnection:_peripheral];
         self.disconnectButton.enabled = NO;
         
         UIAlertController *controller = [UIAlertController alertControllerWithTitle:@"Disconnect" message:@"You have been disconnected from the device!" preferredStyle:UIAlertControllerStyleAlert];
@@ -78,7 +87,7 @@
 
 - (void)scanStopped
 {
-    [self.centralManager stopScan];
+    [_centralManager stopScan];
     [self.indicator stopAnimating];
     self.indicator.hidden = YES;
     
@@ -113,7 +122,7 @@
 - (void)centralManager:(CBCentralManager *)central didConnectPeripheral:(CBPeripheral *)peripheral {
     
     NSLog(@"Entered didConnectPeripheral");
-    self.centralManager = central; // update central manager
+    _centralManager = central; // update central manager
     [peripheral setDelegate:self];
     self.peripheral = peripheral;
     // [self.peripheralsArray replaceObjectAtIndex:0 withObject:self.peripheral];
@@ -160,7 +169,7 @@
         self.connectivityTimer = [NSTimer scheduledTimerWithTimeInterval:5.0 target:self selector:@selector(checkConnectivity) userInfo:nil repeats:YES]; //check if connection is established
     }
     [NSTimer scheduledTimerWithTimeInterval:5.0 target:self selector:@selector(devicesFoundStopScan) userInfo:nil repeats:NO];//find all the possible devices and stop scan to save power
-    self.centralManager = central;
+    _centralManager = central;
 }
 
 - (void)devicesFoundStopScan { // stop scan function after devices have been discovered
@@ -175,7 +184,7 @@
     DevicesTableViewController *dtvc = [storyBoard instantiateViewControllerWithIdentifier:@"devices tableView"];
     
     if (!dtvc.centralManager) {
-        dtvc.centralManager = self.centralManager;
+        dtvc.centralManager = _centralManager;
     }
     dtvc.peripheralsArray = _peripheralsArray;
     [self.navigationController pushViewController:dtvc animated:YES];
@@ -259,7 +268,7 @@
     
     if ([[segue identifier] isEqualToString:@"device segue"]) {
         
-         dtvc.centralManager = self.centralManager;
+         dtvc.centralManager = _centralManager;
          dtvc.peripheralsArray = _peripheralsArray;
     }
 }
