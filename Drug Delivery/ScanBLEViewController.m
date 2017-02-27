@@ -15,22 +15,22 @@
 
 @implementation ScanBLEViewController
 
-static CBCentralManager *_centralManager;
+static ScanBLEViewController *_shareSvc;
 
-+(CBCentralManager *) centralManager {
++(ScanBLEViewController *)shareSvc {
     
-    if (!_centralManager) {
-        _centralManager = [[CBCentralManager alloc] init];
+    if (!_shareSvc) {
+        _shareSvc = [[ScanBLEViewController alloc] init];
     }
-    return _centralManager;
+    return _shareSvc;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.indicator.hidden = YES;
+    self.centralManager = [[CBCentralManager alloc] initWithDelegate:self queue:nil options:nil];
     self.peripheralsArray = [NSMutableArray array];
-    _centralManager = [[CBCentralManager alloc] initWithDelegate:self queue:nil];
-    self.disconnectButton.enabled = NO;
+    NSLog(@"The ScanBLEViewController view Did load!, central %@ initialised",self.centralManager); // message is printed only once
 }
 
 -(void)didReceiveMemoryWarning {
@@ -38,13 +38,21 @@ static CBCentralManager *_centralManager;
     NSLog(@"Memory issue!");
 }
 
+-(void)viewWillAppear:(BOOL)animated {
+    //can use it for updates, remove objects, modifications etc. Could be useful!
+    [super viewWillAppear:animated];
+    NSLog(@"View Will Appear");
+}
+
 - (void)viewDidDisappear:(BOOL)animated {
     [super viewDidDisappear:animated];
     
-    if ([self.indicator isAnimating]) {
-        [self.indicator stopAnimating];
+    if (![self.centralManager isScanning]) {
+        if ([self.indicator isAnimating]) {
+            [self.indicator stopAnimating];
+        }
+        self.indicator.hidden = YES;
     }
-    self.indicator.hidden = YES;
 }
 
 -(void)didPressConnectButtonInCell {
@@ -54,19 +62,20 @@ static CBCentralManager *_centralManager;
 
 - (IBAction)didPressScanButton:(id)sender {
     
+    //[_centralManager setDelegate:self];
+    //NSArray *services = [NSArray arrayWithObject:[CBUUID UUIDWithString:DEVICE_INFO_SERVICE_UUID]];
+    
+    [self.centralManager scanForPeripheralsWithServices:nil options:nil];
+    if ([self.centralManager isScanning]) {
+        NSLog(@"Scan Started (:");
+    }
+    
     self.indicator.hidden = NO;
     [self.indicator startAnimating];
     [self.peripheralsArray removeAllObjects];
     // NSDictionary *options = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithBool:NO], CBCentralManagerOptionShowPowerAlertKey, nil];
-
-    self.scanTimer = [NSTimer scheduledTimerWithTimeInterval:10 target:self selector:@selector(scanStopped) userInfo:nil repeats:NO];
-    NSArray *services = [NSArray arrayWithObject:
-                         [CBUUID UUIDWithString:DEVICE_INFO_SERVICE_UUID]];
     
-    [_centralManager scanForPeripheralsWithServices:services options:nil];
-    if ([_centralManager isScanning]) {
-        NSLog(@"Scan Started (:");
-    }
+    self.scanTimer = [NSTimer scheduledTimerWithTimeInterval:10 target:self selector:@selector(scanStopped) userInfo:nil repeats:NO];
 }
 
 - (IBAction)didPressDisconnectButton:(id)sender {
@@ -74,7 +83,7 @@ static CBCentralManager *_centralManager;
     if (_peripheral.state == CBPeripheralStateConnected) {
         
         [_centralManager cancelPeripheralConnection:_peripheral];
-        self.disconnectButton.enabled = NO;
+        //self.disconnectButton.enabled = NO;
         
         UIAlertController *controller = [UIAlertController alertControllerWithTitle:@"Disconnect" message:@"You have been disconnected from the device!" preferredStyle:UIAlertControllerStyleAlert];
         UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleCancel handler:nil];
@@ -107,6 +116,11 @@ static CBCentralManager *_centralManager;
     else if ([central state] == CBManagerStatePoweredOn) {
         NSLog(@"CoreBluetooth BLE hardware is powered on and ready");
         self.scanButton.enabled = YES;
+        if (central == self.centralManager) {//used for debug to understand the CB framework
+            NSLog(@"central is equal to centralManager");
+        }else {
+            NSLog(@"central not equal to property!");
+        }
     }
     else if ([central state] == CBManagerStateUnauthorized) {
         NSLog(@"CoreBluetooth BLE state is unauthorized");
@@ -122,12 +136,17 @@ static CBCentralManager *_centralManager;
 - (void)centralManager:(CBCentralManager *)central didConnectPeripheral:(CBPeripheral *)peripheral {
     
     NSLog(@"Entered didConnectPeripheral");
-    _centralManager = central; // update central manager
+    
+    if (_centralManager == central) {
+        NSLog(@"_centralManager is equal to the central, property updated!");
+    }else {
+        _centralManager = central; // update central manager
+        NSLog(@"property was not updated and it is now updated");
+    }
     [peripheral setDelegate:self];
     self.peripheral = peripheral;
     // [self.peripheralsArray replaceObjectAtIndex:0 withObject:self.peripheral];
     [peripheral discoverServices:nil];
-    self.disconnectButton.enabled = YES;
 }
 
 -(void)centralManager:(CBCentralManager *)central didFailToConnectPeripheral:(CBPeripheral *)peripheral error:(NSError *)error {

@@ -16,35 +16,29 @@
 
 @interface ScanBLEViewController : UIViewController <CBCentralManagerDelegate, CBPeripheralDelegate>
 
+// Array
 @property (strong, nonatomic) NSMutableArray *peripheralsArray;
 
+// Timers
 @property (strong, nonatomic) NSTimer *scanTimer;
 @property (strong, nonatomic) NSTimer *connectivityTimer;
 
-@property (weak, nonatomic) IBOutlet UIButton *disconnectButton;
+// IBoutlets
 @property (weak, nonatomic) IBOutlet UIButton *scanButton;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *indicator;
 
-//@property (strong, nonatomic) CBCentralManager *centralManager;
+// CB properties
+@property (strong, nonatomic) CBCentralManager *centralManager;
 @property (strong, nonatomic) CBPeripheral *peripheral;
-
 @property (strong, nonatomic) NSString *numberOfDrugs;
 
+// IBactions
 - (IBAction)didPressScanButton:(id)sender;
-- (IBAction)didPressDisconnectButton:(id)sender;
 
 -(void)didPressConnectButtonInCell;
 
-+(CBCentralManager *)centralManager;
+// share vc instance to create global variables
++(ScanBLEViewController *) shareSvc;
 
-/*
-- (void) centralManagerDidUpdateState:(CBCentralManager *)central;
-- (void) centralManager:(CBCentralManager *)central didDiscoverPeripheral:(CBPeripheral *)peripheral advertisementData:(NSDictionary *)advertisementData RSSI:(NSNumber *)RSSI;
-- (void) centralManager:(CBCentralManager *)central didConnectPeripheral:(CBPeripheral *)peripheral;
-- (void) centralManager:(CBCentralManager *)central didDisconnectPeripheral:(CBPeripheral *)peripheral error:(NSError *)error;
-- (void) centralManager:(CBCentralManager *)central didFailToConnectPeripheral:(CBPeripheral *)peripheral error:(NSError *)error;
-- (void) centralManager:(CBCentralManager *)central didRetrieveConnectedPeripherals:(NSArray *)peripherals;
-- (void) centralManager:(CBCentralManager *)central didRetrievePeripherals:(NSArray *)peripherals;
-*/
 
 @end
