@@ -9,6 +9,8 @@
 #import "ScanBLEViewController.h"
 #import "DevicesTableViewController.h"
 
+//#import "DevicesTableViewController.h"
+
 @interface ScanBLEViewController ()
 
 @end
@@ -20,6 +22,8 @@ static ScanBLEViewController *_shareSvc;
 +(ScanBLEViewController *)shareSvc {
     
     if (!_shareSvc) {
+        //UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+        //_shareSvc = [storyBoard instantiateViewControllerWithIdentifier:@"scanVC"];
         _shareSvc = [[ScanBLEViewController alloc] init];
     }
     return _shareSvc;
@@ -30,7 +34,9 @@ static ScanBLEViewController *_shareSvc;
     self.indicator.hidden = YES;
     self.centralManager = [[CBCentralManager alloc] initWithDelegate:self queue:nil options:nil];
     self.peripheralsArray = [NSMutableArray array];
-    NSLog(@"The ScanBLEViewController view Did load!, central %@ initialised",self.centralManager); // message is printed only once
+    // message is printed only once
+    NSLog(@"The ScanBLEViewController view Did load!, central %@ initialised",self.centralManager);
+    _shareSvc = self;
 }
 
 -(void)didReceiveMemoryWarning {
@@ -42,6 +48,13 @@ static ScanBLEViewController *_shareSvc;
     //can use it for updates, remove objects, modifications etc. Could be useful!
     [super viewWillAppear:animated];
     NSLog(@"View Will Appear");
+    
+    if (![self.peripheralsArray count]) {
+        self.devicesButton.enabled = NO;
+    } else {
+        self.devicesButton.enabled = YES;
+    }
+    self.countDetections = NO;
 }
 
 - (void)viewDidDisappear:(BOOL)animated {
@@ -62,6 +75,14 @@ static ScanBLEViewController *_shareSvc;
 
 - (IBAction)didPressScanButton:(id)sender {
     
+    [self.scanTimer invalidate];
+    self.scanTimer = nil;
+    [self.connectivityTimer invalidate];
+    self.connectivityTimer = nil;
+    [self.detectTimer invalidate];
+    self.detectTimer = nil;
+    // [self.peripheralsArray removeAllObjects];
+    
     //[_centralManager setDelegate:self];
     //NSArray *services = [NSArray arrayWithObject:[CBUUID UUIDWithString:DEVICE_INFO_SERVICE_UUID]];
     
@@ -69,13 +90,14 @@ static ScanBLEViewController *_shareSvc;
     if ([self.centralManager isScanning]) {
         NSLog(@"Scan Started (:");
     }
-    
     self.indicator.hidden = NO;
     [self.indicator startAnimating];
     [self.peripheralsArray removeAllObjects];
     // NSDictionary *options = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithBool:NO], CBCentralManagerOptionShowPowerAlertKey, nil];
     
     self.scanTimer = [NSTimer scheduledTimerWithTimeInterval:10 target:self selector:@selector(scanStopped) userInfo:nil repeats:NO];
+    
+    //check
 }
 
 - (IBAction)didPressDisconnectButton:(id)sender {
@@ -116,11 +138,6 @@ static ScanBLEViewController *_shareSvc;
     else if ([central state] == CBManagerStatePoweredOn) {
         NSLog(@"CoreBluetooth BLE hardware is powered on and ready");
         self.scanButton.enabled = YES;
-        if (central == self.centralManager) {//used for debug to understand the CB framework
-            NSLog(@"central is equal to centralManager");
-        }else {
-            NSLog(@"central not equal to property!");
-        }
     }
     else if ([central state] == CBManagerStateUnauthorized) {
         NSLog(@"CoreBluetooth BLE state is unauthorized");
@@ -136,13 +153,6 @@ static ScanBLEViewController *_shareSvc;
 - (void)centralManager:(CBCentralManager *)central didConnectPeripheral:(CBPeripheral *)peripheral {
     
     NSLog(@"Entered didConnectPeripheral");
-    
-    if (_centralManager == central) {
-        NSLog(@"_centralManager is equal to the central, property updated!");
-    }else {
-        _centralManager = central; // update central manager
-        NSLog(@"property was not updated and it is now updated");
-    }
     [peripheral setDelegate:self];
     self.peripheral = peripheral;
     // [self.peripheralsArray replaceObjectAtIndex:0 withObject:self.peripheral];
@@ -165,30 +175,34 @@ static ScanBLEViewController *_shareSvc;
     [self.scanTimer invalidate];
     self.scanTimer = nil;
     NSString *localName = [advertisementData objectForKey:CBAdvertisementDataLocalNameKey];
-    localName = peripheral.name;
+    NSString *peripheralName = peripheral.name;
     
-    if ([localName length] > 0) {
-        NSLog(@"Found one device: %@", localName);
+    if ([localName length] > 0 || [peripheralName length] > 0) {
+        NSLog(@"Found device with Local name: %@, Peripheral name: %@", localName, peripheralName);
         // [self.centralManager stopScan];
-        peripheral.delegate = self;
+        [peripheral setDelegate:self];
         self.peripheral = peripheral;
+         int counter = 0; // start by count = 0
         if ([self.peripheralsArray count] > 0) { // ensure that device has not been detected or displayed more than once
             for (int i = 0; i < [self.peripheralsArray count]; i++) { //loop through the elements of the array and check if the peripheral is equal to any of the peripherals in the array
-                int count = 0; // start by count = 0
-                if (peripheral.identifier == [self.peripheralsArray objectAtIndex:i]) {
-                    count++;// if ther peripheral is equal to any of the objects than count increases
+                if (peripheral == [self.peripheralsArray objectAtIndex:i]) {
+                    counter++;// if ther peripheral is equal to any of the objects than count increases
                 }
-                if (count == 0) {// only if count remains zero the peripheral will be added to the array
+                if (counter == 0) {// only if count remains zero the peripheral will be added to the array
                     [self.peripheralsArray addObject:peripheral];
                 }
             }
         } else {
             [self.peripheralsArray addObject:peripheral];// if array is empty than just add an object
         }
+        NSLog(@"Number of elements in array %ld",[self.peripheralsArray count]);
         self.connectivityTimer = [NSTimer scheduledTimerWithTimeInterval:5.0 target:self selector:@selector(checkConnectivity) userInfo:nil repeats:YES]; //check if connection is established
     }
-    [NSTimer scheduledTimerWithTimeInterval:5.0 target:self selector:@selector(devicesFoundStopScan) userInfo:nil repeats:NO];//find all the possible devices and stop scan to save power
-    _centralManager = central;
+    if (!self.countDetections) {
+         self.detectTimer = [NSTimer scheduledTimerWithTimeInterval:5.0 target:self selector:@selector(devicesFoundStopScan) userInfo:nil repeats:NO];//find all the possible devices and stop scan to save power
+    }
+    self.countDetections = YES;
+    //_centralManager = central;
 }
 
 - (void)devicesFoundStopScan { // stop scan function after devices have been discovered
@@ -197,15 +211,10 @@ static ScanBLEViewController *_shareSvc;
     self.indicator.hidden = YES;
     [_centralManager stopScan];
     NSLog(@"Devices have been found, scan has stopped!");
-    
+    self.devicesButton.enabled = YES;
     UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     
     DevicesTableViewController *dtvc = [storyBoard instantiateViewControllerWithIdentifier:@"devices tableView"];
-    
-    if (!dtvc.centralManager) {
-        dtvc.centralManager = _centralManager;
-    }
-    dtvc.peripheralsArray = _peripheralsArray;
     [self.navigationController pushViewController:dtvc animated:YES];
 }
 
@@ -283,13 +292,13 @@ static ScanBLEViewController *_shareSvc;
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     
-    DevicesTableViewController *dtvc = [segue destinationViewController];
+   /* DevicesTableViewController *dtvc = [segue destinationViewController];
     
     if ([[segue identifier] isEqualToString:@"device segue"]) {
         
          dtvc.centralManager = _centralManager;
          dtvc.peripheralsArray = _peripheralsArray;
-    }
+    }*/
 }
 
 @end

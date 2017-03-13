@@ -16,12 +16,20 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-     [self.tableView reloadData];
-     // when the devices button is pressed, the tableview does not appear in the state which was left
+    
+    // when the devices button is pressed, the tableview does not appear in the state which was left
     // the button from disconnect becomes connect!
     // need to find a way to remember that there is a connection established when i open the devices through devices
-    // possible solution don;t use devices button (:
-    [self updateTableView];
+    // possible solution don't use devices button (:
+    //[self updateTableView];
+    self.svc = [ScanBLEViewController shareSvc];
+    NSLog(@"Number of elements in array %ld",[self.svc.peripheralsArray count]);
+}
+
+-(void)viewWillAppear:(BOOL)animated {
+    
+    [super viewWillAppear:animated];
+    [self.tableView reloadData];
 }
 
 #pragma mark - TableView Data Source methods
@@ -34,7 +42,8 @@
 
 -(NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
-    return [self.peripheralsArray count];
+    NSLog(@"Number of elements/rows = %ld",[self.svc.peripheralsArray count]);
+    return [self.svc.peripheralsArray count];
 }
 
 -(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section  {
@@ -47,9 +56,10 @@
 -(UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     static NSString *cellIdentifier = @"device cell";
+    _cell = [[BLEDeviceTableViewCell alloc] init];
     self.cell = [self.tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
     
-    CBPeripheral *peripheral = [self.peripheralsArray objectAtIndex:indexPath.row];
+    CBPeripheral *peripheral = [self.svc.peripheralsArray objectAtIndex:indexPath.row];
     // NSString *title = [[self.peripheralsArray objectAtIndex:indexPath.row] name];
     NSString *title = peripheral.name;
     NSString *subTitle = nil;
@@ -59,13 +69,29 @@
     }
     else if (peripheral.state == CBPeripheralStateDisconnected) {
         subTitle = @"Connected: NO";
-    } else {
-        subTitle = @"Unknown State";
+    }
+    else if (peripheral.state == CBPeripheralStateConnecting) {
+        subTitle = @"Connecting...";
+    }
+    else if (peripheral.state == CBPeripheralStateDisconnecting) {
+        subTitle = @"Disconnecting...";
+    }
+    else {
+        subTitle = @"Don't know!";
+    }
+    
+    if (peripheral.state == CBPeripheralStateConnected) {
+        NSLog(@"Central is connected! Table View reload data!");
+        [_cell.connectButton setTitle:@"Disconnect" forState:UIControlStateNormal];
+    }
+    else if (peripheral.state == CBPeripheralStateDisconnected) {
+        NSLog(@"Central is Disconnected! Table View reload data!");
+        [_cell.connectButton setTitle:@"Connect" forState:UIControlStateNormal];
     }
     
     _cell.titleLabel.text = title;
     _cell.subTitleLabel.text = subTitle; // connected button
-    
+    _cell.connectButton.tag = indexPath.row;
     return _cell;
 }
 
@@ -79,16 +105,43 @@
     }
 }
 
-#pragma mark - CBCentralManagerDelegate
+- (IBAction)didPressConnectButton:(id)sender {
+    
+    // NSLog(@"Selected Row is: %ld",indexPath.row);
+    CBPeripheral *peripheral = [self.svc.peripheralsArray objectAtIndex:self.cell.connectButton.tag];
+    NSLog(@"Button tag = %ld",self.cell.connectButton.tag);
+    if (peripheral.state == CBPeripheralStateDisconnected) {
+        [self.svc.centralManager connectPeripheral:peripheral options:nil];
+    }
+    else if (peripheral.state == CBPeripheralStateConnected) {
+        [self.svc.centralManager cancelPeripheralConnection:peripheral];
+    }
+    // give sufficient time to the central to connect or disconnect from the peripheral
+    [NSTimer scheduledTimerWithTimeInterval:3.0 target:self selector:@selector(updateTableView) userInfo:nil repeats:NO];
+    //_cell.isConnected =! _cell.isConnected;
+}
 
+-(void)updateTableView {
+    
+    [self.tableView reloadData];
+}
+
+#pragma mark - CBCentralManager functions
 - (void)centralManagerDidUpdateState:(CBCentralManager *)central
 {
     // Determine the state of the peripheral
     if ([central state] == CBManagerStatePoweredOff) {
         NSLog(@"CoreBluetooth BLE hardware is powered off");
+        //self.scanButton.enabled = NO;
     }
     else if ([central state] == CBManagerStatePoweredOn) {
         NSLog(@"CoreBluetooth BLE hardware is powered on and ready");
+        //self.scanButton.enabled = YES;
+        if (central == self.svc.centralManager) {//used for debug to understand the CB framework
+            NSLog(@"central is equal to centralManager");
+        }else {
+            NSLog(@"central not equal to property!");
+        }
     }
     else if ([central state] == CBManagerStateUnauthorized) {
         NSLog(@"CoreBluetooth BLE state is unauthorized");
@@ -99,41 +152,6 @@
     else if ([central state] == CBManagerStateUnsupported) {
         NSLog(@"CoreBluetooth BLE hardware is unsupported on this platform");
     }
-}
-
-
-- (IBAction)didPressConnectButton:(id)sender {
-    
-    NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-    CBPeripheral *peripheral = [self.peripheralsArray objectAtIndex:indexPath.row];
-
-    if (!_cell.isConnected) {
-        [self.centralManager connectPeripheral:peripheral options:nil];
-    }
-    else if (_cell.isConnected) {
-        [self.centralManager cancelPeripheralConnection:peripheral];
-    }
-    // give sufficient time to the central to connect or disconnect from the peripheral
-    [NSTimer scheduledTimerWithTimeInterval:3.5 target:self selector:@selector(updateTableView) userInfo:nil repeats:NO];
-    _cell.isConnected =! _cell.isConnected;
-}
-
--(void) updateTableView { // updata the tableView the labels and the button
-    
-    NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-    CBPeripheral *peripheral = [self.peripheralsArray objectAtIndex:indexPath.row];
-
-    if (peripheral.state == CBPeripheralStateConnected) {
-        NSLog(@"Central is connected! Table View reload data!");
-        [_cell.connectButton setTitle:@"Disconnect" forState:UIControlStateNormal];
-        [self.tableView reloadData];
-    }
-    else if (peripheral.state == CBPeripheralStateDisconnected) {
-        NSLog(@"Central is Disconnected! Table View reload data!");
-        [_cell.connectButton setTitle:@"Connect" forState:UIControlStateNormal];
-        [self.tableView reloadData];
-    }
-    // [self.peripheralsArray replaceObjectAtIndex:indexPath.row withObject:peripheral];
 }
 
 @end

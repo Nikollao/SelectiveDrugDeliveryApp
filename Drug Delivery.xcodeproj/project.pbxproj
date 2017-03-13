@@ -288,9 +288,9 @@
 		682BA34B1E3A787F0013CC9A /* TableViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				68E09B3A1E4E071D003F1874 /* Custom Cell */,
 				683A43411E3BE7CC00B18384 /* DevicesTableViewController.h */,
 				683A43421E3BE7CC00B18384 /* DevicesTableViewController.m */,
+				68E09B3A1E4E071D003F1874 /* Custom Cell */,
 			);
 			name = TableViewControllers;
 			sourceTree = "<group>";

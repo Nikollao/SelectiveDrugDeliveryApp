@@ -16,16 +16,21 @@
 
 @interface ScanBLEViewController : UIViewController <CBCentralManagerDelegate, CBPeripheralDelegate>
 
-// Array
+// NSFoundation
 @property (strong, nonatomic) NSMutableArray *peripheralsArray;
+@property (nonatomic) BOOL countDetections;
 
 // Timers
 @property (strong, nonatomic) NSTimer *scanTimer;
 @property (strong, nonatomic) NSTimer *connectivityTimer;
+@property (strong, nonatomic) NSTimer *detectTimer;
 
 // IBoutlets
 @property (weak, nonatomic) IBOutlet UIButton *scanButton;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *indicator;
+@property (strong, nonatomic) UITableViewController *dvc;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *devicesButton;
+
 
 // CB properties
 @property (strong, nonatomic) CBCentralManager *centralManager;
@@ -39,6 +44,5 @@
 
 // share vc instance to create global variables
 +(ScanBLEViewController *) shareSvc;
-
 
 @end
