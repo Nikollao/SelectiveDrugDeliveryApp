@@ -249,8 +249,8 @@ static ScanBLEViewController *_shareSvc;
     for (CBService *service in peripheral.services) {
         NSLog(@"Discovered service: %@", service.UUID);
         [peripheral discoverCharacteristics:nil forService:service];
-            }
-    //CBService *objects[] = {self.bleServices};
+        self.bleService = service;
+    }
 }
 
 
@@ -267,6 +267,9 @@ static ScanBLEViewController *_shareSvc;
             NSLog(@"%d Discovered characteristic %@",i,aChar);
             i++;
             //}
+            if (!self.bleChar) {
+                self.bleChar = aChar;
+            }
         }
     }
     // Retrieve Device Information Services for the Manufacturer Name

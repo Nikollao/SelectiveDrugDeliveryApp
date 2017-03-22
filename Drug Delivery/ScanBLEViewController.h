@@ -18,8 +18,8 @@
 
 // NSFoundation
 @property (strong, nonatomic) NSMutableArray *peripheralsArray;
-@property (strong, nonatomic) NSMutableArray *bleServices;
-@property (strong, nonatomic) NSMutableArray *bleCharacteristics;
+//@property (strong, nonatomic) NSMutableArray *bleServices;
+//@property (strong, nonatomic) NSMutableArray *bleCharacteristics;
 
 @property (nonatomic) BOOL countDetections;
 
@@ -39,6 +39,9 @@
 @property (strong, nonatomic) CBCentralManager *centralManager;
 @property (strong, nonatomic) CBPeripheral *peripheral;
 @property (strong, nonatomic) NSString *numberOfDrugs;
+
+@property (strong, nonatomic) CBService *bleService;
+@property (strong, nonatomic) CBCharacteristic *bleChar;
 
 // IBactions
 - (IBAction)didPressScanButton:(id)sender;

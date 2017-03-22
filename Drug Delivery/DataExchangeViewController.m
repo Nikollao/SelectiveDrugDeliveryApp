@@ -172,6 +172,8 @@
     //implement BLE transmission
     NSString *message = self.chatLabel.text;
     NSLog(@"%@",message);
+    NSData *data = [NSData dataWithBytes:[message UTF8String] length:[message length]];
+    [self.peripheral writeValue:data forCharacteristic:self.svc.bleChar type:CBCharacteristicWriteWithResponse];
 }
 
 #pragma mark - CBCentralManager functions
