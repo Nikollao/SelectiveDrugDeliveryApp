@@ -37,6 +37,7 @@
     self.textField.delegate = self;
     self.chatLabel.hidden = YES;
     self.rxLabel.text = self.rxString;
+    self.svc = [ScanBLEViewController shareSvc];
     [NSTimer scheduledTimerWithTimeInterval:0.2 target:self selector:@selector(updateTextFieldButton) userInfo:nil repeats:YES];
 }
 
@@ -65,6 +66,15 @@
                                              selector:@selector(keyboardWillHide)
                                                  name:UIKeyboardWillHideNotification
                                                object:nil];
+    
+    if ([self.svc.peripheralsArray count] > 0) {
+        for (CBPeripheral *peripheral in self.svc.peripheralsArray) {
+            if (peripheral.state == CBPeripheralStateConnected) {
+                self.peripheral = peripheral;
+                NSLog(@"Peripheral is: %@",self.peripheral); // nslog debug message
+            }
+        }
+    }
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -158,5 +168,38 @@
     self.chatLabel.hidden = NO;
     self.chatLabel.text = self.textField.text;
     self.textField.text = @"";
+    
+    //implement BLE transmission
+    NSString *message = self.chatLabel.text;
+    NSLog(@"%@",message);
 }
+
+#pragma mark - CBCentralManager functions
+- (void)centralManagerDidUpdateState:(CBCentralManager *)central
+{
+    // Determine the state of the peripheral
+    if ([central state] == CBManagerStatePoweredOff) {
+        NSLog(@"CoreBluetooth BLE hardware is powered off");
+        //self.scanButton.enabled = NO;
+    }
+    else if ([central state] == CBManagerStatePoweredOn) {
+        NSLog(@"CoreBluetooth BLE hardware is powered on and ready");
+        //self.scanButton.enabled = YES;
+        if (central == self.svc.centralManager) {//used for debug to understand the CB framework
+            NSLog(@"central is equal to centralManager");
+        }else {
+            NSLog(@"central not equal to property!");
+        }
+    }
+    else if ([central state] == CBManagerStateUnauthorized) {
+        NSLog(@"CoreBluetooth BLE state is unauthorized");
+    }
+    else if ([central state] == CBManagerStateUnknown) {
+        NSLog(@"CoreBluetooth BLE state is unknown");
+    }
+    else if ([central state] == CBManagerStateUnsupported) {
+        NSLog(@"CoreBluetooth BLE hardware is unsupported on this platform");
+    }
+}
+
 @end

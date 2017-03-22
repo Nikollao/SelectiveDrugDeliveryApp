@@ -12,7 +12,6 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *subTitleLabel;
-@property (weak, nonatomic) IBOutlet UIButton *connectButton;
 
 @property (nonatomic) BOOL isConnected;
 

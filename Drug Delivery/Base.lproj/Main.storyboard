@@ -76,11 +76,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="device cell" rowHeight="67" id="2gn-nI-YJn" customClass="BLEDeviceTableViewCell">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="device cell" rowHeight="67" id="2gn-nI-YJn" customClass="BLEDeviceTableViewCell">
                                 <rect key="frame" x="0.0" y="28" width="375" height="67"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="2gn-nI-YJn" id="B7T-gU-qnm">
-                                    <rect key="frame" x="0.0" y="0.0" width="342" height="67"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="66"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4s8-mv-HKH">
@@ -111,7 +111,6 @@
                                 <connections>
                                     <outlet property="subTitleLabel" destination="0DT-wH-oLn" id="Qzy-1h-iJa"/>
                                     <outlet property="titleLabel" destination="4s8-mv-HKH" id="FVZ-UL-1Td"/>
-                                    <segue destination="s07-e1-pKs" kind="show" identifier="data segue" id="mSF-jM-odL"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -120,7 +119,13 @@
                             <outlet property="delegate" destination="k83-Cb-PKj" id="Z0M-kx-5kk"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Found Devices" id="2GM-Ey-qfc"/>
+                    <navigationItem key="navigationItem" title="Found Devices" id="2GM-Ey-qfc">
+                        <barButtonItem key="rightBarButtonItem" title="Data" id="h9x-8b-Fr4">
+                            <connections>
+                                <segue destination="s07-e1-pKs" kind="show" id="5OQ-Rd-WEu"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MUq-yJ-tyd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

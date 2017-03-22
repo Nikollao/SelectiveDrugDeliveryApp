@@ -8,8 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import <CoreBluetooth/CoreBluetooth.h>
-#import "BLEDeviceTableViewCell.h"
 #import "ScanBLEViewController.h"
+#import "BLEDeviceTableViewCell.h"
 
 @interface DevicesTableViewController : UITableViewController <CBPeripheralDelegate, CBCentralManagerDelegate>
 

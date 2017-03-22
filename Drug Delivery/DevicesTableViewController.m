@@ -80,18 +80,8 @@
         subTitle = @"Don't know!";
     }
     
-    if (peripheral.state == CBPeripheralStateConnected) {
-        NSLog(@"Central is connected! Table View reload data!");
-        [_cell.connectButton setTitle:@"Disconnect" forState:UIControlStateNormal];
-    }
-    else if (peripheral.state == CBPeripheralStateDisconnected) {
-        NSLog(@"Central is Disconnected! Table View reload data!");
-        [_cell.connectButton setTitle:@"Connect" forState:UIControlStateNormal];
-    }
-    
     _cell.titleLabel.text = title;
     _cell.subTitleLabel.text = subTitle; // connected button
-    _cell.connectButton.tag = indexPath.row;
     return _cell;
 }
 
@@ -105,11 +95,9 @@
     }
 }
 
-- (IBAction)didPressConnectButton:(id)sender {
+- (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    // NSLog(@"Selected Row is: %ld",indexPath.row);
-    CBPeripheral *peripheral = [self.svc.peripheralsArray objectAtIndex:self.cell.connectButton.tag];
-    NSLog(@"Button tag = %ld",self.cell.connectButton.tag);
+    CBPeripheral *peripheral = [self.svc.peripheralsArray objectAtIndex:indexPath.row];
     if (peripheral.state == CBPeripheralStateDisconnected) {
         [self.svc.centralManager connectPeripheral:peripheral options:nil];
     }
@@ -118,7 +106,6 @@
     }
     // give sufficient time to the central to connect or disconnect from the peripheral
     [NSTimer scheduledTimerWithTimeInterval:3.0 target:self selector:@selector(updateTableView) userInfo:nil repeats:NO];
-    //_cell.isConnected =! _cell.isConnected;
 }
 
 -(void)updateTableView {

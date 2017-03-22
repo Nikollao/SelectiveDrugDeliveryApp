@@ -7,9 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <CoreBluetooth/CoreBluetooth.h>
+#import "ScanBLEViewController.h"
+
 #define kOFFSET_FOR_KEYBOARD 110.0
 
-@interface DataExchangeViewController : UIViewController <UITextFieldDelegate>
+@interface DataExchangeViewController : UIViewController <UITextFieldDelegate, CBCentralManagerDelegate, CBPeripheralDelegate>
+
+@property (strong, nonatomic) ScanBLEViewController *svc;
+
+@property (strong, nonatomic) CBPeripheral *peripheral;
 
 @property (weak, nonatomic) IBOutlet UILabel *rxLabel;
 @property (weak, nonatomic) IBOutlet UILabel *chatLabel;

@@ -18,6 +18,9 @@
 
 // NSFoundation
 @property (strong, nonatomic) NSMutableArray *peripheralsArray;
+@property (strong, nonatomic) NSMutableArray *bleServices;
+@property (strong, nonatomic) NSMutableArray *bleCharacteristics;
+
 @property (nonatomic) BOOL countDetections;
 
 // Timers
@@ -44,5 +47,6 @@
 
 // share vc instance to create global variables
 +(ScanBLEViewController *) shareSvc;
+
 
 @end

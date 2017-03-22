@@ -126,8 +126,13 @@ static ScanBLEViewController *_shareSvc;
     UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleCancel handler:nil];
     [controller addAction:okAction];
     [self presentViewController:controller animated:YES completion:nil];
+    
+    if ([self.peripheralsArray count]) {
+        self.devicesButton.enabled = YES;
+    } else {
+        self.devicesButton.enabled = NO;
+    }
 }
-
 - (void)centralManagerDidUpdateState:(CBCentralManager *)central
 {
     // Determine the state of the peripheral
@@ -166,7 +171,6 @@ static ScanBLEViewController *_shareSvc;
     UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleCancel handler:nil];
     [alert addAction:okAction];
     [self presentViewController:alert animated:YES completion:nil];
-    
 }
 
 - (void)centralManager:(CBCentralManager *)central didDiscoverPeripheral:(CBPeripheral *)peripheral advertisementData:(NSDictionary<NSString *,id> *)advertisementData RSSI:(NSNumber *)RSSI {
@@ -182,10 +186,10 @@ static ScanBLEViewController *_shareSvc;
         // [self.centralManager stopScan];
         [peripheral setDelegate:self];
         self.peripheral = peripheral;
-         int counter = 0; // start by count = 0
-        if ([self.peripheralsArray count] > 0) { // ensure that device has not been detected or displayed more than once
+         /*int counter = 0; // start by count = 0
+         if ([self.peripheralsArray count] > 0) { // ensure that device has not been detected or displayed more than once
             for (int i = 0; i < [self.peripheralsArray count]; i++) { //loop through the elements of the array and check if the peripheral is equal to any of the peripherals in the array
-                if (peripheral == [self.peripheralsArray objectAtIndex:i]) {
+                if (peripheral.name == [[self.peripheralsArray objectAtIndex:i] name]) {
                     counter++;// if ther peripheral is equal to any of the objects than count increases
                 }
                 if (counter == 0) {// only if count remains zero the peripheral will be added to the array
@@ -194,6 +198,11 @@ static ScanBLEViewController *_shareSvc;
             }
         } else {
             [self.peripheralsArray addObject:peripheral];// if array is empty than just add an object
+        }*/
+        if ([self.peripheralsArray containsObject:peripheral]) {
+            // don't add it
+        } else {
+            [self.peripheralsArray addObject:peripheral];
         }
         NSLog(@"Number of elements in array %ld",[self.peripheralsArray count]);
         self.connectivityTimer = [NSTimer scheduledTimerWithTimeInterval:5.0 target:self selector:@selector(checkConnectivity) userInfo:nil repeats:YES]; //check if connection is established
@@ -202,7 +211,6 @@ static ScanBLEViewController *_shareSvc;
          self.detectTimer = [NSTimer scheduledTimerWithTimeInterval:5.0 target:self selector:@selector(devicesFoundStopScan) userInfo:nil repeats:NO];//find all the possible devices and stop scan to save power
     }
     self.countDetections = YES;
-    //_centralManager = central;
 }
 
 - (void)devicesFoundStopScan { // stop scan function after devices have been discovered
@@ -237,11 +245,12 @@ static ScanBLEViewController *_shareSvc;
 #pragma mark - CBPeripheralDelegate
 
 -(void)peripheral:(CBPeripheral *)peripheral didDiscoverServices:(NSError *)error {
-    
+
     for (CBService *service in peripheral.services) {
         NSLog(@"Discovered service: %@", service.UUID);
         [peripheral discoverCharacteristics:nil forService:service];
-    }
+            }
+    //CBService *objects[] = {self.bleServices};
 }
 
 

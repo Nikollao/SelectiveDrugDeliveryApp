@@ -382,7 +382,7 @@
 				TargetAttributes = {
 					6818EF6C1E36448700407BDA = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = NWLC2M99YQ;
+						DevelopmentTeam = 38F2F7S3GN;
 						ProvisioningStyle = Automatic;
 					};
 					6818EF881E36448700407BDA = {
@@ -621,10 +621,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = NWLC2M99YQ;
+				DEVELOPMENT_TEAM = 38F2F7S3GN;
 				INFOPLIST_FILE = "Drug Delivery/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "uk.ac.leeds.Drug-Delivery";
+				PRODUCT_BUNDLE_IDENTIFIER = me.drugDelivery;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -633,10 +633,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = NWLC2M99YQ;
+				DEVELOPMENT_TEAM = 38F2F7S3GN;
 				INFOPLIST_FILE = "Drug Delivery/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "uk.ac.leeds.Drug-Delivery";
+				PRODUCT_BUNDLE_IDENTIFIER = me.drugDelivery;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
