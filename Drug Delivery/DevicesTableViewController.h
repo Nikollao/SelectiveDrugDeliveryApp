@@ -16,5 +16,9 @@
 @property (strong, nonatomic) BLEDeviceTableViewCell *cell;
 @property (strong, nonatomic) NSString *sendString;
 @property (strong, nonatomic) ScanBLEViewController *svc;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *dataButton;
+@property (strong, nonatomic) CBPeripheral *peripheral;
+
+@property (strong, nonatomic) NSTimer *deviceConnectedTimer;
 
 @end

@@ -8,6 +8,7 @@
 
 #import "ScanBLEViewController.h"
 #import "DevicesTableViewController.h"
+#import "DataExchangeViewController.h"
 
 //#import "DevicesTableViewController.h"
 
@@ -30,6 +31,7 @@ static ScanBLEViewController *_shareSvc;
 }
 
 - (void)viewDidLoad {
+    
     [super viewDidLoad];
     self.indicator.hidden = YES;
     self.centralManager = [[CBCentralManager alloc] initWithDelegate:self queue:nil options:nil];
@@ -267,10 +269,9 @@ static ScanBLEViewController *_shareSvc;
             NSLog(@"%d Discovered characteristic %@",i,aChar);
             i++;
             //}
-            if (!self.bleChar) {
-                self.bleChar = aChar;
-            }
         }
+        CBCharacteristic *readChar = [self.bleService.characteristics objectAtIndex:1];
+        [self.peripheral setNotifyValue:YES forCharacteristic:readChar];
     }
     // Retrieve Device Information Services for the Manufacturer Name
 }
@@ -278,6 +279,15 @@ static ScanBLEViewController *_shareSvc;
 -(void)peripheral:(CBPeripheral *)peripheral didUpdateValueForCharacteristic:(CBCharacteristic *)characteristic error:(NSError *)error {
     
     NSLog(@"Did eneter didUpdateValueForCharacteristic!");
+    
+    if ([characteristic isEqual:[self.bleService.characteristics objectAtIndex:1]]) {
+        NSData *rxData = characteristic.value;
+        self.rxString = [[NSString alloc] initWithData:rxData encoding:NSUTF8StringEncoding];
+        NSLog(@"data received: %@",_rxString);
+        DataExchangeViewController *devc = [DataExchangeViewController shareDevc];
+        NSLog(@"%@",devc.rxLabel.text);
+        devc.rxLabel.text = _rxString;
+    }
     /*
     if ([characteristic.UUID isEqual:[CBUUID UUIDWithString:DEVICE_REMAINING_DRUG_CHARACTERISTIC_UUID]]) { // 1
         // Get the Heart Rate Monitor BPM

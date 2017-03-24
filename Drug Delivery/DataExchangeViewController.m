@@ -12,15 +12,22 @@
 
 @end
 
+
 @implementation DataExchangeViewController
-/*
-+ (NSTimer *)scheduledTimerWithTimeInterval:(NSTimeInterval)ti
-                                 invocation:(NSInvocation *)invocation
-                                    repeats:(BOOL)yesOrNo {
-    NSTimer *timer = [[NSTimer alloc] initWithFireDate:nil interval:ti target:self selector:@selector(updateTextFieldButton) userInfo:nil repeats:YES];
-    return timer;
+
+static DataExchangeViewController *_shareDevc;
+
++(DataExchangeViewController *)shareDevc {
+    
+    if (!_shareDevc) {
+        //UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+        //_shareSvc = [storyBoard instantiateViewControllerWithIdentifier:@"scanVC"];
+        _shareDevc = [[DataExchangeViewController alloc] init];
+    }
+    return _shareDevc;
 }
-*/
+
+
 - (void)updateTextFieldButton {
     
     if ([self.textField.text isEqualToString:@""]) {
@@ -31,14 +38,17 @@
 }
 
 - (void)viewDidLoad {
+    
     [super viewDidLoad];
     [self hideKeyboardWhenBackgroundIsTapped];
-    // self.sendButton.enabled = NO;
+    //self.sendButton.enabled = NO;
     self.textField.delegate = self;
     self.chatLabel.hidden = YES;
-    self.rxLabel.text = self.rxString;
+    self.rxLabel.text = @"Receive";
+    //self.chatLabel.text = @"Send";
     self.svc = [ScanBLEViewController shareSvc];
     [NSTimer scheduledTimerWithTimeInterval:0.2 target:self selector:@selector(updateTextFieldButton) userInfo:nil repeats:YES];
+    _shareDevc = self;
 }
 
 -(void)hideKeyboardWhenBackgroundIsTapped {
@@ -72,7 +82,7 @@
             if (peripheral.state == CBPeripheralStateConnected) {
                 self.peripheral = peripheral;
                 NSLog(@"Peripheral is: %@",self.peripheral); // nslog debug message
-            }
+            } 
         }
     }
 }
@@ -173,10 +183,14 @@
     NSString *message = self.chatLabel.text;
     NSLog(@"%@",message);
     NSData *data = [NSData dataWithBytes:[message UTF8String] length:[message length]];
-    [self.peripheral writeValue:data forCharacteristic:self.svc.bleChar type:CBCharacteristicWriteWithResponse];
+    CBCharacteristic *writeChar = [self.svc.bleService.characteristics objectAtIndex:0];
+    [self.peripheral writeValue:data forCharacteristic:writeChar type:CBCharacteristicWriteWithResponse];
+    //test
+    NSLog(@"received: %@",self.svc.rxString);
 }
 
 #pragma mark - CBCentralManager functions
+
 - (void)centralManagerDidUpdateState:(CBCentralManager *)central
 {
     // Determine the state of the peripheral
@@ -202,6 +216,9 @@
     else if ([central state] == CBManagerStateUnsupported) {
         NSLog(@"CoreBluetooth BLE hardware is unsupported on this platform");
     }
+}
+
+- (void) messageReceived {
 }
 
 @end

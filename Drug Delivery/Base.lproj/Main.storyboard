@@ -126,6 +126,9 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="dataButton" destination="h9x-8b-Fr4" id="4Jr-YY-UvD"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MUq-yJ-tyd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -134,7 +137,7 @@
         <!--Data Exchange-->
         <scene sceneID="PHy-P8-RpZ">
             <objects>
-                <viewController storyboardIdentifier="Rx" id="s07-e1-pKs" customClass="DataExchangeViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="data exchange VC" id="s07-e1-pKs" customClass="DataExchangeViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="3wb-sB-3xJ"/>
                         <viewControllerLayoutGuide type="bottom" id="bNC-nL-2LO"/>

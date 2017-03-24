@@ -27,5 +27,8 @@
 @property (strong, nonatomic) NSString *rxString;
 
 - (IBAction)didPressSendButton:(id)sender;
+- (void)messageReceived;
+
++(DataExchangeViewController *) shareDevc;
 
 @end

@@ -24,12 +24,27 @@
     //[self updateTableView];
     self.svc = [ScanBLEViewController shareSvc];
     NSLog(@"Number of elements in array %ld",[self.svc.peripheralsArray count]);
+    //self.dataButton.enabled = NO;
+    self.deviceConnectedTimer = [NSTimer scheduledTimerWithTimeInterval:2.0 target:self selector:@selector(deviceConnected) userInfo:nil repeats:YES];
 }
 
 -(void)viewWillAppear:(BOOL)animated {
     
     [super viewWillAppear:animated];
     [self.tableView reloadData];
+    
+    if ([self.svc.peripheralsArray count]>0) {
+        for (CBPeripheral *peripheral in self.svc.peripheralsArray) {
+            
+            if (peripheral.state == CBPeripheralStateConnected) {
+                self.peripheral = peripheral;
+                self.dataButton.enabled = YES;
+            }
+            else {
+                self.dataButton.enabled = NO;
+            }
+        }
+    }
 }
 
 #pragma mark - TableView Data Source methods
@@ -105,7 +120,7 @@
         [self.svc.centralManager cancelPeripheralConnection:peripheral];
     }
     // give sufficient time to the central to connect or disconnect from the peripheral
-    [NSTimer scheduledTimerWithTimeInterval:3.0 target:self selector:@selector(updateTableView) userInfo:nil repeats:NO];
+    [NSTimer scheduledTimerWithTimeInterval:2.0 target:self selector:@selector(updateTableView) userInfo:nil repeats:NO];
 }
 
 -(void)updateTableView {
@@ -139,6 +154,26 @@
     else if ([central state] == CBManagerStateUnsupported) {
         NSLog(@"CoreBluetooth BLE hardware is unsupported on this platform");
     }
+}
+
+#pragma mark - Timer enables or disables the dataButton
+
+-(void)deviceConnected {
+    
+    if ([self.svc.peripheralsArray count] > 0) {
+        for (CBPeripheral *peripheral in self.svc.peripheralsArray) {
+            if (peripheral.state == CBPeripheralStateConnected) {
+                
+                self.peripheral = peripheral;
+                self.dataButton.enabled = YES;
+                break;
+            }
+            else {
+                self.dataButton.enabled = NO;
+            }
+        }
+    }
+    //[self.tableView reloadData];
 }
 
 @end
