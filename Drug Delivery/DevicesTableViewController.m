@@ -45,6 +45,7 @@
             }
         }
     }
+    [self.tableView reloadData];
 }
 
 #pragma mark - TableView Data Source methods
@@ -57,7 +58,7 @@
 
 -(NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
-    NSLog(@"Number of elements/rows = %ld",[self.svc.peripheralsArray count]);
+    //NSLog(@"Number of elements/rows = %ld",[self.svc.peripheralsArray count]);
     return [self.svc.peripheralsArray count];
 }
 
@@ -94,10 +95,13 @@
     else {
         subTitle = @"Don't know!";
     }
+    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
+    cell.textLabel.text = title;
+    cell.detailTextLabel.text = subTitle;
     
     _cell.titleLabel.text = title;
     _cell.subTitleLabel.text = subTitle; // connected button
-    return _cell;
+    return cell;
 }
 
 

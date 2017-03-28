@@ -56,7 +56,7 @@ static ScanBLEViewController *_shareSvc;
     } else {
         self.devicesButton.enabled = YES;
     }
-    self.countDetections = NO;
+    self.countDetections = NO; //Bool used in order not to push the VC more than once
 }
 
 - (void)viewDidDisappear:(BOOL)animated {
@@ -94,6 +94,11 @@ static ScanBLEViewController *_shareSvc;
     }
     self.indicator.hidden = NO;
     [self.indicator startAnimating];
+    for (CBPeripheral *peripheral in self.peripheralsArray) {
+        if (peripheral.state == CBPeripheralStateConnected) {
+            [self.centralManager cancelPeripheralConnection:peripheral];
+        }
+    }
     [self.peripheralsArray removeAllObjects];
     // NSDictionary *options = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithBool:NO], CBCentralManagerOptionShowPowerAlertKey, nil];
     
@@ -129,10 +134,10 @@ static ScanBLEViewController *_shareSvc;
     [controller addAction:okAction];
     [self presentViewController:controller animated:YES completion:nil];
     
-    if ([self.peripheralsArray count]) {
-        self.devicesButton.enabled = YES;
-    } else {
+    if (![self.peripheralsArray count]) {
         self.devicesButton.enabled = NO;
+    } else {
+        self.devicesButton.enabled = YES;
     }
 }
 - (void)centralManagerDidUpdateState:(CBCentralManager *)central

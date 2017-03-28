@@ -43,9 +43,9 @@ static DataExchangeViewController *_shareDevc;
     [self hideKeyboardWhenBackgroundIsTapped];
     //self.sendButton.enabled = NO;
     self.textField.delegate = self;
-    self.chatLabel.hidden = YES;
+    //self.chatLabel.hidden = YES;
     self.rxLabel.text = @"Receive";
-    //self.chatLabel.text = @"Send";
+    self.chatLabel.text = @"Send";
     self.svc = [ScanBLEViewController shareSvc];
     [NSTimer scheduledTimerWithTimeInterval:0.2 target:self selector:@selector(updateTextFieldButton) userInfo:nil repeats:YES];
     _shareDevc = self;
@@ -175,7 +175,7 @@ static DataExchangeViewController *_shareDevc;
 - (IBAction)didPressSendButton:(id)sender {
     
     //[self hideKeyboard];
-    self.chatLabel.hidden = NO;
+    //self.chatLabel.hidden = NO;
     self.chatLabel.text = self.textField.text;
     self.textField.text = @"";
     
@@ -186,7 +186,7 @@ static DataExchangeViewController *_shareDevc;
     CBCharacteristic *writeChar = [self.svc.bleService.characteristics objectAtIndex:0];
     [self.peripheral writeValue:data forCharacteristic:writeChar type:CBCharacteristicWriteWithResponse];
     //test
-    NSLog(@"received: %@",self.svc.rxString);
+    //NSLog(@"received: %@",self.svc.rxString);
 }
 
 #pragma mark - CBCentralManager functions
@@ -216,9 +216,6 @@ static DataExchangeViewController *_shareDevc;
     else if ([central state] == CBManagerStateUnsupported) {
         NSLog(@"CoreBluetooth BLE hardware is unsupported on this platform");
     }
-}
-
-- (void) messageReceived {
 }
 
 @end
