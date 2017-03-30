@@ -48,7 +48,8 @@
 // IBactions
 - (IBAction)didPressScanButton:(id)sender;
 
--(void)didPressConnectButtonInCell;
+-(void) didPressConnectButtonInCell;
+-(void) setupScan;
 
 // share vc instance to create global variables
 +(ScanBLEViewController *) shareSvc;

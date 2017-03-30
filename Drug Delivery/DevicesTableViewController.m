@@ -95,13 +95,9 @@
     else {
         subTitle = @"Don't know!";
     }
-    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
-    cell.textLabel.text = title;
-    cell.detailTextLabel.text = subTitle;
-    
     _cell.titleLabel.text = title;
     _cell.subTitleLabel.text = subTitle; // connected button
-    return cell;
+    return _cell;
 }
 
 
