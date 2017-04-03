@@ -34,7 +34,8 @@ static ScanBLEViewController *_shareSvc;
     
     [super viewDidLoad];
     self.indicator.hidden = YES;
-    self.centralManager = [[CBCentralManager alloc] initWithDelegate:self queue:nil options:nil];
+    NSDictionary *options = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithBool:YES], CBCentralManagerOptionShowPowerAlertKey, nil];
+    self.centralManager = [[CBCentralManager alloc] initWithDelegate:self queue:nil options:options];
     self.peripheralsArray = [NSMutableArray array];
     // message is printed only once
     NSLog(@"The ScanBLEViewController view Did load!, central %@ initialised",self.centralManager);
@@ -103,10 +104,8 @@ static ScanBLEViewController *_shareSvc;
         [self presentViewController:alertControllerForScan animated:YES completion:nil];
     }
     else {
-        // Reset all timers
         [self setupScan];
     }
-    //check
 }
 
 - (IBAction)didPressDisconnectButton:(id)sender {
@@ -124,7 +123,7 @@ static ScanBLEViewController *_shareSvc;
     [self.peripheralsArray removeObject:[self.peripheralsArray firstObject]];
 }
 
-#pragma mark - CBCentral delegate methods
+#pragma mark - CBCentralDelegate methods
 
 - (void)centralManagerDidUpdateState:(CBCentralManager *)central
 {
@@ -232,7 +231,7 @@ static ScanBLEViewController *_shareSvc;
             i++;
             //}
         }
-        CBCharacteristic *readChar = [self.bleService.characteristics objectAtIndex:1];
+        CBCharacteristic *readChar = [self.bleService.characteristics lastObject];//objectAtIndex:1
         [self.peripheral setNotifyValue:YES forCharacteristic:readChar];
     }
     // Retrieve Device Information Services for the Manufacturer Name
@@ -280,15 +279,14 @@ static ScanBLEViewController *_shareSvc;
     //[self.peripheralsArray removeAllObjects];
     
     //[_centralManager setDelegate:self];
-    //NSArray *services = [NSArray arrayWithObject:[CBUUID UUIDWithString:DEVICE_INFO_SERVICE_UUID]];
     if ([self.centralManager isScanning]) {
         NSLog(@"Scan Started (:");
     }
     self.indicator.hidden = NO;
     [self.indicator startAnimating];
     [self.peripheralsArray removeAllObjects];
-    [self.centralManager scanForPeripheralsWithServices:nil options:nil];
-    // NSDictionary *options = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithBool:NO], CBCentralManagerOptionShowPowerAlertKey, nil];
+    NSArray *services = [NSArray arrayWithObject:[CBUUID UUIDWithString:DEVICE_INFO_SERVICE_UUID]];
+    [self.centralManager scanForPeripheralsWithServices:services options:nil];
     
     self.scanTimer = [NSTimer scheduledTimerWithTimeInterval:10 target:self selector:@selector(scanStopped) userInfo:nil repeats:NO];
 }

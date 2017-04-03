@@ -44,8 +44,6 @@ static DataExchangeViewController *_shareDevc;
     //self.sendButton.enabled = NO;
     self.textField.delegate = self;
     //self.chatLabel.hidden = YES;
-    self.rxLabel.text = @"Receive";
-    self.chatLabel.text = @"Send";
     self.svc = [ScanBLEViewController shareSvc];
     [NSTimer scheduledTimerWithTimeInterval:0.2 target:self selector:@selector(updateTextFieldButton) userInfo:nil repeats:YES];
     _shareDevc = self;
@@ -81,10 +79,13 @@ static DataExchangeViewController *_shareDevc;
         for (CBPeripheral *peripheral in self.svc.peripheralsArray) {
             if (peripheral.state == CBPeripheralStateConnected) {
                 self.peripheral = peripheral;
+                self.rxLabel.text = self.peripheral.name;
                 NSLog(@"Peripheral is: %@",self.peripheral); // nslog debug message
+                break;
             } 
         }
     }
+    self.chatLabel.text = @"Send";
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -183,7 +184,7 @@ static DataExchangeViewController *_shareDevc;
     NSString *message = self.chatLabel.text;
     NSLog(@"%@",message);
     NSData *data = [NSData dataWithBytes:[message UTF8String] length:[message length]];
-    CBCharacteristic *writeChar = [self.svc.bleService.characteristics objectAtIndex:0];
+    CBCharacteristic *writeChar = [self.svc.bleService.characteristics firstObject];//objectAtIndex:0
     [self.peripheral writeValue:data forCharacteristic:writeChar type:CBCharacteristicWriteWithResponse];
     //test
     //NSLog(@"received: %@",self.svc.rxString);

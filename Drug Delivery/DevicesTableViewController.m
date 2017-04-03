@@ -100,21 +100,12 @@
     return _cell;
 }
 
-
--(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    
-    if ([[segue identifier] isEqualToString:@"data segue"]) {
-        DataExchangeViewController *dvc = [segue destinationViewController];
-        self.sendString = @"Hey";
-        dvc.rxString = self.sendString;
-    }
-}
-
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
     CBPeripheral *peripheral = [self.svc.peripheralsArray objectAtIndex:indexPath.row];
     if (peripheral.state == CBPeripheralStateDisconnected) {
         [self.svc.centralManager connectPeripheral:peripheral options:nil];
+        self.peripheral = peripheral;
     }
     else if (peripheral.state == CBPeripheralStateConnected) {
         [self.svc.centralManager cancelPeripheralConnection:peripheral];
@@ -161,16 +152,19 @@
 -(void)deviceConnected {
     
     if ([self.svc.peripheralsArray count] > 0) {
+        NSInteger countConnections = 0;
+        
         for (CBPeripheral *peripheral in self.svc.peripheralsArray) {
+            
             if (peripheral.state == CBPeripheralStateConnected) {
-                
-                self.peripheral = peripheral;
-                self.dataButton.enabled = YES;
-                break;
+                countConnections++;
             }
-            else {
-                self.dataButton.enabled = NO;
-            }
+        }
+        if (countConnections == 1) {
+            self.dataButton.enabled = YES;
+        }
+        else {
+            self.dataButton.enabled = NO;
         }
     }
     //[self.tableView reloadData];
