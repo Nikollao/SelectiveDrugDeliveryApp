@@ -9,11 +9,13 @@
         <relationship name="patientsTwo" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Patient" inverseName="medicationTwo" inverseEntity="Patient" syncable="YES"/>
     </entity>
     <entity name="Patient" representedClassName="Patient" syncable="YES">
+        <attribute name="address" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="dateOfBirth" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="disease" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="firstName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="lastName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="lastNameFirstChar" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="patientID" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="medication" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Medication" inverseName="patients" inverseEntity="Medication" syncable="YES"/>
         <relationship name="medicationThree" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Medication" inverseName="patientsThree" inverseEntity="Medication" syncable="YES"/>
         <relationship name="medicationTwo" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Medication" inverseName="patientsTwo" inverseEntity="Medication" syncable="YES"/>
@@ -21,6 +23,6 @@
     <fetchRequest name="NoMedication" entity="Medication" predicateString="name == &quot;No Medication&quot;"/>
     <elements>
         <element name="Medication" positionX="-18" positionY="-7" width="128" height="133"/>
-        <element name="Patient" positionX="-270" positionY="-45" width="128" height="163"/>
+        <element name="Patient" positionX="-270" positionY="-45" width="128" height="195"/>
     </elements>
 </model>

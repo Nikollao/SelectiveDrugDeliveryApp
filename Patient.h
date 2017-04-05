@@ -19,7 +19,8 @@
 @property (nullable, nonatomic, copy) NSString *lastNameFirstChar;
 @property (nullable, nonatomic, copy) NSString *dateOfBirth;
 @property (nullable, nonatomic, copy) NSString *disease;
-
+@property (nullable, nonatomic, copy) NSString *patientID;
+@property (nullable, nonatomic, copy) NSString *address;
 @property (nullable, nonatomic, retain) Medication *medication;
 @property (nullable, nonatomic, retain) Medication *medicationTwo;
 @property (nullable, nonatomic, retain) Medication *medicationThree;

@@ -22,7 +22,9 @@
 
 @property (weak, nonatomic) IBOutlet UITextField *firstNameTextField;
 @property (weak, nonatomic) IBOutlet UITextField *lastNameTextField;
+@property (weak, nonatomic) IBOutlet UITextField *patientIDTextField;
 @property (weak, nonatomic) IBOutlet UITextField *dateOfBirthTextField;
+@property (weak, nonatomic) IBOutlet UITextField *addressTextField;
 @property (weak, nonatomic) IBOutlet UITextField *diseaseTextField;
 
 @property (strong, nonatomic) NSManagedObjectID *selectedObjectID;

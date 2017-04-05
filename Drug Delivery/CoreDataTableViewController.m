@@ -54,10 +54,16 @@
     return [[[self.frc sections] objectAtIndex:section] name];
 }
 
-/*- (NSArray *) sectionIndexTitlesForTableView:(UITableView *)tableView{
+- (NSArray *) sectionIndexTitlesForTableView:(UITableView *)tableView{
     
     return [self.frc sectionIndexTitles];
-}*/
+    // we don't want index if we are doing search, only in the original tableView
+    /*if (tableView.tag == 1) {
+        return [self.frc sectionIndexTitles];
+    } else {
+        return nil;
+    }*/
+}
 
 #pragma mark - DELEGATE: NSFetchedResultsController
 

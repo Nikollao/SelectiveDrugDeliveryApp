@@ -38,6 +38,8 @@
     self.lastNameTextField.delegate = self;
     self.diseaseTextField.delegate = self;
     self.dateOfBirthTextField.delegate = self;
+    self.addressTextField.delegate = self;
+    self.patientIDTextField.delegate = self;
     
     self.medicationPickerTextField.delegate = self;
     self.medicationPickerTextField.pickerDelegate = self;
@@ -111,6 +113,8 @@
         self.lastNameTextField.text = patient.lastName;
         self.diseaseTextField.text = patient.disease;
         self.dateOfBirthTextField.text = patient.dateOfBirth;
+        self.patientIDTextField.text = patient.patientID;
+        self.addressTextField.text = patient.address;
         
         self.medicationPickerTextField.text = patient.medication.name;
         self.medicationPickerTextField.selectedObjectID = patient.medication.objectID;
@@ -276,6 +280,12 @@
     if (textField == self.dateOfBirthTextField) {
         
         patient.dateOfBirth = self.dateOfBirthTextField.text;
+    }
+    if (textField == self.addressTextField) {
+        patient.address = self.addressTextField.text;
+    }
+    if (textField == self.patientIDTextField) {
+        patient.patientID = self.patientIDTextField.text;
     }
 }
 
