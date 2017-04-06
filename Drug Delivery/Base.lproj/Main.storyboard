@@ -80,7 +80,7 @@
                                 <rect key="frame" x="0.0" y="28" width="768" height="67"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="2gn-nI-YJn" id="B7T-gU-qnm">
-                                    <rect key="frame" x="0.0" y="0.0" width="768" height="66"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="768" height="67"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4s8-mv-HKH">
@@ -282,7 +282,7 @@
         <!--Sign up-->
         <scene sceneID="yyL-xa-PGH">
             <objects>
-                <viewController id="rT1-e6-PJa" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="signup" id="rT1-e6-PJa" customClass="SignupViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="S61-7Q-Eea"/>
                         <viewControllerLayoutGuide type="bottom" id="8Ew-mz-X8e"/>
@@ -355,6 +355,9 @@
                                 <rect key="frame" x="348" y="659" width="72" height="38"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="21"/>
                                 <state key="normal" title="Sign up"/>
+                                <connections>
+                                    <action selector="didPressSignupButton:" destination="rT1-e6-PJa" eventType="touchUpInside" id="mpI-dX-YrT"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -389,6 +392,14 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Sign up" id="eZO-Og-IGZ"/>
+                    <connections>
+                        <outlet property="fullNameTextField" destination="DeR-RG-qXI" id="hs1-52-Hp9"/>
+                        <outlet property="occupationTextField" destination="Sx7-Ov-nr4" id="Og2-Va-L9t"/>
+                        <outlet property="passwordTextField" destination="7kD-RW-Hjg" id="y0K-0o-KWN"/>
+                        <outlet property="repeatPasswordTextField" destination="W1o-Uj-Psa" id="wjL-Qf-gvk"/>
+                        <outlet property="signupButton" destination="7XP-wE-cI1" id="eNK-IY-2Ly"/>
+                        <outlet property="userNameTextField" destination="9mW-u9-0Yi" id="X9e-LR-dwD"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EfF-ga-82g" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -397,7 +408,7 @@
         <!--Log in-->
         <scene sceneID="aUV-pg-lll">
             <objects>
-                <viewController id="Tf8-dV-CeF" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="login" id="Tf8-dV-CeF" customClass="LoginViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="hnZ-T7-Q28"/>
                         <viewControllerLayoutGuide type="bottom" id="G1V-3V-J0U"/>
@@ -434,6 +445,9 @@
                                 <rect key="frame" x="46" y="406" width="58" height="38"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="21"/>
                                 <state key="normal" title="Log in"/>
+                                <connections>
+                                    <action selector="didPressLoginButton:" destination="Tf8-dV-CeF" eventType="touchUpInside" id="ieK-u6-pei"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -453,6 +467,11 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Log in" id="XUp-ca-CTS"/>
+                    <connections>
+                        <outlet property="loginButton" destination="7Cm-no-rFf" id="3jD-m5-qdf"/>
+                        <outlet property="passwordTextField" destination="YT1-FA-AcR" id="9Bl-tw-zlF"/>
+                        <outlet property="userNameTextField" destination="seG-fT-hFH" id="znX-Eu-CD5"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Byw-ef-B2s" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -461,7 +480,7 @@
         <!--Tab Bar Controller-->
         <scene sceneID="yl2-sM-qoP">
             <objects>
-                <tabBarController id="49e-Tb-3d3" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="tabBar" id="49e-Tb-3d3" customClass="TabBarController" sceneMemberID="viewController">
                     <nil key="simulatedBottomBarMetrics"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="W28-zg-YXA">
                         <rect key="frame" x="0.0" y="975" width="768" height="49"/>
