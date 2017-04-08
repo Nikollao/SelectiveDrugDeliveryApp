@@ -108,20 +108,12 @@ static ScanBLEViewController *_shareSvc;
     }
 }
 
-- (IBAction)didPressDisconnectButton:(id)sender {
+- (IBAction)didPressLogout:(id)sender {
     
-    if (_peripheral.state == CBPeripheralStateConnected) {
-        
-        [_centralManager cancelPeripheralConnection:_peripheral];
-        //self.disconnectButton.enabled = NO;
-        
-        UIAlertController *controller = [UIAlertController alertControllerWithTitle:@"Disconnect" message:@"You have been disconnected from the device!" preferredStyle:UIAlertControllerStyleAlert];
-        UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleCancel handler:nil];
-        [controller addAction:okAction];
-        [self presentViewController:controller animated:YES completion:nil];
-    }
-    [self.peripheralsArray removeObject:[self.peripheralsArray firstObject]];
+    UIViewController *viewController = [self.storyboard instantiateViewControllerWithIdentifier:@"login NC"];
+    [self presentViewController:viewController animated:YES completion:nil];
 }
+
 
 #pragma mark - CBCentralDelegate methods
 

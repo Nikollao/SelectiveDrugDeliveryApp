@@ -28,16 +28,6 @@ static SignupViewController *_sharedInstance;
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    if (!_signupDictionary) {
-        _signupDictionary = [NSMutableDictionary dictionaryWithCapacity:15];
-    }
-    if (!_objects) {
-        _objects = [NSMutableArray array];
-    }
-    if (!_keys) {
-        _keys = [NSMutableArray arrayWithCapacity:15];
-    }
-    
     self.fullNameTextField.delegate = self;
     self.userNameTextField.delegate = self;
     self.passwordTextField.delegate = self;
@@ -45,7 +35,10 @@ static SignupViewController *_sharedInstance;
     self.occupationTextField.delegate = self;
     
     [self hideKeyboardWhenBackgroundIsTapped];
-    _sharedInstance = self;
+    
+    if (!_sharedInstance) {
+        _sharedInstance = self;
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -74,18 +67,36 @@ static SignupViewController *_sharedInstance;
     repeatpass = [_repeatPassword length];
     occ = [_occupation length];
     
-    if (username && fullname && password && repeatpass && occ) {
-        if (_password == _repeatPassword) {
+    if (username && fullname && password && repeatpass && occ && _password ==_repeatPassword) {
+      
+        CoreDataHelper *cdh = [(AppDelegate *) [[UIApplication sharedApplication] delegate] cdh];
+        NSError *error = nil;
+        AccountHolder *newHolder = [NSEntityDescription insertNewObjectForEntityForName:@"AccountHolder" inManagedObjectContext:cdh.context];
+        [cdh.context obtainPermanentIDsForObjects:[NSArray arrayWithObject:newHolder] error:&error];
+        
+        if (error) {
             
-            [_objects addObject:self.userName];
-            [_keys addObject:self.password];
-            [self.signupDictionary setObject:_objects forKey:_keys];
-            
-            NSArray *array = _signupDictionary[_keys];
-            NSString *string = [array firstObject];
-            NSLog(@"%@, %@",string,[_keys objectAtIndex:0]);
-            [self.navigationController popViewControllerAnimated:YES];
+            NSLog(@"Application terminates with error %@",error);
+            abort();
         }
+        newHolder.userName = _userName;
+        newHolder.password = _password;
+        [cdh saveContext];
+
+        [self.navigationController popViewControllerAnimated:YES];
+        
+    }
+    else {
+        UIAlertController *alert = [[UIAlertController alloc] init];
+        if (!username || !fullname || !password || !repeatpass || !occ) {
+            alert = [UIAlertController alertControllerWithTitle:@"Signup Failed" message:@"Please ensure you have filled all text fields" preferredStyle:UIAlertControllerStyleAlert];
+        }
+        if (password != repeatpass) {
+            alert = [UIAlertController alertControllerWithTitle:@"Signup Failed" message:@"Please ensure you password is typed correctly in both text fields" preferredStyle:UIAlertControllerStyleAlert];
+        }
+        UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleCancel handler:nil];
+        [alert addAction:okAction];
+        [self presentViewController:alert animated:YES completion:nil];
     }
 }
 -(BOOL) textFieldShouldReturn:(UITextField *)textField {

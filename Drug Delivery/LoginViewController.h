@@ -7,6 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CoreDataHelper.h"
+#import "AppDelegate.h"
+#import "AccountHolder.h"
 
 @interface LoginViewController : UIViewController <UITextFieldDelegate>
 
@@ -16,11 +19,13 @@
 
 @property (strong, nonatomic) NSString *userName;
 @property (strong, nonatomic) NSString *password;
-@property (strong, nonatomic) NSString *setUserName;
-@property (strong, nonatomic) NSString *setPassword;
 
-@property (strong, nonatomic) NSDictionary *loginDictionary;
+@property (strong, nonatomic) NSArray *usernames;
+@property (strong, nonatomic) NSArray *passwords;
 
 - (IBAction)didPressLoginButton:(UIButton *)sender;
+- (IBAction)didPressAccountsButton:(id)sender;
+
+- (void) fetch;
 
 @end

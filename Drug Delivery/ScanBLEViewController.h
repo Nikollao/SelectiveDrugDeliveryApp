@@ -47,6 +47,7 @@
 
 // IBactions
 - (IBAction)didPressScanButton:(id)sender;
+- (IBAction)didPressLogout:(id)sender;
 
 -(void) didPressConnectButtonInCell;
 -(void) setupScan;

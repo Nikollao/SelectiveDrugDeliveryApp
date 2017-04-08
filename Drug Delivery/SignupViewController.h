@@ -7,6 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CoreDataHelper.h"
+#import "AccountHolder.h"
+#import "AppDelegate.h"
 
 @interface SignupViewController : UIViewController <UITextFieldDelegate>
 
@@ -23,10 +26,6 @@
 @property (strong, nonatomic) NSString *repeatPassword;
 @property (strong, nonatomic) NSString *occupation;
 
-@property (strong, nonatomic) NSMutableArray *objects;
-@property (strong ,nonatomic) NSMutableArray *keys;
-
-@property (strong, nonatomic) NSMutableDictionary *signupDictionary;
 
 - (IBAction)didPressSignupButton:(UIButton *)sender;
 

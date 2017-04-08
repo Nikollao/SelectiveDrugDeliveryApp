@@ -22,6 +22,7 @@
     [request setSortDescriptors:[NSArray arrayWithObject:sort]];
     [request setFetchBatchSize:15]; // very good practice to make the fetch more efficient
     self.pickerData = [cdh.context executeFetchRequest:request error:nil];
+    NSLog(@"picker data %@",[self.pickerData firstObject]);
     [self selectDefaultRow];
 }
 
