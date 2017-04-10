@@ -38,7 +38,15 @@
     [self configureFetch];
     [self performFetch];
     [self hideKeyboardWhenBackgroundIsTapped];
+    _stvc = [SetupWRCDeviceTableViewController sharedInstance];
 }
+
+-(void)viewWillAppear:(BOOL)animated {
+    
+    [super viewWillAppear:animated];
+    [self.tableView reloadData];
+}
+
 
 -(void) hideKeyboardWhenBackgroundIsTapped {
     
@@ -72,6 +80,8 @@
     
     UILabel *selectedPatient = [[self.tableView cellForRowAtIndexPath:indexPath] textLabel];
     NSLog(@"patient: %@",selectedPatient.text);
+    _stvc.patientName =selectedPatient.text;
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 /*-(void) tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {

@@ -7,7 +7,10 @@
 //
 
 #import "CoreDataTableViewController.h"
+#import "SetupWRCDeviceTableViewController.h"
 
 @interface AssignPatientTableViewController : CoreDataTableViewController
+
+@property (strong, nonatomic) SetupWRCDeviceTableViewController *stvc;
 
 @end

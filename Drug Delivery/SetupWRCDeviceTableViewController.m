@@ -14,11 +14,25 @@
 
 @implementation SetupWRCDeviceTableViewController
 
+static SetupWRCDeviceTableViewController *_sharedInstance;
+
++(SetupWRCDeviceTableViewController *) sharedInstance {
+    
+    if (!_sharedInstance) {
+        _sharedInstance = [[SetupWRCDeviceTableViewController alloc] init];
+    }
+    return _sharedInstance;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     self.svc = [ScanBLEViewController shareSvc];
+    
+    if (!_sharedInstance) {
+        _sharedInstance = self;
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -29,7 +43,9 @@
 -(void)viewWillAppear:(BOOL)animated {
     
     [super viewWillAppear:animated];
-    NSLog(@"Connected device: %@",_svc.connectedPeripheral.name);
+    [self.tableView reloadData];
+    NSLog(@"Connected device: %@, patient name: %@",_svc.connectedPeripheral.name, _patientName);
+    
 }
 
 #pragma mark - Table view data source
@@ -78,9 +94,11 @@
         //NSLog(@"cell should be: %@",_svc.connectedPeripheral.name);
     }
     
-    else if (indexPath.section == 1) {
+    if (indexPath.section == 1) {
         
         // assign patient
+        titleCell = _patientName;
+        NSLog(@"Name: %@",_patientName);
     }
     else if (indexPath.section == 2) {
         

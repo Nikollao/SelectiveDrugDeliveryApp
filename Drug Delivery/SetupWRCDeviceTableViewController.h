@@ -17,4 +17,6 @@
 
 @property NSInteger numberOfDrugs;
 
++(SetupWRCDeviceTableViewController *)sharedInstance;
+
 @end
