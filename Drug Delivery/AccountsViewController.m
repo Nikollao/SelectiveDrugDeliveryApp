@@ -49,7 +49,7 @@
     
     //[title replaceOccurrencesOfString:@"(null)" withString:@"" options:0 range:NSMakeRange(0, [title length])];
     
-    NSMutableString *title = [NSMutableString stringWithFormat:@"%@",holder.userName];
+    NSMutableString *title = [NSMutableString stringWithFormat:@"%@",holder.fullName];
     
     [title replaceOccurrencesOfString:@"(null)" withString:@"" options:0 range:NSMakeRange(0, [title length])];
     cell.textLabel.text = title;

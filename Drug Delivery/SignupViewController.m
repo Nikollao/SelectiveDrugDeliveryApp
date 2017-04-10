@@ -85,6 +85,8 @@ static SignupViewController *_sharedInstance;
         newHolder.userName = _userName;
         newHolder.password = _password;
         newHolder.fullNameFirstChar = _fullNameFirstChar;
+        newHolder.fullName = _fullName;
+        newHolder.occupation = _occupation;
         [cdh saveContext];
 
         [self.navigationController popViewControllerAnimated:YES];
