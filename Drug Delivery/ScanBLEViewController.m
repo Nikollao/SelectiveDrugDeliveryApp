@@ -39,7 +39,10 @@ static ScanBLEViewController *_shareSvc;
     self.peripheralsArray = [NSMutableArray array];
     // message is printed only once
     NSLog(@"The ScanBLEViewController view Did load!, central %@ initialised",self.centralManager);
-    _shareSvc = self;
+    
+    if (!_shareSvc) {
+        _shareSvc = self;
+    }
 }
 
 -(void)didReceiveMemoryWarning {
@@ -155,6 +158,7 @@ static ScanBLEViewController *_shareSvc;
     NSLog(@"Entered didConnectPeripheral");
     [peripheral setDelegate:self];
     self.peripheral = peripheral;
+    self.connectedPeripheral = peripheral;
     // [self.peripheralsArray replaceObjectAtIndex:0 withObject:self.peripheral];
     [peripheral discoverServices:nil];
 }
@@ -208,6 +212,13 @@ static ScanBLEViewController *_shareSvc;
     self.countDetections = YES;
 }
 
+
+-(void) centralManager:(CBCentralManager *)central didDisconnectPeripheral:(CBPeripheral *)peripheral error:(NSError *)error {
+    
+    self.connectedPeripheral = nil;
+    NSLog(@"Peripheral disconnected");
+}
+
 #pragma mark - CBPeripheralDelegate methods
 
 -(void)peripheral:(CBPeripheral *)peripheral didDiscoverServices:(NSError *)error {
@@ -218,8 +229,6 @@ static ScanBLEViewController *_shareSvc;
         self.bleService = service;
     }
 }
-
-
 
 -(void)peripheral:(CBPeripheral *)peripheral didDiscoverCharacteristicsForService:(CBService *)service error:(NSError *)error {
     

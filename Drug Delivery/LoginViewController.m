@@ -164,8 +164,9 @@
 
 -(BOOL) textFieldShouldReturn:(UITextField *)textField {
     
+    [self.view endEditing:YES];
+    
     if (textField == _userNameTextField) {
-        [self.view endEditing:YES];
         [self.passwordTextField becomeFirstResponder];
     }
     else if (textField == _passwordTextField) {

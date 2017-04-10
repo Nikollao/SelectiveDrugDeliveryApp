@@ -46,7 +46,10 @@ static DataExchangeViewController *_shareDevc;
     //self.chatLabel.hidden = YES;
     self.svc = [ScanBLEViewController shareSvc];
     [NSTimer scheduledTimerWithTimeInterval:0.2 target:self selector:@selector(updateTextFieldButton) userInfo:nil repeats:YES];
-    _shareDevc = self;
+    
+    if (!_shareDevc) {
+        _shareDevc = self;
+    }
 }
 
 -(void)hideKeyboardWhenBackgroundIsTapped {

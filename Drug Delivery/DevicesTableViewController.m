@@ -82,9 +82,11 @@
     
     if (peripheral.state == CBPeripheralStateConnected) {
         subTitle = @"Connected: YES";
+        //_svc.connectedPeripheral = peripheral;
     }
     else if (peripheral.state == CBPeripheralStateDisconnected) {
         subTitle = @"Connected: NO";
+        //_svc.connectedPeripheral = nil;
     }
     else if (peripheral.state == CBPeripheralStateConnecting) {
         subTitle = @"Connecting...";
