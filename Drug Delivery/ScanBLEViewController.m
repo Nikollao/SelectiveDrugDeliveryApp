@@ -110,8 +110,19 @@ static ScanBLEViewController *_shareSvc;
 
 - (IBAction)didPressLogout:(id)sender {
     
-    UIViewController *viewController = [self.storyboard instantiateViewControllerWithIdentifier:@"login NC"];
-    [self presentViewController:viewController animated:YES completion:nil];
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Log out" message:@"Are you sure you want to log out?" preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction *yesAction = [UIAlertAction actionWithTitle:@"YES" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        UIViewController *viewController = [self.storyboard instantiateViewControllerWithIdentifier:@"login NC"];
+        [self presentViewController:viewController animated:YES completion:nil];
+    }];
+    UIAlertAction *noAction = [UIAlertAction actionWithTitle:@"NO" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        return;
+    }];
+    [alert addAction:yesAction];
+    [alert addAction:noAction];
+    
+    [self presentViewController:alert animated:YES completion:nil];
 }
 
 

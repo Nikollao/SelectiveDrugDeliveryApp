@@ -15,5 +15,6 @@
 @dynamic password;
 @dynamic repeatPassword;
 @dynamic occupation;
+@dynamic fullNameFirstChar;
 
 @end

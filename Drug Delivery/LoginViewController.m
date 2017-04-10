@@ -20,6 +20,7 @@
     // Do any additional setup after loading the view.
     self.userNameTextField.delegate = self;
     self.passwordTextField.delegate = self;
+    self.passwordTextField.secureTextEntry = YES;
     [self hideKeyboardWhenBackgroundIsTapped];
     
     if (!_usernames) {
@@ -84,7 +85,7 @@
                 holder = [_usernames objectAtIndex:i];
                 holder = [_passwords objectAtIndex:i];
                 
-                if (_userName == holder.userName && _password == holder.password) {
+                if ([_userName isEqualToString:holder.userName] && [_password isEqualToString:holder.password]) {
                     found = YES;
                     break;
                 }
@@ -98,11 +99,11 @@
                 [self.navigationController presentViewController:vc animated:true completion:nil];
             }
             else {
-                UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Log in Failed" message:@"Ensure username and password is correct" preferredStyle:UIAlertControllerStyleAlert];
-                UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleCancel handler:nil];
-                [alert addAction:okAction];
-                [self presentViewController:alert animated:YES completion:nil];
+                [self userNameNotMatchesPassword];
             }
+        }
+        else {
+            [self userNameNotMatchesPassword];
         }
     }
     else {
@@ -113,10 +114,50 @@
     }
 }
 
+-(void) userNameNotMatchesPassword {
+    
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Log in Failed" message:@"Username and password do not match" preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleCancel handler:nil];
+    [alert addAction:okAction];
+    [self presentViewController:alert animated:YES completion:nil];
+}
+
 - (IBAction)didPressAccountsButton:(id)sender {
     
-    UIViewController *viewController = [self.storyboard instantiateViewControllerWithIdentifier:@"accounts table"];
-    [self.navigationController pushViewController:viewController animated:YES];
+    
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Adminstrator Access" message:@"Password required" preferredStyle:UIAlertControllerStyleAlert];
+    [alert addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
+        textField.placeholder = @" Please enter password";
+        textField.secureTextEntry = YES;
+    }];
+    
+    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"Access Accounts table" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        
+        UITextField *textField = alert.textFields.firstObject;
+        NSLog(@"text is: %@",textField.text);
+        [self.view endEditing:YES];
+        NSString *correctPassword = @"Group project";
+        NSLog(@"correct password is: %@",correctPassword);
+        
+        if ([textField.text isEqualToString:correctPassword]) {
+            
+            UIViewController *viewController = [self.storyboard instantiateViewControllerWithIdentifier:@"accounts table"];
+            [self.navigationController pushViewController:viewController animated:YES];
+        }
+        else {
+            
+            alert.message = @"Incorrect password";
+            alert.textFields.firstObject.text = @"";
+            [self presentViewController:alert animated:YES completion:nil];
+        }
+    }];
+    
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil];
+    
+    [alert addAction:okAction];
+    [alert addAction:cancelAction];
+    
+    [self presentViewController:alert animated:YES completion:nil];
 }
 
 #pragma mark - TextField Delegate methods

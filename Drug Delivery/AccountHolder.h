@@ -15,5 +15,6 @@
 @property (nullable, nonatomic, copy) NSString *password;
 @property (nullable, nonatomic, copy) NSString *repeatPassword;
 @property (nullable, nonatomic, copy) NSString *occupation;
+@property (nullable, nonatomic, copy) NSString *fullNameFirstChar;
 
 @end

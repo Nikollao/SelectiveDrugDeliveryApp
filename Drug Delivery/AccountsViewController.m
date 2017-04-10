@@ -22,12 +22,12 @@
     CoreDataHelper *cdh = [(AppDelegate *) [[UIApplication sharedApplication] delegate] cdh];
     NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:@"AccountHolder"];
     request.sortDescriptors = [NSArray arrayWithObjects:
-                               //[NSSortDescriptor sortDescriptorWithKey:@"medication.name" ascending:YES],
-                               //[NSSortDescriptor sortDescriptorWithKey:@"password" ascending:YES],
-                               [NSSortDescriptor sortDescriptorWithKey:@"userName" ascending:YES],
+                               [NSSortDescriptor sortDescriptorWithKey:@"fullNameFirstChar" ascending:YES],
+                               [NSSortDescriptor sortDescriptorWithKey:@"occupation" ascending:YES],
+                               [NSSortDescriptor sortDescriptorWithKey:@"fullName" ascending:YES],
                                nil];
     [request setFetchBatchSize:15];
-    self.frc = [[NSFetchedResultsController alloc] initWithFetchRequest:request managedObjectContext:cdh.context sectionNameKeyPath:@"userName" cacheName:nil];
+    self.frc = [[NSFetchedResultsController alloc] initWithFetchRequest:request managedObjectContext:cdh.context sectionNameKeyPath:@"fullNameFirstChar" cacheName:nil];
     self.frc.delegate = self;
 }
 
@@ -45,10 +45,15 @@
     
     AccountHolder *holder = [self.frc objectAtIndexPath:indexPath];
     
-    NSMutableString *title = [NSMutableString stringWithFormat:@"%@ %@",holder.userName, holder.password];
+    //NSMutableString *title = [NSMutableString stringWithFormat:@"%@ %@",holder.userName, holder.password];
+    
+    //[title replaceOccurrencesOfString:@"(null)" withString:@"" options:0 range:NSMakeRange(0, [title length])];
+    
+    NSMutableString *title = [NSMutableString stringWithFormat:@"%@",holder.userName];
     
     [title replaceOccurrencesOfString:@"(null)" withString:@"" options:0 range:NSMakeRange(0, [title length])];
     cell.textLabel.text = title;
+    cell.detailTextLabel.text = holder.occupation;
     
     return cell;
 }

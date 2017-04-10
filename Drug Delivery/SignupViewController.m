@@ -34,6 +34,9 @@ static SignupViewController *_sharedInstance;
     self.repeatPasswordTextField.delegate = self;
     self.occupationTextField.delegate = self;
     
+    self.passwordTextField.secureTextEntry = YES; // hides the written letters 
+    self.repeatPasswordTextField.secureTextEntry = YES;
+    
     [self hideKeyboardWhenBackgroundIsTapped];
     
     if (!_sharedInstance) {
@@ -67,7 +70,7 @@ static SignupViewController *_sharedInstance;
     repeatpass = [_repeatPassword length];
     occ = [_occupation length];
     
-    if (username && fullname && password && repeatpass && occ && _password ==_repeatPassword) {
+    if (username && fullname && password && repeatpass && occ && [_password isEqualToString:_repeatPassword]) {
       
         CoreDataHelper *cdh = [(AppDelegate *) [[UIApplication sharedApplication] delegate] cdh];
         NSError *error = nil;
@@ -81,6 +84,7 @@ static SignupViewController *_sharedInstance;
         }
         newHolder.userName = _userName;
         newHolder.password = _password;
+        newHolder.fullNameFirstChar = _fullNameFirstChar;
         [cdh saveContext];
 
         [self.navigationController popViewControllerAnimated:YES];
@@ -115,6 +119,7 @@ static SignupViewController *_sharedInstance;
     }
     else if (textField == self.fullNameTextField) {
         self.fullName = _fullNameTextField.text;
+        self.fullNameFirstChar = [self.fullName substringToIndex:1];
     }
     else if (textField == self.passwordTextField) {
         self.password = self.passwordTextField.text;

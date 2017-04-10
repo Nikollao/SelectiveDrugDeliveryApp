@@ -25,6 +25,7 @@
 @property (strong, nonatomic) NSString *password;
 @property (strong, nonatomic) NSString *repeatPassword;
 @property (strong, nonatomic) NSString *occupation;
+@property (strong, nonatomic) NSString *fullNameFirstChar;
 
 
 - (IBAction)didPressSignupButton:(UIButton *)sender;
