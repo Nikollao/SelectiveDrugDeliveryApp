@@ -87,11 +87,14 @@ static SetupWRCDeviceTableViewController *_sharedInstance;
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"setup WRC cell" forIndexPath:indexPath];
     
     NSString *titleCell = [[NSString alloc] init];
+    NSString *subTitle = [[NSString alloc] init];
     
     if (indexPath.section == 0) {
         
         titleCell = _svc.connectedPeripheral.name;
+        //titleCell = @"Test";
         //NSLog(@"cell should be: %@",_svc.connectedPeripheral.name);
+        cell.accessoryType = UITableViewCellAccessoryCheckmark;
     }
     
     if (indexPath.section == 1) {
@@ -99,13 +102,35 @@ static SetupWRCDeviceTableViewController *_sharedInstance;
         // assign patient
         titleCell = _patientName;
         NSLog(@"Name: %@",_patientName);
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
     else if (indexPath.section == 2) {
         
         // assign medication
+        if (indexPath.row == 0) {
+            
+            if ([self.firstChamber length]) {
+                titleCell = @"chamber 1:";
+                subTitle = self.firstChamber;
+            }
+        }
+        else if (indexPath.row == 1) {
+            
+            if ([self.secondChamber length]) {
+                titleCell = @"chamber 2:";
+                subTitle = _secondChamber;
+            }
+        }
+        else if (indexPath.row == 2) {
+           
+            if ([self.thirdChamber length]) {
+                titleCell = @"chamber 3:";
+                subTitle = _thirdChamber;
+            }
+        }
     }
-    
     cell.textLabel.text = titleCell;
+    cell.detailTextLabel.text = subTitle;
     return cell;
 }
 
