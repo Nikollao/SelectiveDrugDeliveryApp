@@ -19,6 +19,8 @@
 @dynamic patientID;
 @dynamic address;
 
+@dynamic numberOfDrugs;
+
 @dynamic medication;
 @dynamic medicationTwo;
 @dynamic medicationThree;

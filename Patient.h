@@ -1,5 +1,4 @@
 //
-//  Patient+CoreDataClass.h
 //  Drug Delivery
 //
 //  Created by Nikollao Sulollari on 23/01/2017.
@@ -21,6 +20,9 @@
 @property (nullable, nonatomic, copy) NSString *disease;
 @property (nullable, nonatomic, copy) NSString *patientID;
 @property (nullable, nonatomic, copy) NSString *address;
+
+@property (nonatomic) int64_t numberOfDrugs;
+
 @property (nullable, nonatomic, retain) Medication *medication;
 @property (nullable, nonatomic, retain) Medication *medicationTwo;
 @property (nullable, nonatomic, retain) Medication *medicationThree;

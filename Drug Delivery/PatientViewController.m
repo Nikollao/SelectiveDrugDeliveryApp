@@ -287,6 +287,24 @@
     if (textField == self.patientIDTextField) {
         patient.patientID = self.patientIDTextField.text;
     }
+    
+    NSInteger firstDrug = [self.medicationPickerTextField.text length];
+    NSInteger secondDrug = [self.medicationTwoPickerTextField.text length];
+    NSInteger thirdDrug = [self.medicationThreePickerTextField.text length];
+    
+    if (firstDrug && secondDrug && thirdDrug) {
+        patient.numberOfDrugs = 3;
+    }
+    else if (firstDrug && secondDrug) {
+        patient.numberOfDrugs = 2;
+    }
+    else if (firstDrug) {
+        patient.numberOfDrugs = 1;
+    }
+    else {
+        patient.numberOfDrugs = 0;
+    }
+    NSLog(@"number of drugs: %lld for patient %@ %@",patient.numberOfDrugs,patient.firstName, patient.lastName);
 }
 
 -(BOOL)textFieldShouldReturn:(UITextField *)textField {

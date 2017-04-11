@@ -63,6 +63,8 @@ static SignupViewController *_sharedInstance;
 
 - (IBAction)didPressSignupButton:(UIButton *)sender {
     
+    [self.view endEditing:YES];
+    
     NSInteger username, fullname, password, repeatpass, occ;
     username = [self.userName length];
     fullname = [self.fullName length];

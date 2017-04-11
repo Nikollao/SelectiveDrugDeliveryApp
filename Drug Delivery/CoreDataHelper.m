@@ -53,6 +53,15 @@ NSString *storeFileName = @"Drug-Delivery.sqlite";
         _context = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSMainQueueConcurrencyType];
         [_context setPersistentStoreCoordinator:_coordinator];
         
+        NSNumber *optionYes = [NSNumber numberWithBool:YES];
+        NSDictionary *options = [NSDictionary dictionaryWithObjects:@[optionYes] forKeys:@[NSMigratePersistentStoresAutomaticallyOption]];
+        
+        NSError *error = nil;
+        
+        if (![_coordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:[self storesURL] options:options error:&error]) {
+            NSLog(@"Error opening persistent store: %@, %@", error, [error userInfo]);
+            abort();
+        }
     }
     return self;
 }
