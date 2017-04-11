@@ -15,6 +15,10 @@
 @property (strong, nonatomic) ScanBLEViewController *svc;
 @property (strong, nonatomic) NSString *patientName;
 
+@property (strong, nonatomic) NSString *firstChamber;
+@property (strong, nonatomic) NSString *secondChamber;
+@property (strong, nonatomic) NSString *thirdChamber;
+
 @property NSInteger numberOfDrugs;
 
 +(SetupWRCDeviceTableViewController *)sharedInstance;

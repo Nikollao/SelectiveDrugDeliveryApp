@@ -1,13 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="11759" systemVersion="16D32" minimumToolsVersion="Automatic" sourceLanguage="Objective-C" userDefinedModelVersionIdentifier="">
     <entity name="AccountHolder" representedClassName="AccountHolder" syncable="YES">
-        <attribute name="address" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="fullName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="fullNameFirstChar" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="numberOfDrugs" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="occupation" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="password" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="patientID" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="repeatPassword" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="userName" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
@@ -34,7 +31,7 @@
     </entity>
     <fetchRequest name="NoMedication" entity="Medication" predicateString="name == &quot;No Medication&quot;"/>
     <elements>
-        <element name="AccountHolder" positionX="-180" positionY="63" width="128" height="180"/>
+        <element name="AccountHolder" positionX="-180" positionY="63" width="128" height="135"/>
         <element name="Medication" positionX="-306" positionY="36" width="128" height="135"/>
         <element name="Patient" positionX="-63" positionY="-18" width="128" height="210"/>
     </elements>
