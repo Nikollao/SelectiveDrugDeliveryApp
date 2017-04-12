@@ -23,6 +23,32 @@
     
     NSArray *percentages = [NSArray arrayWithObjects:@"25",@"50",@"75",@"100", nil];
     _percentagePickerTextField.percentages = percentages;
+    
+    self.svc = [ScanBLEViewController shareSvc];
+}
+
+-(void) viewWillAppear:(BOOL)animated {
+    
+    [super viewWillAppear:animated];
+    
+    if ([self.svc.peripheralsArray count] > 0) {
+        for (CBPeripheral *peripheral in self.svc.peripheralsArray) {
+            if (peripheral.state == CBPeripheralStateConnected) {
+                self.peripheral = peripheral;
+                NSLog(@"Peripheral is: %@",self.peripheral); // nslog debug message
+                break;
+            }
+        }
+    }
+    if (!self.peripheral) {
+        
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Attention" message:@"No peripheral connected to the app!" preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *popBack = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            [self.navigationController popToRootViewControllerAnimated:YES];
+        }];
+        [alert addAction:popBack];
+        [self presentViewController:alert animated:YES completion:nil];
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -70,6 +96,7 @@
     return YES;
 }
 
+#pragma mark - Send BLE command to Deliver Drug
 
 - (IBAction)didPressDeliverDrug:(id)sender {
     
@@ -81,5 +108,45 @@
         [alert addAction:cancel];
         [self presentViewController:alert animated:YES completion:nil];
     }
+    else if ([self.drug length] && self.percentage) {
+        //user has determined both parameters and is ready to deliver the drug
+        //implement BLE transmission
+        NSString *message = [NSString stringWithFormat:@"%@, %ld %%", self.drug, self.percentage];
+        NSLog(@"%@",message);
+        NSData *data = [NSData dataWithBytes:[message UTF8String] length:[message length]];
+        CBCharacteristic *writeChar = [self.svc.bleService.characteristics firstObject];//objectAtIndex:0
+        [self.peripheral writeValue:data forCharacteristic:writeChar type:CBCharacteristicWriteWithResponse];
+        //test
+    }
 }
+
+#pragma mark - CBCentralManager functions
+
+- (void)centralManagerDidUpdateState:(CBCentralManager *)central
+{
+    // Determine the state of the peripheral
+    if ([central state] == CBManagerStatePoweredOff) {
+        NSLog(@"CoreBluetooth BLE hardware is powered off");
+        //self.scanButton.enabled = NO;
+    }
+    else if ([central state] == CBManagerStatePoweredOn) {
+        NSLog(@"CoreBluetooth BLE hardware is powered on and ready");
+        //self.scanButton.enabled = YES;
+        if (central == self.svc.centralManager) {//used for debug to understand the CB framework
+            NSLog(@"central is equal to centralManager");
+        }else {
+            NSLog(@"central not equal to property!");
+        }
+    }
+    else if ([central state] == CBManagerStateUnauthorized) {
+        NSLog(@"CoreBluetooth BLE state is unauthorized");
+    }
+    else if ([central state] == CBManagerStateUnknown) {
+        NSLog(@"CoreBluetooth BLE state is unknown");
+    }
+    else if ([central state] == CBManagerStateUnsupported) {
+        NSLog(@"CoreBluetooth BLE hardware is unsupported on this platform");
+    }
+}
+
 @end

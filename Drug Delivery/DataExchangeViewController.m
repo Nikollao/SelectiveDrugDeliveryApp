@@ -190,7 +190,16 @@ static DataExchangeViewController *_shareDevc;
     CBCharacteristic *writeChar = [self.svc.bleService.characteristics firstObject];//objectAtIndex:0
     [self.peripheral writeValue:data forCharacteristic:writeChar type:CBCharacteristicWriteWithResponse];
     //test
-    //NSLog(@"received: %@",self.svc.rxString);
+  //NSLog(@"received: %@",self.svc.rxString);
+}
+
+-(BOOL) textFieldShouldReturn:(UITextField *)textField {
+    
+    if (textField == _textField) {
+        
+        [self didPressSendButton:self.sendButton];
+    }
+    return YES;
 }
 
 #pragma mark - CBCentralManager functions

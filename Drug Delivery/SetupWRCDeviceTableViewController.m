@@ -58,7 +58,7 @@ static SetupWRCDeviceTableViewController *_sharedInstance;
     else {
         NSLog(@"Connected device: %@, patient name: %@",_svc.connectedPeripheral.name, _patientName);
     }
-    if ([_patientName length]) {
+    if ([_patientName length] && _svc.connectedPeripheral) {
         self.deliverDrugButton.enabled = YES;
     }
     else {
