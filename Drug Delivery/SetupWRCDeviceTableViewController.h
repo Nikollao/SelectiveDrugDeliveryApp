@@ -21,6 +21,9 @@
 
 @property NSInteger numberOfDrugs;
 
+@property (strong, nonatomic) IBOutlet UIBarButtonItem *deliverDrugButton;
+
+
 +(SetupWRCDeviceTableViewController *)sharedInstance;
 
 @end

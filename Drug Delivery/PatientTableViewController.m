@@ -12,7 +12,7 @@
 #import "CoreDataHelper.h"
 #import "Patient.h"
 #import "Medication.h"
-
+#import "SetupWRCDeviceTableViewController.h"
 
 @interface PatientTableViewController ()
 
@@ -42,6 +42,11 @@
     [self hideKeyboardWhenBackgroundIsTapped];
 }
 
+-(void)viewWillAppear:(BOOL)animated {
+    
+    [super viewWillAppear:animated];
+}
+
 -(void) hideKeyboardWhenBackgroundIsTapped {
     
     UITapGestureRecognizer *tgr = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideKeyboard)];
@@ -67,6 +72,7 @@
     cell.textLabel.text = title;
     cell.detailTextLabel.text = patient.dateOfBirth;
     
+    // update the tableView assign patient so the setup tableView updates automatically if you change the drug to a patient
     return cell;
 }
 

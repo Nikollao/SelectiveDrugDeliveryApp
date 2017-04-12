@@ -18,6 +18,16 @@
 
 @implementation AssignPatientTableViewController
 
+static AssignPatientTableViewController *_sharedInstance;
+
++(AssignPatientTableViewController *)sharedInstance {
+    
+    if (!_sharedInstance) {
+        _sharedInstance = [[AssignPatientTableViewController alloc] init];
+    }
+    return _sharedInstance;
+}
+
 -(void)configureFetch {
     
     CoreDataHelper *cdh = [(AppDelegate *) [[UIApplication sharedApplication] delegate] cdh];
@@ -42,6 +52,10 @@
     [self performFetch];
     [self hideKeyboardWhenBackgroundIsTapped];
     _stvc = [SetupWRCDeviceTableViewController sharedInstance];
+    
+    if (_sharedInstance) {
+        _sharedInstance = self;
+    }
 }
 
 -(void)viewWillAppear:(BOOL)animated {
@@ -70,6 +84,10 @@
     
     Patient *patient = [self.frc objectAtIndexPath:indexPath];
     
+    if (_stvc.patientName) {
+        [self updateSetupWRCviewControllerForIndexPath:indexPath];
+    }
+    
     NSMutableString *title = [NSMutableString stringWithFormat:@"%@ %@",patient.firstName, patient.lastName];
     
     [title replaceOccurrencesOfString:@"(null)" withString:@"" options:0 range:NSMakeRange(0, [title length])];
@@ -85,6 +103,13 @@
     NSLog(@"patient: %@",selectedPatient.text);
     _stvc.patientName =selectedPatient.text;*/
     
+    [self updateSetupWRCviewControllerForIndexPath:indexPath];
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+-(void)updateSetupWRCviewControllerForIndexPath:(NSIndexPath *)indexPath {
+    
+    //indexPath = [self.tableView indexPathForSelectedRow];
     Patient *patient = [self.frc objectAtIndexPath:indexPath];
     
     _stvc.patientName = [NSString stringWithFormat:@"%@ %@",patient.firstName, patient.lastName];
@@ -92,8 +117,7 @@
     _stvc.secondChamber = patient.medicationTwo.name;
     _stvc.thirdChamber = patient.medicationThree.name;
     _stvc.numberOfDrugs = patient.numberOfDrugs;
-    
-    [self.navigationController popViewControllerAnimated:YES];
+
 }
 
 /*-(void) tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {

@@ -13,4 +13,6 @@
 
 @property (strong, nonatomic) SetupWRCDeviceTableViewController *stvc;
 
++(AssignPatientTableViewController *) sharedInstance;
+
 @end

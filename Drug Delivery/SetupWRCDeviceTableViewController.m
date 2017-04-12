@@ -28,6 +28,7 @@ static SetupWRCDeviceTableViewController *_sharedInstance;
     [super viewDidLoad];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
+    self.deliverDrugButton.enabled = NO;
     self.svc = [ScanBLEViewController shareSvc];
     
     if (!_sharedInstance) {
@@ -46,6 +47,12 @@ static SetupWRCDeviceTableViewController *_sharedInstance;
     [self.tableView reloadData];
     NSLog(@"Connected device: %@, patient name: %@",_svc.connectedPeripheral.name, _patientName);
     
+    if ([_patientName length]) {
+        self.deliverDrugButton.enabled = YES;
+    }
+    else {
+        self.deliverDrugButton.enabled = NO;
+    }
 }
 
 #pragma mark - Table view data source
@@ -110,21 +117,21 @@ static SetupWRCDeviceTableViewController *_sharedInstance;
         if (indexPath.row == 0) {
             
             if ([self.firstChamber length]) {
-                titleCell = @"chamber 1:";
+                titleCell = @"Chamber 1:";
                 subTitle = self.firstChamber;
             }
         }
         else if (indexPath.row == 1) {
             
             if ([self.secondChamber length]) {
-                titleCell = @"chamber 2:";
+                titleCell = @"Chamber 2:";
                 subTitle = _secondChamber;
             }
         }
         else if (indexPath.row == 2) {
            
             if ([self.thirdChamber length]) {
-                titleCell = @"chamber 3:";
+                titleCell = @"Chamber 3:";
                 subTitle = _thirdChamber;
             }
         }

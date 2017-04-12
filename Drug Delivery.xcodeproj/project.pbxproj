@@ -26,6 +26,7 @@
 		6818EFCF1E366B3700407BDA /* CoreDataTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6818EFCE1E366B3700407BDA /* CoreDataTableViewController.m */; };
 		6818EFD21E367AFA00407BDA /* CoreDataPickerTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 6818EFD11E367AFA00407BDA /* CoreDataPickerTextField.m */; };
 		6818EFD61E36814600407BDA /* MedicationPickerTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 6818EFD51E36814600407BDA /* MedicationPickerTextField.m */; };
+		682442291E9D2803007575C6 /* SetupWRCViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 682442281E9D2803007575C6 /* SetupWRCViewController.m */; };
 		682BA34F1E3A78AA0013CC9A /* DataExchangeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 682BA34E1E3A78AA0013CC9A /* DataExchangeViewController.m */; };
 		683017A31E967818009214AA /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 683017A21E967818009214AA /* LoginViewController.m */; };
 		683017A61E96783F009214AA /* SignupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 683017A51E96783F009214AA /* SignupViewController.m */; };
@@ -40,7 +41,6 @@
 		68973A9C1E9904CD00916C75 /* AccountHolder.m in Sources */ = {isa = PBXBuildFile; fileRef = 68973A9B1E9904CD00916C75 /* AccountHolder.m */; };
 		68973AA01E99108B00916C75 /* CoreDataAccTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 68973A9F1E99108B00916C75 /* CoreDataAccTableViewController.m */; };
 		68973AA31E99109E00916C75 /* AccountsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 68973AA21E99109E00916C75 /* AccountsViewController.m */; };
-		68973AA71E9B9A7D00916C75 /* SetupWRCDeviceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 68973AA61E9B9A7D00916C75 /* SetupWRCDeviceViewController.m */; };
 		68973AAA1E9BA56800916C75 /* SetupWRCDeviceTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 68973AA91E9BA56800916C75 /* SetupWRCDeviceTableViewController.m */; };
 		68973AAD1E9BCDEF00916C75 /* AssignPatientTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 68973AAC1E9BCDEF00916C75 /* AssignPatientTableViewController.m */; };
 		68E09B391E4DC6DA003F1874 /* ble_image.png in Resources */ = {isa = PBXBuildFile; fileRef = 68E09B381E4DC6DA003F1874 /* ble_image.png */; };
@@ -102,6 +102,8 @@
 		6818EFD11E367AFA00407BDA /* CoreDataPickerTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreDataPickerTextField.m; sourceTree = "<group>"; };
 		6818EFD41E36814600407BDA /* MedicationPickerTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MedicationPickerTextField.h; sourceTree = "<group>"; };
 		6818EFD51E36814600407BDA /* MedicationPickerTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MedicationPickerTextField.m; sourceTree = "<group>"; };
+		682442271E9D2803007575C6 /* SetupWRCViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetupWRCViewController.h; sourceTree = "<group>"; };
+		682442281E9D2803007575C6 /* SetupWRCViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetupWRCViewController.m; sourceTree = "<group>"; };
 		682BA34D1E3A78AA0013CC9A /* DataExchangeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataExchangeViewController.h; sourceTree = "<group>"; };
 		682BA34E1E3A78AA0013CC9A /* DataExchangeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataExchangeViewController.m; sourceTree = "<group>"; };
 		683017A11E967818009214AA /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
@@ -128,8 +130,6 @@
 		68973A9F1E99108B00916C75 /* CoreDataAccTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreDataAccTableViewController.m; sourceTree = "<group>"; };
 		68973AA11E99109D00916C75 /* AccountsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccountsViewController.h; sourceTree = "<group>"; };
 		68973AA21E99109E00916C75 /* AccountsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccountsViewController.m; sourceTree = "<group>"; };
-		68973AA51E9B9A7D00916C75 /* SetupWRCDeviceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetupWRCDeviceViewController.h; sourceTree = "<group>"; };
-		68973AA61E9B9A7D00916C75 /* SetupWRCDeviceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetupWRCDeviceViewController.m; sourceTree = "<group>"; };
 		68973AA81E9BA56800916C75 /* SetupWRCDeviceTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetupWRCDeviceTableViewController.h; sourceTree = "<group>"; };
 		68973AA91E9BA56800916C75 /* SetupWRCDeviceTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetupWRCDeviceTableViewController.m; sourceTree = "<group>"; };
 		68973AAB1E9BCDEF00916C75 /* AssignPatientTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AssignPatientTableViewController.h; sourceTree = "<group>"; };
@@ -322,6 +322,26 @@
 			name = "Core Bluetooth";
 			sourceTree = "<group>";
 		};
+		682442251E9D27CC007575C6 /* TableViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				68973AA81E9BA56800916C75 /* SetupWRCDeviceTableViewController.h */,
+				68973AA91E9BA56800916C75 /* SetupWRCDeviceTableViewController.m */,
+				68973AAB1E9BCDEF00916C75 /* AssignPatientTableViewController.h */,
+				68973AAC1E9BCDEF00916C75 /* AssignPatientTableViewController.m */,
+			);
+			name = TableViewControllers;
+			sourceTree = "<group>";
+		};
+		682442261E9D27E6007575C6 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				682442271E9D2803007575C6 /* SetupWRCViewController.h */,
+				682442281E9D2803007575C6 /* SetupWRCViewController.m */,
+			);
+			name = ViewControllers;
+			sourceTree = "<group>";
+		};
 		682BA34B1E3A787F0013CC9A /* TableViewControllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -357,12 +377,8 @@
 		68973AA41E9B976300916C75 /* WRC device */ = {
 			isa = PBXGroup;
 			children = (
-				68973AA51E9B9A7D00916C75 /* SetupWRCDeviceViewController.h */,
-				68973AA61E9B9A7D00916C75 /* SetupWRCDeviceViewController.m */,
-				68973AA81E9BA56800916C75 /* SetupWRCDeviceTableViewController.h */,
-				68973AA91E9BA56800916C75 /* SetupWRCDeviceTableViewController.m */,
-				68973AAB1E9BCDEF00916C75 /* AssignPatientTableViewController.h */,
-				68973AAC1E9BCDEF00916C75 /* AssignPatientTableViewController.m */,
+				682442261E9D27E6007575C6 /* ViewControllers */,
+				682442251E9D27CC007575C6 /* TableViewControllers */,
 			);
 			name = "WRC device";
 			sourceTree = "<group>";
@@ -463,7 +479,7 @@
 				TargetAttributes = {
 					6818EF6C1E36448700407BDA = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = 38F2F7S3GN;
+						DevelopmentTeam = 275Y8MV6CR;
 						ProvisioningStyle = Automatic;
 					};
 					6818EF881E36448700407BDA = {
@@ -536,7 +552,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6818EF751E36448700407BDA /* AppDelegate.m in Sources */,
-				68973AA71E9B9A7D00916C75 /* SetupWRCDeviceViewController.m in Sources */,
+				682442291E9D2803007575C6 /* SetupWRCViewController.m in Sources */,
 				6818EFD61E36814600407BDA /* MedicationPickerTextField.m in Sources */,
 				682BA34F1E3A78AA0013CC9A /* DataExchangeViewController.m in Sources */,
 				6818EFA81E364B7900407BDA /* PatientViewController.m in Sources */,
@@ -712,11 +728,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 38F2F7S3GN;
+				DEVELOPMENT_TEAM = 275Y8MV6CR;
 				INFOPLIST_FILE = "Drug Delivery/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = me.drugDelivery;
+				PRODUCT_BUNDLE_IDENTIFIER = drugDelivery;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -725,11 +741,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 38F2F7S3GN;
+				DEVELOPMENT_TEAM = 275Y8MV6CR;
 				INFOPLIST_FILE = "Drug Delivery/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = me.drugDelivery;
+				PRODUCT_BUNDLE_IDENTIFIER = drugDelivery;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
