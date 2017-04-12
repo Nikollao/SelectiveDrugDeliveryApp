@@ -25,6 +25,7 @@
 
 @property (nonatomic, strong) UIPickerView *picker;
 @property (nonatomic, strong) id <CoreDataPickerTextFieldDelegate> pickerDelegate;
+
 @property (nonatomic, strong) NSArray *pickerData;
 
 @property (nonatomic, strong) UIToolbar *toolbar;

@@ -86,7 +86,7 @@
                                 <rect key="frame" x="0.0" y="28" width="768" height="67"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="2gn-nI-YJn" id="B7T-gU-qnm">
-                                    <rect key="frame" x="0.0" y="0.0" width="768" height="66.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="768" height="67"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4s8-mv-HKH">
@@ -461,18 +461,18 @@
                                 <rect key="frame" x="0.0" y="28" width="768" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="MpO-dx-le8" id="gXx-V4-GN3">
-                                    <rect key="frame" x="0.0" y="0.0" width="768" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="768" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="arj-ov-T3b">
-                                            <rect key="frame" x="48" y="5" width="33.5" height="20.5"/>
+                                            <rect key="frame" x="48" y="4" width="34" height="21"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="8oq-LM-IO6">
-                                            <rect key="frame" x="48" y="25.5" width="44" height="14.5"/>
+                                            <rect key="frame" x="48" y="25" width="44" height="15"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                             <nil key="textColor"/>
@@ -503,21 +503,21 @@
                         <color key="separatorColor" red="0.5251412392" green="0.76744663719999995" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="setup WRC cell" textLabel="ISE-ia-up5" detailTextLabel="m92-WH-aFG" style="IBUITableViewCellStyleValue1" id="1ov-TN-2gm">
-                                <rect key="frame" x="0.0" y="55.5" width="768" height="44"/>
+                                <rect key="frame" x="0.0" y="56" width="768" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="1ov-TN-2gm" id="8ih-oX-mIu">
-                                    <rect key="frame" x="0.0" y="0.0" width="768" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="768" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ISE-ia-up5">
-                                            <rect key="frame" x="48" y="12" width="33.5" height="20.5"/>
+                                            <rect key="frame" x="48" y="11" width="34" height="21"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="m92-WH-aFG">
-                                            <rect key="frame" x="676" y="12" width="44" height="20.5"/>
+                                            <rect key="frame" x="676" y="11" width="44" height="21"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
@@ -535,7 +535,7 @@
                     <navigationItem key="navigationItem" title="Setup WRC" id="SXG-c5-3VT">
                         <barButtonItem key="rightBarButtonItem" title="Deliver Drug" id="Emg-Ml-ZIB">
                             <connections>
-                                <segue destination="eKT-g9-Xzd" kind="show" id="Mm3-dJ-eUZ"/>
+                                <segue destination="eKT-g9-Xzd" kind="show" identifier="drug deliver segue" id="Mm3-dJ-eUZ"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -566,46 +566,54 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select Percentage:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pwz-2F-uu7">
-                                <rect key="frame" x="60" y="191" width="145" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <rect key="frame" x="60" y="191" width="184.5" height="26.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Select drug to deliver" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="QkF-Oy-Pls">
-                                <rect key="frame" x="241" y="124" width="467" height="30"/>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Select drug to deliver" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="QkF-Oy-Pls" customClass="DrugPickerTextField">
+                                <rect key="frame" x="281" y="124" width="427" height="30"/>
+                                <color key="textColor" red="0.04228703247693355" green="0.37048460530871841" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Set percentage of drug" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ltb-ew-CqY">
-                                <rect key="frame" x="241" y="191" width="467" height="30"/>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Set percentage (%) of drug" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ltb-ew-CqY" customClass="PercentagePickerTextField">
+                                <rect key="frame" x="281" y="191" width="427" height="30"/>
+                                <color key="textColor" red="0.04228703248" green="0.37048460529999999" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Wo-xA-eSk">
                                 <rect key="frame" x="323" y="492.5" width="122" height="39"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                 <state key="normal" title="Deliver Drug"/>
+                                <connections>
+                                    <action selector="didPressDeliverDrug:" destination="eKT-g9-Xzd" eventType="touchUpInside" id="uXv-Ef-Lvx"/>
+                                </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <constraints>
                             <constraint firstAttribute="trailingMargin" secondItem="QkF-Oy-Pls" secondAttribute="trailing" constant="40" id="2C8-qA-MA4"/>
                             <constraint firstItem="QkF-Oy-Pls" firstAttribute="top" secondItem="UpR-pM-LMt" secondAttribute="top" id="Gmu-wD-a31"/>
                             <constraint firstItem="UpR-pM-LMt" firstAttribute="leading" secondItem="ccL-71-udz" secondAttribute="leadingMargin" constant="40" id="KKc-Zf-Um9"/>
-                            <constraint firstItem="QkF-Oy-Pls" firstAttribute="leading" secondItem="UpR-pM-LMt" secondAttribute="trailing" constant="60" id="VZC-JD-Ch0"/>
+                            <constraint firstItem="QkF-Oy-Pls" firstAttribute="leading" secondItem="UpR-pM-LMt" secondAttribute="trailing" constant="100" id="VZC-JD-Ch0"/>
                             <constraint firstItem="9Wo-xA-eSk" firstAttribute="centerX" secondItem="ccL-71-udz" secondAttribute="centerX" id="Zuh-jM-rtv"/>
                             <constraint firstItem="ltb-ew-CqY" firstAttribute="top" secondItem="Pwz-2F-uu7" secondAttribute="top" id="brM-EO-Ong"/>
-                            <constraint firstItem="ltb-ew-CqY" firstAttribute="leading" secondItem="Pwz-2F-uu7" secondAttribute="trailing" constant="36" id="dqR-CV-cwb"/>
                             <constraint firstItem="Pwz-2F-uu7" firstAttribute="top" secondItem="UpR-pM-LMt" secondAttribute="bottom" constant="40" id="e61-XK-X5Q"/>
                             <constraint firstItem="UpR-pM-LMt" firstAttribute="top" secondItem="KO4-gf-RyJ" secondAttribute="bottom" constant="60" id="gPC-h5-HdY"/>
                             <constraint firstAttribute="trailingMargin" secondItem="ltb-ew-CqY" secondAttribute="trailing" constant="40" id="nPO-32-uwF"/>
                             <constraint firstItem="Pwz-2F-uu7" firstAttribute="leading" secondItem="ccL-71-udz" secondAttribute="leadingMargin" constant="40" id="siP-Sp-Fw9"/>
                             <constraint firstItem="9Wo-xA-eSk" firstAttribute="centerY" secondItem="ccL-71-udz" secondAttribute="centerY" id="xXT-2Y-z1h"/>
+                            <constraint firstItem="ltb-ew-CqY" firstAttribute="leading" secondItem="QkF-Oy-Pls" secondAttribute="leading" id="ygu-pQ-edK"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Deliver Drug" id="587-mx-rhw"/>
+                    <connections>
+                        <outlet property="deliverDrug" destination="9Wo-xA-eSk" id="cHJ-Kd-NBy"/>
+                        <outlet property="drugPickerTextField" destination="QkF-Oy-Pls" id="hWm-bK-9AS"/>
+                        <outlet property="percentagePickerTextField" destination="ltb-ew-CqY" id="2Qq-uH-cHw"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CAq-sg-kh1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -621,21 +629,21 @@
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="assign patient cell" textLabel="bdF-ec-iTO" detailTextLabel="Shp-In-WMq" style="IBUITableViewCellStyleSubtitle" id="4XF-xT-wun">
-                                <rect key="frame" x="0.0" y="55.5" width="768" height="44"/>
+                                <rect key="frame" x="0.0" y="56" width="768" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="4XF-xT-wun" id="OlP-sF-asY">
-                                    <rect key="frame" x="0.0" y="0.0" width="768" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="768" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="bdF-ec-iTO">
-                                            <rect key="frame" x="48" y="5" width="33.5" height="20.5"/>
+                                            <rect key="frame" x="48" y="4" width="34" height="21"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Shp-In-WMq">
-                                            <rect key="frame" x="48" y="25.5" width="44" height="14.5"/>
+                                            <rect key="frame" x="48" y="25" width="44" height="15"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                             <nil key="textColor"/>
@@ -713,21 +721,21 @@
                         </view>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="patient cell" editingAccessoryType="disclosureIndicator" textLabel="TUD-Tg-hr0" detailTextLabel="kNV-4b-4TU" style="IBUITableViewCellStyleSubtitle" id="8jA-rR-k8C">
-                                <rect key="frame" x="0.0" y="55.5" width="768" height="44"/>
+                                <rect key="frame" x="0.0" y="56" width="768" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="8jA-rR-k8C" id="px1-M4-KTN">
-                                    <rect key="frame" x="0.0" y="0.0" width="702" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="702" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="TUD-Tg-hr0">
-                                            <rect key="frame" x="48" y="5" width="33.5" height="20.5"/>
+                                            <rect key="frame" x="48" y="4" width="34" height="21"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="kNV-4b-4TU">
-                                            <rect key="frame" x="48" y="25.5" width="44" height="14.5"/>
+                                            <rect key="frame" x="48" y="25" width="44" height="15"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                             <nil key="textColor"/>
@@ -974,14 +982,14 @@
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="medication cell" textLabel="ySY-qG-qb8" style="IBUITableViewCellStyleDefault" id="BTn-sk-meq">
-                                <rect key="frame" x="0.0" y="55.5" width="768" height="44"/>
+                                <rect key="frame" x="0.0" y="56" width="768" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="BTn-sk-meq" id="0e1-O8-f4d">
-                                    <rect key="frame" x="0.0" y="0.0" width="702" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="702" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ySY-qG-qb8">
-                                            <rect key="frame" x="48" y="0.0" width="654" height="43.5"/>
+                                            <rect key="frame" x="48" y="0.0" width="654" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>

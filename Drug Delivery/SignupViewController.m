@@ -109,9 +109,27 @@ static SignupViewController *_sharedInstance;
 }
 -(BOOL) textFieldShouldReturn:(UITextField *)textField {
     
-    if (textField) {
-    [self didPressSignupButton:self.signupButton];
-
+    [self.view endEditing:YES];
+    
+    if (textField == self.fullNameTextField) {
+        
+        [self.userNameTextField becomeFirstResponder];
+    }
+    else if (textField == _userNameTextField) {
+        
+        [self.passwordTextField becomeFirstResponder];
+    }
+    else if (textField == _passwordTextField) {
+        
+        [self.repeatPasswordTextField becomeFirstResponder];
+    }
+    else if (textField == _repeatPasswordTextField) {
+        
+        [self.occupationTextField becomeFirstResponder];
+    }
+    else if (textField == _occupationTextField) {
+        
+        [self didPressSignupButton:self.signupButton];
     }
     return YES;
 }

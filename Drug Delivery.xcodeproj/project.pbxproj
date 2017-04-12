@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		68071ED51E9E7B7400B5EDAE /* DrugPickerTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 68071ED41E9E7B7400B5EDAE /* DrugPickerTextField.m */; };
+		68071ED91E9E7BC400B5EDAE /* PercentagePickerTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 68071ED81E9E7BC400B5EDAE /* PercentagePickerTextField.m */; };
 		6818EF721E36448700407BDA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6818EF711E36448700407BDA /* main.m */; };
 		6818EF751E36448700407BDA /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6818EF741E36448700407BDA /* AppDelegate.m */; };
 		6818EF7E1E36448700407BDA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6818EF7C1E36448700407BDA /* Main.storyboard */; };
@@ -66,6 +68,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		68071ED31E9E7B7400B5EDAE /* DrugPickerTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrugPickerTextField.h; sourceTree = "<group>"; };
+		68071ED41E9E7B7400B5EDAE /* DrugPickerTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrugPickerTextField.m; sourceTree = "<group>"; };
+		68071ED71E9E7BC400B5EDAE /* PercentagePickerTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PercentagePickerTextField.h; sourceTree = "<group>"; };
+		68071ED81E9E7BC400B5EDAE /* PercentagePickerTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PercentagePickerTextField.m; sourceTree = "<group>"; };
 		6818EF6D1E36448700407BDA /* Drug Delivery.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Drug Delivery.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6818EF711E36448700407BDA /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		6818EF731E36448700407BDA /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -167,6 +173,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		68071ED61E9E7B8700B5EDAE /* PickerTextFields */ = {
+			isa = PBXGroup;
+			children = (
+				68071ED31E9E7B7400B5EDAE /* DrugPickerTextField.h */,
+				68071ED41E9E7B7400B5EDAE /* DrugPickerTextField.m */,
+				68071ED71E9E7BC400B5EDAE /* PercentagePickerTextField.h */,
+				68071ED81E9E7BC400B5EDAE /* PercentagePickerTextField.m */,
+			);
+			name = PickerTextFields;
+			sourceTree = "<group>";
+		};
 		6818EF641E36448700407BDA = {
 			isa = PBXGroup;
 			children = (
@@ -379,6 +396,7 @@
 			children = (
 				682442261E9D27E6007575C6 /* ViewControllers */,
 				682442251E9D27CC007575C6 /* TableViewControllers */,
+				68071ED61E9E7B8700B5EDAE /* PickerTextFields */,
 			);
 			name = "WRC device";
 			sourceTree = "<group>";
@@ -556,6 +574,7 @@
 				6818EFD61E36814600407BDA /* MedicationPickerTextField.m in Sources */,
 				682BA34F1E3A78AA0013CC9A /* DataExchangeViewController.m in Sources */,
 				6818EFA81E364B7900407BDA /* PatientViewController.m in Sources */,
+				68071ED51E9E7B7400B5EDAE /* DrugPickerTextField.m in Sources */,
 				683017A31E967818009214AA /* LoginViewController.m in Sources */,
 				683017A91E969AAD009214AA /* TabBarController.m in Sources */,
 				6818EFCF1E366B3700407BDA /* CoreDataTableViewController.m in Sources */,
@@ -564,6 +583,7 @@
 				68973A9C1E9904CD00916C75 /* AccountHolder.m in Sources */,
 				6818EFC21E36677E00407BDA /* Medication.m in Sources */,
 				6818EFC01E36677E00407BDA /* Patient.m in Sources */,
+				68071ED91E9E7BC400B5EDAE /* PercentagePickerTextField.m in Sources */,
 				683A43401E3BC80800B18384 /* ScanBLEViewController.m in Sources */,
 				68973AAD1E9BCDEF00916C75 /* AssignPatientTableViewController.m in Sources */,
 				683A43431E3BE7CC00B18384 /* DevicesTableViewController.m in Sources */,

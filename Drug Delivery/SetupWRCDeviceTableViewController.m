@@ -8,6 +8,7 @@
 
 #import "SetupWRCDeviceTableViewController.h"
 #import "PatientViewController.h"
+#import "SetupWRCViewController.h"
 
 @interface SetupWRCDeviceTableViewController ()
 
@@ -183,14 +184,19 @@ static SetupWRCDeviceTableViewController *_sharedInstance;
     }
 }
 
-/*
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    
+    if ([[segue identifier] isEqualToString:@"drug deliver segue"]) {
+        
+        SetupWRCViewController *setupVC = [segue destinationViewController];
+        NSArray *array = [NSArray arrayWithObjects:self.firstChamber,self.secondChamber,self.thirdChamber, nil];
+        setupVC.chambers = array;
+    }
 }
-*/
+
 
 @end
