@@ -15,6 +15,16 @@
 
 @implementation PatientViewController
 
+static PatientViewController *_sharedObject;
+
++(PatientViewController *) sharedObject {
+    
+    if (!_sharedObject) {
+        _sharedObject = [[PatientViewController alloc] init];
+    }
+    return _sharedObject;
+}
+
 -(void)hideKeyboardWhenBackgroundIsTapped {
     
     UITapGestureRecognizer *tgr = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideKeyboard)];
@@ -51,6 +61,7 @@
     } else {
         self.navigationItem.title = @"Edit Patient";
     }
+        _sharedObject = [PatientViewController sharedObject];
 }
 
 -(void)viewWillAppear:(BOOL)animated {
@@ -161,6 +172,9 @@
         [alert addAction:okAction];
         [self presentViewController:alert animated:YES completion:nil];
     } else {
+        
+        _sharedObject = [PatientViewController sharedObject];
+        _sharedObject.updatePush = YES;
         CoreDataHelper *cdh = [(AppDelegate *) [[UIApplication sharedApplication] delegate] cdh];
         [cdh saveContext];
         [self.navigationController popViewControllerAnimated:YES];

@@ -7,6 +7,7 @@
 //
 
 #import "SetupWRCDeviceTableViewController.h"
+#import "PatientViewController.h"
 
 @interface SetupWRCDeviceTableViewController ()
 
@@ -28,7 +29,7 @@ static SetupWRCDeviceTableViewController *_sharedInstance;
     [super viewDidLoad];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
-    self.deliverDrugButton.enabled = NO;
+    //self.deliverDrugButton.enabled = NO;
     self.svc = [ScanBLEViewController shareSvc];
     
     if (!_sharedInstance) {
@@ -45,8 +46,17 @@ static SetupWRCDeviceTableViewController *_sharedInstance;
     
     [super viewWillAppear:animated];
     [self.tableView reloadData];
-    NSLog(@"Connected device: %@, patient name: %@",_svc.connectedPeripheral.name, _patientName);
     
+    PatientViewController *pvc = [PatientViewController sharedObject];
+    if (pvc.updatePush && [_patientName length]) {
+        NSLog(@"Push = %d",pvc.updatePush);
+        pvc.updatePush = NO;
+        _patientName = nil;
+        [self.tableView reloadData];
+    }
+    else {
+        NSLog(@"Connected device: %@, patient name: %@",_svc.connectedPeripheral.name, _patientName);
+    }
     if ([_patientName length]) {
         self.deliverDrugButton.enabled = YES;
     }

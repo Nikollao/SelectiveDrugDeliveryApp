@@ -29,6 +29,7 @@
 
 @property (strong, nonatomic) NSManagedObjectID *selectedObjectID;
 @property (nonatomic) BOOL addPressed;
+@property (nonatomic) BOOL updatePush;
 
 @property (weak, nonatomic) IBOutlet MedicationPickerTextField *medicationPickerTextField;
 @property (weak, nonatomic) IBOutlet MedicationTwoPickerTextField *medicationTwoPickerTextField;
@@ -36,5 +37,6 @@
 
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 
++(PatientViewController *)sharedObject;
 
 @end
