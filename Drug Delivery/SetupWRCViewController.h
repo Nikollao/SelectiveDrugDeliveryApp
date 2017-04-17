@@ -17,6 +17,8 @@
 @property (strong, nonatomic) ScanBLEViewController *svc;
 @property (strong, nonatomic) CBPeripheral *peripheral;
 
+@property (strong, nonatomic) NSTimer *secureConnectionTimer;
+
 @property (strong, nonatomic) IBOutlet DrugPickerTextField *drugPickerTextField;
 @property (strong, nonatomic) IBOutlet PercentagePickerTextField *percentagePickerTextField;
 

@@ -25,29 +25,36 @@
     _percentagePickerTextField.percentages = percentages;
     
     self.svc = [ScanBLEViewController shareSvc];
+    
+    UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithTitle:@"Setup WRC" style:UIBarButtonItemStylePlain target:self action:@selector(didPressBackButton:)];
+    
+    self.navigationItem.leftBarButtonItem = backButton;
+    //self.navigationItem.backBarButtonItem = backButton;
+    //[backButton release];
+}
+
+-(void)didPressBackButton:(id)sender {
+    
+    NSLog(@"Did press back button :)");
+    [self.secureConnectionTimer invalidate];
+    self.secureConnectionTimer = nil;
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 -(void) viewWillAppear:(BOOL)animated {
     
     [super viewWillAppear:animated];
     
-    if ([self.svc.peripheralsArray count] > 0) {
-        for (CBPeripheral *peripheral in self.svc.peripheralsArray) {
-            if (peripheral.state == CBPeripheralStateConnected) {
-                self.peripheral = peripheral;
-                NSLog(@"Peripheral is: %@",self.peripheral); // nslog debug message
-                break;
-            }
-        }
+    [self.secureConnectionTimer invalidate];
+    self.secureConnectionTimer = nil; // reset
+
+    if (!self.secureConnectionTimer) {
+        self.secureConnectionTimer = [NSTimer scheduledTimerWithTimeInterval:2.0 target:self selector:@selector(ensurePeripheralIsConnected) userInfo:nil repeats:YES];
+        NSLog(@"Inside if timer statement");
     }
-    if (!self.peripheral) {
-        
-        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Attention" message:@"No peripheral connected to the app!" preferredStyle:UIAlertControllerStyleAlert];
-        UIAlertAction *popBack = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-            [self.navigationController popToRootViewControllerAnimated:YES];
-        }];
-        [alert addAction:popBack];
-        [self presentViewController:alert animated:YES completion:nil];
+    
+    if (!self.deliverDrug.enabled) {
+        self.deliverDrug.enabled = YES;
     }
 }
 
@@ -72,6 +79,43 @@
     
     [self.view endEditing:YES];
 }
+
+- (void)ensurePeripheralIsConnected {
+    
+    /*if ([self.svc.peripheralsArray count] > 0) {
+     for (CBPeripheral *peripheral in self.svc.peripheralsArray) {
+     if (peripheral.state == CBPeripheralStateConnected) {
+     self.peripheral = peripheral;
+     NSLog(@"Peripheral is: %@",self.peripheral); // nslog debug message
+     break;
+     }
+     }
+     }*/
+    self.peripheral = self.svc.connectedPeripheral;
+    NSLog(@"Peripheral is: %@",self.peripheral); // nslog debug message
+    
+    if (!self.peripheral) {
+        
+        [self.secureConnectionTimer invalidate]; // reset the timer
+        self.secureConnectionTimer = nil;
+
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Attention" message:@"No peripheral connected to the app!" preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *popBack = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            [self.navigationController popToRootViewControllerAnimated:YES];
+        }];
+        [alert addAction:popBack];
+        [self presentViewController:alert animated:YES completion:nil];
+    }
+}
+
+/*
+ -(void)didMoveToParentViewController:(UIViewController *)parent {
+    
+    if (![parent isEqual:[self.navigationController topViewController]]) {
+        NSLog(@"Back pressed?");
+    }
+}
+*/
 
 #pragma mark - TextField Delegate methods
 
@@ -116,7 +160,12 @@
         NSData *data = [NSData dataWithBytes:[message UTF8String] length:[message length]];
         CBCharacteristic *writeChar = [self.svc.bleService.characteristics firstObject];//objectAtIndex:0
         [self.peripheral writeValue:data forCharacteristic:writeChar type:CBCharacteristicWriteWithResponse];
-        //test
+        self.deliverDrug.enabled = NO;
+        
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Command sent" message:@"Drug delivery process has started" preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleCancel handler:nil];
+        [alert addAction:okAction];
+        [self presentViewController:alert animated:YES completion:nil];
     }
 }
 
