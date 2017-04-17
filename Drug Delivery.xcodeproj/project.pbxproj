@@ -36,6 +36,10 @@
 		683A43401E3BC80800B18384 /* ScanBLEViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 683A433F1E3BC80800B18384 /* ScanBLEViewController.m */; };
 		683A43431E3BE7CC00B18384 /* DevicesTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 683A43421E3BE7CC00B18384 /* DevicesTableViewController.m */; };
 		683F964D1E966C4A00501226 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 683F964B1E966C4A00501226 /* Model.xcdatamodeld */; };
+		685409871EA4BC52006CA4FA /* BLE.png in Resources */ = {isa = PBXBuildFile; fileRef = 685409851EA4BC52006CA4FA /* BLE.png */; };
+		6854098A1EA4BD97006CA4FA /* setup WRC.png in Resources */ = {isa = PBXBuildFile; fileRef = 685409891EA4BD96006CA4FA /* setup WRC.png */; };
+		6854098C1EA4BEE6006CA4FA /* patients.png in Resources */ = {isa = PBXBuildFile; fileRef = 6854098B1EA4BEE6006CA4FA /* patients.png */; };
+		6854098E1EA4C038006CA4FA /* feedback.png in Resources */ = {isa = PBXBuildFile; fileRef = 6854098D1EA4C038006CA4FA /* feedback.png */; };
 		68742BCD1E5DE2B7008B5624 /* medication background.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 68742BCC1E5DE2B7008B5624 /* medication background.jpeg */; };
 		68742BD01E605950008B5624 /* MedicationTwoPickerTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 68742BCF1E605950008B5624 /* MedicationTwoPickerTextField.m */; };
 		68742BD31E60596D008B5624 /* MedicationThreePickerTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 68742BD21E60596D008B5624 /* MedicationThreePickerTextField.m */; };
@@ -123,6 +127,10 @@
 		683A43411E3BE7CC00B18384 /* DevicesTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DevicesTableViewController.h; sourceTree = "<group>"; };
 		683A43421E3BE7CC00B18384 /* DevicesTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DevicesTableViewController.m; sourceTree = "<group>"; };
 		683F964C1E966C4A00501226 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
+		685409851EA4BC52006CA4FA /* BLE.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BLE.png; sourceTree = "<group>"; };
+		685409891EA4BD96006CA4FA /* setup WRC.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "setup WRC.png"; path = "../setup WRC.png"; sourceTree = "<group>"; };
+		6854098B1EA4BEE6006CA4FA /* patients.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = patients.png; path = ../patients.png; sourceTree = "<group>"; };
+		6854098D1EA4C038006CA4FA /* feedback.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = feedback.png; sourceTree = "<group>"; };
 		68742BCC1E5DE2B7008B5624 /* medication background.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "medication background.jpeg"; sourceTree = "<group>"; };
 		68742BCE1E605950008B5624 /* MedicationTwoPickerTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MedicationTwoPickerTextField.h; sourceTree = "<group>"; };
 		68742BCF1E605950008B5624 /* MedicationTwoPickerTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MedicationTwoPickerTextField.m; sourceTree = "<group>"; };
@@ -219,6 +227,10 @@
 				6818EF731E36448700407BDA /* AppDelegate.h */,
 				6818EF741E36448700407BDA /* AppDelegate.m */,
 				6818EF7C1E36448700407BDA /* Main.storyboard */,
+				6854098D1EA4C038006CA4FA /* feedback.png */,
+				685409851EA4BC52006CA4FA /* BLE.png */,
+				685409891EA4BD96006CA4FA /* setup WRC.png */,
+				6854098B1EA4BEE6006CA4FA /* patients.png */,
 				6818EF7F1E36448700407BDA /* Assets.xcassets */,
 				6818EF811E36448700407BDA /* LaunchScreen.storyboard */,
 				6818EF841E36448700407BDA /* Info.plist */,
@@ -540,9 +552,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				6818EF831E36448700407BDA /* LaunchScreen.storyboard in Resources */,
+				6854098E1EA4C038006CA4FA /* feedback.png in Resources */,
 				68742BCD1E5DE2B7008B5624 /* medication background.jpeg in Resources */,
+				685409871EA4BC52006CA4FA /* BLE.png in Resources */,
 				68E09B391E4DC6DA003F1874 /* ble_image.png in Resources */,
 				6818EF801E36448700407BDA /* Assets.xcassets in Resources */,
+				6854098A1EA4BD97006CA4FA /* setup WRC.png in Resources */,
+				6854098C1EA4BEE6006CA4FA /* patients.png in Resources */,
 				6818EF7E1E36448700407BDA /* Main.storyboard in Resources */,
 				68E09B3F1E4E0D15003F1874 /* BLE_SMALL_IMAGE.png in Resources */,
 			);

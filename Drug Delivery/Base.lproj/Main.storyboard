@@ -10,7 +10,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Scan Devices-->
+        <!--Scan Peripherals-->
         <scene sceneID="DOE-fo-bRg">
             <objects>
                 <viewController storyboardIdentifier="scan ble" id="eH3-na-udC" customClass="ScanBLEViewController" sceneMemberID="viewController">
@@ -35,13 +35,15 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0K0-bD-hMo">
                                 <rect key="frame" x="359" y="537" width="50" height="39"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="22"/>
-                                <state key="normal" title="Scan"/>
+                                <state key="normal" title="Scan">
+                                    <color key="titleColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
+                                </state>
                                 <connections>
                                     <action selector="didPressScanButton:" destination="eH3-na-udC" eventType="touchUpInside" id="5lL-5F-Fs6"/>
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.5251412392" green="0.76744663719999995" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="0K0-bD-hMo" firstAttribute="centerX" secondItem="GMC-Y3-8tF" secondAttribute="centerX" id="4R1-fS-WT4"/>
                             <constraint firstItem="Rwy-vZ-ngS" firstAttribute="centerX" secondItem="GMC-Y3-8tF" secondAttribute="centerX" id="Su6-Ol-LxF"/>
@@ -51,7 +53,7 @@
                             <constraint firstItem="Rwy-vZ-ngS" firstAttribute="top" secondItem="fAi-jd-frg" secondAttribute="bottom" constant="15" id="tMM-lD-ewB"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Scan Devices" id="UdE-29-LwK">
+                    <navigationItem key="navigationItem" title="Scan Peripherals" id="UdE-29-LwK">
                         <barButtonItem key="leftBarButtonItem" title="Log out" id="rf9-uf-oY9">
                             <connections>
                                 <action selector="didPressLogout:" destination="eH3-na-udC" id="soX-bV-89I"/>
@@ -73,7 +75,7 @@
             </objects>
             <point key="canvasLocation" x="2671" y="-736"/>
         </scene>
-        <!--Found Devices-->
+        <!--Found Peripherals-->
         <scene sceneID="yCQ-VB-Gfm">
             <objects>
                 <tableViewController storyboardIdentifier="devices tableView" id="k83-Cb-PKj" customClass="DevicesTableViewController" sceneMemberID="viewController">
@@ -86,7 +88,7 @@
                                 <rect key="frame" x="0.0" y="28" width="768" height="67"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="2gn-nI-YJn" id="B7T-gU-qnm">
-                                    <rect key="frame" x="0.0" y="0.0" width="768" height="67"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="768" height="66"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4s8-mv-HKH">
@@ -125,7 +127,7 @@
                             <outlet property="delegate" destination="k83-Cb-PKj" id="Z0M-kx-5kk"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Found Devices" id="2GM-Ey-qfc">
+                    <navigationItem key="navigationItem" title="Found Peripherals" id="2GM-Ey-qfc">
                         <barButtonItem key="rightBarButtonItem" title="Data" id="h9x-8b-Fr4">
                             <connections>
                                 <segue destination="s07-e1-pKs" kind="show" id="5OQ-Rd-WEu"/>
@@ -159,19 +161,16 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cfH-v7-bYD">
-                                <rect key="frame" x="0.0" y="572" width="768" height="403"/>
+                                <rect key="frame" x="0.0" y="600" width="768" height="375"/>
                                 <subviews>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="enter text" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5EQ-NH-RIt">
-                                        <rect key="frame" x="16" y="8" width="695" height="30"/>
+                                        <rect key="frame" x="8" y="325" width="695" height="30"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZFO-Kh-feI">
-                                        <rect key="frame" x="719" y="8" width="36" height="30"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="36" id="ALM-GQ-rz3"/>
-                                        </constraints>
+                                        <rect key="frame" x="711" y="325" width="36" height="30"/>
                                         <state key="normal" title="Send"/>
                                         <connections>
                                             <action selector="didPressSendButton:" destination="s07-e1-pKs" eventType="touchDown" id="C6c-fl-2BR"/>
@@ -181,11 +180,10 @@
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstItem="5EQ-NH-RIt" firstAttribute="top" secondItem="ZFO-Kh-feI" secondAttribute="top" id="14a-SX-oXj"/>
-                                    <constraint firstItem="5EQ-NH-RIt" firstAttribute="leading" secondItem="cfH-v7-bYD" secondAttribute="leading" constant="16" id="7HD-zw-6Ox"/>
-                                    <constraint firstAttribute="trailing" secondItem="ZFO-Kh-feI" secondAttribute="trailing" constant="13" id="WKe-lC-2rv"/>
-                                    <constraint firstItem="ZFO-Kh-feI" firstAttribute="leading" secondItem="5EQ-NH-RIt" secondAttribute="trailing" constant="8" symbolic="YES" id="bTx-Uc-amZ"/>
-                                    <constraint firstItem="5EQ-NH-RIt" firstAttribute="top" secondItem="cfH-v7-bYD" secondAttribute="topMargin" id="ol4-3Q-ZsP"/>
+                                    <constraint firstAttribute="bottom" secondItem="ZFO-Kh-feI" secondAttribute="bottom" constant="20" id="3Hm-0p-OM3"/>
+                                    <constraint firstAttribute="trailing" secondItem="ZFO-Kh-feI" secondAttribute="trailing" constant="21" id="6AN-2b-TSu"/>
+                                    <constraint firstAttribute="trailing" secondItem="5EQ-NH-RIt" secondAttribute="trailing" constant="65" id="PtT-Xy-5iL"/>
+                                    <constraint firstItem="5EQ-NH-RIt" firstAttribute="leading" secondItem="cfH-v7-bYD" secondAttribute="leading" constant="8" id="o3k-Cb-s0o"/>
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b9W-Ke-Aek">
@@ -198,8 +196,9 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="cfH-v7-bYD" firstAttribute="leading" secondItem="UlD-Ne-rYf" secondAttribute="leading" id="2TF-SS-mw8"/>
+                            <constraint firstItem="bNC-nL-2LO" firstAttribute="top" secondItem="5EQ-NH-RIt" secondAttribute="bottom" constant="20" id="BJa-ld-v90"/>
                             <constraint firstItem="zlJ-wY-T1U" firstAttribute="top" secondItem="3wb-sB-3xJ" secondAttribute="bottom" constant="70" id="OTn-ND-QhU"/>
-                            <constraint firstItem="cfH-v7-bYD" firstAttribute="top" secondItem="UlD-Ne-rYf" secondAttribute="top" constant="572" id="PDQ-7S-ub9"/>
+                            <constraint firstItem="cfH-v7-bYD" firstAttribute="top" secondItem="UlD-Ne-rYf" secondAttribute="top" constant="600" id="PDQ-7S-ub9"/>
                             <constraint firstAttribute="leadingMargin" secondItem="b9W-Ke-Aek" secondAttribute="leading" id="VvP-fr-ZbX"/>
                             <constraint firstItem="zlJ-wY-T1U" firstAttribute="trailing" secondItem="UlD-Ne-rYf" secondAttribute="trailingMargin" id="XLs-Zb-dP8"/>
                             <constraint firstAttribute="trailing" secondItem="cfH-v7-bYD" secondAttribute="trailing" id="lAm-Up-bv9"/>
@@ -411,7 +410,7 @@
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" red="0.80642875089999999" green="0.8852014399" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.5251412392" green="0.76744663719999995" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="1a0-Tj-JJz" firstAttribute="top" secondItem="hnZ-T7-Q28" secondAttribute="bottom" constant="60" id="0IV-ia-ztC"/>
                             <constraint firstItem="seG-fT-hFH" firstAttribute="top" secondItem="1a0-Tj-JJz" secondAttribute="bottom" constant="20" id="1Iw-Yt-ypZ"/>
@@ -677,7 +676,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Feedback" id="sNK-uF-y3p"/>
+                    <tabBarItem key="tabBarItem" title="Feedback" image="feedback.png" selectedImage="feedback.png" id="sNK-uF-y3p"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fdD-wZ-WRY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1101,7 +1100,7 @@
         <scene sceneID="Kl3-2L-0yK">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="YxE-I3-AOc" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Patients" image="contacts" id="30a-ag-U6C"/>
+                    <tabBarItem key="tabBarItem" title="Patients" image="patients.png" id="30a-ag-U6C"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="YrA-xn-IRG">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -1116,11 +1115,11 @@
             </objects>
             <point key="canvasLocation" x="1818" y="450"/>
         </scene>
-        <!--Devices-->
+        <!--BLE-->
         <scene sceneID="efH-ix-hAU">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="QFt-X4-b9J" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Devices" image="devices" id="iey-P6-OdW"/>
+                    <tabBarItem key="tabBarItem" title="BLE" image="BLE.png" selectedImage="BLE.png" id="iey-P6-OdW"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="aRA-h9-6S6">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -1153,11 +1152,11 @@
             </objects>
             <point key="canvasLocation" x="-1077" y="47"/>
         </scene>
-        <!--WRC device-->
+        <!--Setup WRC-->
         <scene sceneID="vZ3-K3-1kq">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="1lD-yr-9J3" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="WRC device" selectedImage="devices" id="g0B-SZ-EfW"/>
+                    <tabBarItem key="tabBarItem" title="Setup WRC" image="setup WRC.png" selectedImage="setup WRC.png" id="g0B-SZ-EfW"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Ng4-S3-XeF">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -1174,10 +1173,12 @@
         </scene>
     </scenes>
     <resources>
+        <image name="BLE.png" width="30" height="30"/>
         <image name="BLE_SMALL_IMAGE.png" width="48" height="48"/>
-        <image name="ble_image.png" width="179" height="140"/>
-        <image name="contacts" width="34" height="39"/>
-        <image name="devices" width="25" height="36"/>
+        <image name="ble_image.png" width="706" height="529"/>
+        <image name="feedback.png" width="25" height="25"/>
+        <image name="patients.png" width="25" height="25"/>
+        <image name="setup WRC.png" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="Ybo-YW-qKI"/>
