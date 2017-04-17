@@ -10,7 +10,7 @@
 #import <CoreBluetooth/CoreBluetooth.h>
 #import "ScanBLEViewController.h"
 
-#define kOFFSET_FOR_KEYBOARD 110.0
+#define kOFFSET_FOR_KEYBOARD 170.0
 
 @interface DataExchangeViewController : UIViewController <UITextFieldDelegate, CBCentralManagerDelegate, CBPeripheralDelegate>
 
