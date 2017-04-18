@@ -680,7 +680,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Feedback" image="feedback.png" selectedImage="feedback.png" id="sNK-uF-y3p"/>
+                    <tabBarItem key="tabBarItem" title="Feedback" image="feedback.png" id="sNK-uF-y3p"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fdD-wZ-WRY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1119,11 +1119,11 @@
             </objects>
             <point key="canvasLocation" x="1818" y="450"/>
         </scene>
-        <!--BLE-->
+        <!--Devices-->
         <scene sceneID="efH-ix-hAU">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="QFt-X4-b9J" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="BLE" image="BLE.png" selectedImage="BLE.png" id="iey-P6-OdW"/>
+                    <tabBarItem key="tabBarItem" title="Devices" image="BLE.png" id="iey-P6-OdW"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="aRA-h9-6S6">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -1160,7 +1160,7 @@
         <scene sceneID="vZ3-K3-1kq">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="1lD-yr-9J3" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Setup WRC" image="setup WRC.png" selectedImage="setup WRC.png" id="g0B-SZ-EfW"/>
+                    <tabBarItem key="tabBarItem" title="Setup WRC" image="setup WRC.png" id="g0B-SZ-EfW"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Ng4-S3-XeF">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>

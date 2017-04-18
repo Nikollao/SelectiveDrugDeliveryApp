@@ -119,6 +119,18 @@
 -(void)updateTableView {
     
     [self.tableView reloadData];
+    
+    NSString *message = [[NSString alloc] init];
+    if (self.svc.connectedPeripheral) {
+        message = @"c";
+        NSData *data = [NSData dataWithBytes:[message UTF8String] length:[message length]];
+        CBCharacteristic *writeChar = [self.svc.bleService.characteristics firstObject];//objectAtIndex:0
+        [self.peripheral writeValue:data forCharacteristic:writeChar type:CBCharacteristicWriteWithResponse];
+    }
+    else if (!self.svc.connectedPeripheral) {
+        message = @"d";
+        NSLog(@"message: %@",message);
+    }
 }
 
 #pragma mark - CBCentralManager functions
