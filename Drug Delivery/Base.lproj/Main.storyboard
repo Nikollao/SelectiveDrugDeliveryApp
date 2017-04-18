@@ -846,18 +846,23 @@
                     </view>
                     <navigationItem key="navigationItem" title="Feedback" id="PWh-PE-Ubi"/>
                     <connections>
-                        <outletCollection property="drugOneViews" destination="hlV-mC-TmG" id="GK8-fY-Dyt"/>
-                        <outletCollection property="drugOneViews" destination="SZH-nb-KkU" id="0yu-ks-RBY"/>
-                        <outletCollection property="drugOneViews" destination="9EZ-ZA-OdG" id="dbA-eo-iBC"/>
-                        <outletCollection property="drugOneViews" destination="4p3-4f-YaU" id="SW9-yo-Rle"/>
-                        <outletCollection property="drugTwoViews" destination="D7t-pb-Huo" id="7Dh-xR-g0h"/>
-                        <outletCollection property="drugTwoViews" destination="wqQ-1A-dAX" id="ZVv-dZ-qXP"/>
-                        <outletCollection property="drugTwoViews" destination="0BG-xj-BxT" id="qHX-yg-VDr"/>
-                        <outletCollection property="drugTwoViews" destination="TOS-Bd-KlW" id="FTT-NT-h7G"/>
-                        <outletCollection property="drugThreeViews" destination="gjJ-s0-sNm" id="msc-Rv-gI9"/>
-                        <outletCollection property="drugThreeViews" destination="4b7-vY-Mpa" id="q8F-kF-Axa"/>
-                        <outletCollection property="drugThreeViews" destination="stv-MF-dIt" id="A6Z-8w-VW8"/>
-                        <outletCollection property="drugThreeViews" destination="OOu-GS-7t3" id="a2l-gL-Hnq"/>
+                        <outlet property="deviceLabel" destination="XPl-TP-epw" id="JM7-HD-KH0"/>
+                        <outlet property="drugOneLabel" destination="CoZ-3m-2L4" id="hQ1-LL-Anh"/>
+                        <outlet property="drugThreeLabel" destination="6tz-Hg-eOG" id="iVN-lF-7DG"/>
+                        <outlet property="drugTwoLabel" destination="LTU-hf-A5k" id="daO-E5-VoO"/>
+                        <outlet property="firstViewDrugOne" destination="4p3-4f-YaU" id="B4S-dW-YoR"/>
+                        <outlet property="firstViewDrugThree" destination="OOu-GS-7t3" id="fhH-kP-80v"/>
+                        <outlet property="firstViewDrugTwo" destination="TOS-Bd-KlW" id="QmJ-Rf-Lx9"/>
+                        <outlet property="fourthViewDrugOne" destination="hlV-mC-TmG" id="osT-XM-pEf"/>
+                        <outlet property="fourthViewDrugThree" destination="gjJ-s0-sNm" id="Xfa-ON-jbV"/>
+                        <outlet property="fourthViewDrugTwo" destination="D7t-pb-Huo" id="tZj-Hb-0sg"/>
+                        <outlet property="secondViewDrugOne" destination="9EZ-ZA-OdG" id="euP-2K-0kU"/>
+                        <outlet property="secondViewDrugThree" destination="stv-MF-dIt" id="hya-lt-MfX"/>
+                        <outlet property="secondViewDrugTwo" destination="0BG-xj-BxT" id="eZr-Y6-bxP"/>
+                        <outlet property="temperatureLabel" destination="rGk-fY-gjq" id="Rpi-46-m6X"/>
+                        <outlet property="thirdViewDrugOne" destination="SZH-nb-KkU" id="Dbz-TJ-TRx"/>
+                        <outlet property="thirdViewDrugThree" destination="4b7-vY-Mpa" id="uwM-ez-PiN"/>
+                        <outlet property="thirdViewDrugTwo" destination="wqQ-1A-dAX" id="f6t-Pc-0Kj"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fdD-wZ-WRY" userLabel="First Responder" sceneMemberID="firstResponder"/>

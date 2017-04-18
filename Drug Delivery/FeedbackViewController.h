@@ -14,11 +14,39 @@
 @property (strong, nonatomic) ScanBLEViewController *svc;
 @property (strong, nonatomic) NSString *feedback;
 
-@property (strong, nonatomic) IBOutletCollection(UIView) NSArray *drugOneViews;
+// parameters
+@property NSInteger drugOneQuantity;
+@property NSInteger drugTwoQuantity;
+@property NSInteger drugThreeQuantity;
+@property float temperature;
 
-@property (strong, nonatomic) IBOutletCollection(UIView) NSArray *drugTwoViews;
-@property (strong, nonatomic) IBOutletCollection(UIView) NSArray *drugThreeViews;
+// views
+// first drug
+@property (strong, nonatomic) IBOutlet UIView *firstViewDrugOne;
+@property (strong, nonatomic) IBOutlet UIView *secondViewDrugOne;
+@property (strong, nonatomic) IBOutlet UIView *thirdViewDrugOne;
+@property (strong, nonatomic) IBOutlet UIView *fourthViewDrugOne;
 
+// second drug
+@property (strong, nonatomic) IBOutlet UIView *firstViewDrugTwo;
+@property (strong, nonatomic) IBOutlet UIView *secondViewDrugTwo;
+@property (strong, nonatomic) IBOutlet UIView *thirdViewDrugTwo;
+@property (strong, nonatomic) IBOutlet UIView *fourthViewDrugTwo;
+
+// third drug
+@property (strong, nonatomic) IBOutlet UIView *firstViewDrugThree;
+@property (strong, nonatomic) IBOutlet UIView *secondViewDrugThree;
+@property (strong, nonatomic) IBOutlet UIView *thirdViewDrugThree;
+@property (strong, nonatomic) IBOutlet UIView *fourthViewDrugThree;
+
+// Labels
+@property (strong, nonatomic) IBOutlet UILabel *drugOneLabel;
+@property (strong, nonatomic) IBOutlet UILabel *drugTwoLabel;
+@property (strong, nonatomic) IBOutlet UILabel *drugThreeLabel;
+@property (strong, nonatomic) IBOutlet UILabel *deviceLabel;
+@property (strong, nonatomic) IBOutlet UILabel *temperatureLabel;
+
+// device
 
 
 @end
