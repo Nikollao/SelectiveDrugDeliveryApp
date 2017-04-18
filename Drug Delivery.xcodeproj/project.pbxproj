@@ -40,6 +40,7 @@
 		6854098A1EA4BD97006CA4FA /* setup WRC.png in Resources */ = {isa = PBXBuildFile; fileRef = 685409891EA4BD96006CA4FA /* setup WRC.png */; };
 		6854098C1EA4BEE6006CA4FA /* patients.png in Resources */ = {isa = PBXBuildFile; fileRef = 6854098B1EA4BEE6006CA4FA /* patients.png */; };
 		6854098E1EA4C038006CA4FA /* feedback.png in Resources */ = {isa = PBXBuildFile; fileRef = 6854098D1EA4C038006CA4FA /* feedback.png */; };
+		685409921EA64E7A006CA4FA /* FeedbackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 685409911EA64E7A006CA4FA /* FeedbackViewController.m */; };
 		68742BCD1E5DE2B7008B5624 /* medication background.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 68742BCC1E5DE2B7008B5624 /* medication background.jpeg */; };
 		68742BD01E605950008B5624 /* MedicationTwoPickerTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 68742BCF1E605950008B5624 /* MedicationTwoPickerTextField.m */; };
 		68742BD31E60596D008B5624 /* MedicationThreePickerTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 68742BD21E60596D008B5624 /* MedicationThreePickerTextField.m */; };
@@ -131,6 +132,8 @@
 		685409891EA4BD96006CA4FA /* setup WRC.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "setup WRC.png"; path = "../setup WRC.png"; sourceTree = "<group>"; };
 		6854098B1EA4BEE6006CA4FA /* patients.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = patients.png; path = ../patients.png; sourceTree = "<group>"; };
 		6854098D1EA4C038006CA4FA /* feedback.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = feedback.png; sourceTree = "<group>"; };
+		685409901EA64E7A006CA4FA /* FeedbackViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedbackViewController.h; sourceTree = "<group>"; };
+		685409911EA64E7A006CA4FA /* FeedbackViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedbackViewController.m; sourceTree = "<group>"; };
 		68742BCC1E5DE2B7008B5624 /* medication background.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "medication background.jpeg"; sourceTree = "<group>"; };
 		68742BCE1E605950008B5624 /* MedicationTwoPickerTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MedicationTwoPickerTextField.h; sourceTree = "<group>"; };
 		68742BCF1E605950008B5624 /* MedicationTwoPickerTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MedicationTwoPickerTextField.m; sourceTree = "<group>"; };
@@ -216,6 +219,7 @@
 		6818EF6F1E36448700407BDA /* Drug Delivery */ = {
 			isa = PBXGroup;
 			children = (
+				6854098F1EA64CD7006CA4FA /* Feeddback */,
 				68973AA41E9B976300916C75 /* WRC device */,
 				68AADE861E965080006DEFCD /* Log in Files */,
 				6818EFD71E37935200407BDA /* Core Bluetooth */,
@@ -390,6 +394,15 @@
 				683A433F1E3BC80800B18384 /* ScanBLEViewController.m */,
 			);
 			name = ViewControllers;
+			sourceTree = "<group>";
+		};
+		6854098F1EA64CD7006CA4FA /* Feeddback */ = {
+			isa = PBXGroup;
+			children = (
+				685409901EA64E7A006CA4FA /* FeedbackViewController.h */,
+				685409911EA64E7A006CA4FA /* FeedbackViewController.m */,
+			);
+			name = Feeddback;
 			sourceTree = "<group>";
 		};
 		68973A9D1E99106A00916C75 /* TableViewControllers */ = {
@@ -608,6 +621,7 @@
 				687DFD4C1E9D0796003862DE /* MappingModel.xcmappingmodel in Sources */,
 				68E09B3D1E4E074D003F1874 /* BLEDeviceTableViewCell.m in Sources */,
 				68973AA01E99108B00916C75 /* CoreDataAccTableViewController.m in Sources */,
+				685409921EA64E7A006CA4FA /* FeedbackViewController.m in Sources */,
 				68973AAA1E9BA56800916C75 /* SetupWRCDeviceTableViewController.m in Sources */,
 				68742BD01E605950008B5624 /* MedicationTwoPickerTextField.m in Sources */,
 				6818EFB31E36607B00407BDA /* MedicationViewController.m in Sources */,

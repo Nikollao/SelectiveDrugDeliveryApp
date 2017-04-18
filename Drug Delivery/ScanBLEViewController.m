@@ -43,6 +43,8 @@ static ScanBLEViewController *_shareSvc;
     if (!_shareSvc) {
         _shareSvc = self;
     }
+    // peripheral 1 identifier: 5E357913-7FEC-436D-9ED3-4E8134D1DC4B
+    // peripheral 2 identifier: 55B57661-ADC0-4070-8AB1-77AF16F0EA6F
 }
 
 -(void)didReceiveMemoryWarning {
@@ -202,6 +204,7 @@ static ScanBLEViewController *_shareSvc;
             // don't add it
         } else {
             [self.peripheralsArray addObject:peripheral];
+            NSLog(@"peripheral identifier: %@",peripheral.identifier);
         }
         NSLog(@"Number of elements in array %ld",[self.peripheralsArray count]);
         self.connectivityTimer = [NSTimer scheduledTimerWithTimeInterval:5.0 target:self selector:@selector(checkConnectivity) userInfo:nil repeats:YES]; //check if connection is established
@@ -216,6 +219,7 @@ static ScanBLEViewController *_shareSvc;
 -(void) centralManager:(CBCentralManager *)central didDisconnectPeripheral:(CBPeripheral *)peripheral error:(NSError *)error {
     
     self.connectedPeripheral = nil;
+    self.peripheralNameDisplay = nil;
     NSLog(@"Peripheral disconnected");
 }
 

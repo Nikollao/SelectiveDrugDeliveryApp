@@ -22,6 +22,7 @@
 @property (strong, nonatomic) IBOutlet DrugPickerTextField *drugPickerTextField;
 @property (strong, nonatomic) IBOutlet PercentagePickerTextField *percentagePickerTextField;
 
+@property (strong, nonatomic) NSString *message;
 @property (strong, nonatomic) NSArray *chambers;
 @property (strong, nonatomic) NSString *drug;
 @property (nonatomic) NSInteger percentage;

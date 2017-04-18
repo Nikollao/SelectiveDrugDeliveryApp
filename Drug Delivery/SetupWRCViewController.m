@@ -155,15 +155,37 @@
     else if ([self.drug length] && self.percentage) {
         //user has determined both parameters and is ready to deliver the drug
         //implement BLE transmission
-        NSString *message = [NSString stringWithFormat:@"%@, %ld %%", self.drug, self.percentage];
-        NSLog(@"%@",message);
-        NSData *data = [NSData dataWithBytes:[message UTF8String] length:[message length]];
+        self.message = [NSString stringWithFormat:@"?%ld!%ld", self.drugPickerTextField.selectedRow+1, self.percentagePickerTextField.selectedRow+1];
+        NSLog(@"encoded message: %@",_message);
+        NSData *data = [NSData dataWithBytes:[_message UTF8String] length:[_message length]];
         CBCharacteristic *writeChar = [self.svc.bleService.characteristics firstObject];//objectAtIndex:0
         [self.peripheral writeValue:data forCharacteristic:writeChar type:CBCharacteristicWriteWithResponse];
         self.deliverDrug.enabled = NO;
         
+        [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(verifyMessage) userInfo:nil repeats:NO];
+    }
+}
+
+-(void) verifyMessage {
+    
+    if ([_message isEqualToString:self.svc.rxString]) {
+        NSString *ok = @"o";
+        NSData *data = [NSData dataWithBytes:[ok UTF8String] length:[ok length]];
+        CBCharacteristic *writeChar = [self.svc.bleService.characteristics firstObject];//objectAtIndex:0
+        [self.peripheral writeValue:data forCharacteristic:writeChar type:CBCharacteristicWriteWithResponse];
+        
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Command sent" message:@"Drug delivery process has started" preferredStyle:UIAlertControllerStyleAlert];
-        UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleCancel handler:nil];
+        UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            self.tabBarController.selectedIndex = 3;
+             }];
+        [alert addAction:okAction];
+        [self presentViewController:alert animated:YES completion:nil];
+    }
+    else {
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Error" message:@"Drug delivery has failed" preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            self.tabBarController.selectedIndex = 3;
+        }];
         [alert addAction:okAction];
         [self presentViewController:alert animated:YES completion:nil];
     }

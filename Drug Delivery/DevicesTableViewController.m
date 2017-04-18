@@ -26,6 +26,10 @@
     NSLog(@"Number of elements in array %ld",[self.svc.peripheralsArray count]);
     //self.dataButton.enabled = NO;
     self.deviceConnectedTimer = [NSTimer scheduledTimerWithTimeInterval:2.0 target:self selector:@selector(deviceConnected) userInfo:nil repeats:YES];
+    
+    // peripheral 1 identifier: 5E357913-7FEC-436D-9ED3-4E8134D1DC4B
+    // peripheral 2 identifier: 55B57661-ADC0-4070-8AB1-77AF16F0EA6F
+
 }
 
 -(void)viewWillAppear:(BOOL)animated {
@@ -77,8 +81,18 @@
     
     CBPeripheral *peripheral = [self.svc.peripheralsArray objectAtIndex:indexPath.row];
     // NSString *title = [[self.peripheralsArray objectAtIndex:indexPath.row] name];
-    NSString *title = peripheral.name;
-    NSString *subTitle = nil;
+    
+    NSString *titleCell = [[NSString alloc] init];
+    NSString *subTitle = [[NSString alloc] init];
+    NSString *idPeripheral = [peripheral.identifier UUIDString];
+    NSLog(@"peripheral id: %@",idPeripheral);
+    
+    if ([idPeripheral isEqualToString:@"5E357913-7FEC-436D-9ED3-4E8134D1DC4B"]) {
+        titleCell = @"MCR Prototype 1";
+    }
+    else if ([idPeripheral isEqualToString:@"55B57661-ADC0-4070-8AB1-77AF16F0EA6F"]) {
+         titleCell = @"MCR Prototype 2";
+    }
     
     if (peripheral.state == CBPeripheralStateConnected) {
         subTitle = @"Connected: YES";
@@ -97,7 +111,7 @@
     else {
         subTitle = @"Don't know!";
     }
-    _cell.titleLabel.text = title;
+    _cell.titleLabel.text = titleCell;
     _cell.subTitleLabel.text = subTitle; // connected button
     return _cell;
 }
@@ -106,11 +120,17 @@
     
     CBPeripheral *peripheral = [self.svc.peripheralsArray objectAtIndex:indexPath.row];
     if (peripheral.state == CBPeripheralStateDisconnected) {
+        
+        if (self.svc.connectedPeripheral) {
+            [self.svc.centralManager cancelPeripheralConnection:self.svc.connectedPeripheral];
+        }
         [self.svc.centralManager connectPeripheral:peripheral options:nil];
+        self.svc.connectedPeripheral = peripheral;
         self.peripheral = peripheral;
     }
     else if (peripheral.state == CBPeripheralStateConnected) {
         [self.svc.centralManager cancelPeripheralConnection:peripheral];
+        self.svc.connectedPeripheral = nil;
     }
     // give sufficient time to the central to connect or disconnect from the peripheral
     [NSTimer scheduledTimerWithTimeInterval:2.0 target:self selector:@selector(updateTableView) userInfo:nil repeats:NO];
@@ -126,8 +146,21 @@
         NSData *data = [NSData dataWithBytes:[message UTF8String] length:[message length]];
         CBCharacteristic *writeChar = [self.svc.bleService.characteristics firstObject];//objectAtIndex:0
         [self.peripheral writeValue:data forCharacteristic:writeChar type:CBCharacteristicWriteWithResponse];
+       
+        NSString *displayName = [[NSString alloc] init];
+        NSString *idPeripheral = [self.svc.connectedPeripheral.identifier UUIDString];
+        NSLog(@"peripheral id: %@",idPeripheral);
+        
+        if ([idPeripheral isEqualToString:@"5E357913-7FEC-436D-9ED3-4E8134D1DC4B"]) {
+            displayName = @"MCR Prototype 1";
+        }
+        else if ([idPeripheral isEqualToString:@"55B57661-ADC0-4070-8AB1-77AF16F0EA6F"]) {
+            displayName = @"MCR Prototype 2";
+        }
+        self.svc.peripheralNameDisplay = displayName;
     }
     else if (!self.svc.connectedPeripheral) {
+        self.svc.peripheralNameDisplay = nil;
         message = @"d";
         NSLog(@"message: %@",message);
     }

@@ -41,6 +41,7 @@
 @property (strong, nonatomic) CBCentralManager *centralManager;
 @property (strong, nonatomic) CBPeripheral *peripheral;
 @property (strong, nonatomic) CBPeripheral *connectedPeripheral;
+@property (strong, nonatomic) NSString *peripheralNameDisplay;
 
 @property (strong, nonatomic) CBService *bleService;
 //@property (strong, nonatomic) CBCharacteristic *bleChar;

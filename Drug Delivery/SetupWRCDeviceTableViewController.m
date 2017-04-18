@@ -109,7 +109,7 @@ static SetupWRCDeviceTableViewController *_sharedInstance;
     
     if (indexPath.section == 0) {
         
-        titleCell = _svc.connectedPeripheral.name;
+        titleCell = _svc.peripheralNameDisplay;
         //titleCell = @"Test";
         //NSLog(@"cell should be: %@",_svc.connectedPeripheral.name);
         cell.accessoryType = UITableViewCellAccessoryCheckmark;
