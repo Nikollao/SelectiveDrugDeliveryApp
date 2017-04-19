@@ -27,6 +27,7 @@
 @property (strong, nonatomic) NSTimer *feedbackTimer;
 @property (strong, nonatomic) NSString *temperature;
 @property (strong, nonatomic) NSString *drugsRemaining;
+@property (strong, nonatomic) NSString *tempThreshold;
 
 // views
 // first drug

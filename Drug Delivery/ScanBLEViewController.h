@@ -23,6 +23,7 @@
 
 // feedback from device
 @property (strong, nonatomic) NSString *temperature;
+@property (strong, nonatomic) NSString *tempThreshold;
 @property (strong, nonatomic) NSString *confirmDrugDelivery;
 @property (strong, nonatomic) NSString *drugsRemaining;
 
