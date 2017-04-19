@@ -805,16 +805,36 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="24Z-fO-Hat">
+                                <rect key="frame" x="89" y="183" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jw3-s5-Y2z">
+                                <rect key="frame" x="363" y="183" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GVb-Rh-RRL">
+                                <rect key="frame" x="637" y="183" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="9EZ-ZA-OdG" firstAttribute="leading" secondItem="9dr-Xn-Erq" secondAttribute="leadingMargin" constant="40" id="0qU-Kw-nq0"/>
                             <constraint firstItem="rGk-fY-gjq" firstAttribute="top" secondItem="6YT-Xt-zvq" secondAttribute="bottom" constant="50" id="26E-VQ-qEu"/>
+                            <constraint firstItem="hlV-mC-TmG" firstAttribute="centerX" secondItem="24Z-fO-Hat" secondAttribute="centerX" id="4TO-zj-lFi"/>
                             <constraint firstItem="CoZ-3m-2L4" firstAttribute="top" secondItem="4p3-4f-YaU" secondAttribute="bottom" constant="25" id="7AY-Ht-uPW"/>
                             <constraint firstItem="4p3-4f-YaU" firstAttribute="top" secondItem="9EZ-ZA-OdG" secondAttribute="bottom" id="7dW-2x-eRP"/>
                             <constraint firstItem="LTU-hf-A5k" firstAttribute="top" secondItem="TOS-Bd-KlW" secondAttribute="bottom" constant="25" id="9Od-se-eef"/>
                             <constraint firstItem="0BG-xj-BxT" firstAttribute="top" secondItem="wqQ-1A-dAX" secondAttribute="bottom" id="CQ0-UI-f2t"/>
                             <constraint firstAttribute="trailingMargin" secondItem="gjJ-s0-sNm" secondAttribute="trailing" constant="40" id="Edw-L4-mX7"/>
+                            <constraint firstItem="D7t-pb-Huo" firstAttribute="centerX" secondItem="jw3-s5-Y2z" secondAttribute="centerX" id="I62-rR-2SE"/>
                             <constraint firstItem="TOS-Bd-KlW" firstAttribute="centerX" secondItem="9dr-Xn-Erq" secondAttribute="centerX" id="MAV-yp-xA7"/>
                             <constraint firstItem="wqQ-1A-dAX" firstAttribute="top" secondItem="D7t-pb-Huo" secondAttribute="bottom" id="NAF-5s-Fr2"/>
                             <constraint firstItem="0BG-xj-BxT" firstAttribute="centerX" secondItem="9dr-Xn-Erq" secondAttribute="centerX" id="Q1U-jH-5ab"/>
@@ -823,6 +843,7 @@
                             <constraint firstItem="gjJ-s0-sNm" firstAttribute="top" secondItem="6YT-Xt-zvq" secondAttribute="bottom" constant="170" id="U7n-AK-KQi"/>
                             <constraint firstItem="wqQ-1A-dAX" firstAttribute="centerX" secondItem="9dr-Xn-Erq" secondAttribute="centerX" id="UNa-v7-rSp"/>
                             <constraint firstAttribute="trailingMargin" secondItem="OOu-GS-7t3" secondAttribute="trailing" constant="40" id="VIi-DY-r0u"/>
+                            <constraint firstItem="D7t-pb-Huo" firstAttribute="top" secondItem="jw3-s5-Y2z" secondAttribute="bottom" constant="30" id="WLL-AB-BD1"/>
                             <constraint firstItem="4b7-vY-Mpa" firstAttribute="top" secondItem="gjJ-s0-sNm" secondAttribute="bottom" id="axj-QE-8rl"/>
                             <constraint firstItem="XPl-TP-epw" firstAttribute="leading" secondItem="9dr-Xn-Erq" secondAttribute="leadingMargin" constant="40" id="bwP-kI-AgG"/>
                             <constraint firstItem="SZH-nb-KkU" firstAttribute="leading" secondItem="9dr-Xn-Erq" secondAttribute="leadingMargin" constant="40" id="c5f-V7-evb"/>
@@ -831,13 +852,16 @@
                             <constraint firstAttribute="trailingMargin" secondItem="rGk-fY-gjq" secondAttribute="trailing" constant="40" id="h7W-JY-Yhw"/>
                             <constraint firstItem="hlV-mC-TmG" firstAttribute="leading" secondItem="9dr-Xn-Erq" secondAttribute="leadingMargin" constant="40" id="i0n-uZ-sJT"/>
                             <constraint firstItem="TOS-Bd-KlW" firstAttribute="top" secondItem="0BG-xj-BxT" secondAttribute="bottom" id="iaa-Fj-LTY"/>
+                            <constraint firstItem="GVb-Rh-RRL" firstAttribute="centerX" secondItem="gjJ-s0-sNm" secondAttribute="centerX" id="ilC-ab-MLc"/>
                             <constraint firstItem="CoZ-3m-2L4" firstAttribute="centerX" secondItem="4p3-4f-YaU" secondAttribute="centerX" id="lzS-gk-dek"/>
                             <constraint firstItem="XPl-TP-epw" firstAttribute="top" secondItem="6YT-Xt-zvq" secondAttribute="bottom" constant="50" id="n9b-zt-w4F"/>
+                            <constraint firstItem="gjJ-s0-sNm" firstAttribute="top" secondItem="GVb-Rh-RRL" secondAttribute="bottom" constant="30" id="nf6-iu-Z2F"/>
                             <constraint firstAttribute="trailingMargin" secondItem="stv-MF-dIt" secondAttribute="trailing" constant="40" id="nhh-b5-um9"/>
                             <constraint firstItem="6tz-Hg-eOG" firstAttribute="top" secondItem="OOu-GS-7t3" secondAttribute="bottom" constant="25" id="riq-R3-LAp"/>
                             <constraint firstItem="SZH-nb-KkU" firstAttribute="top" secondItem="hlV-mC-TmG" secondAttribute="bottom" id="s2d-KL-3Mv"/>
                             <constraint firstItem="D7t-pb-Huo" firstAttribute="top" secondItem="6YT-Xt-zvq" secondAttribute="bottom" constant="170" id="td7-4f-I3k"/>
                             <constraint firstItem="OOu-GS-7t3" firstAttribute="top" secondItem="stv-MF-dIt" secondAttribute="bottom" id="ulw-cD-r56"/>
+                            <constraint firstItem="hlV-mC-TmG" firstAttribute="top" secondItem="24Z-fO-Hat" secondAttribute="bottom" constant="30" id="v58-oo-wlD"/>
                             <constraint firstItem="6tz-Hg-eOG" firstAttribute="centerX" secondItem="OOu-GS-7t3" secondAttribute="centerX" id="vMX-7N-Sqi"/>
                             <constraint firstItem="LTU-hf-A5k" firstAttribute="centerX" secondItem="9dr-Xn-Erq" secondAttribute="centerX" id="vu5-GK-3CP"/>
                             <constraint firstAttribute="trailingMargin" secondItem="4b7-vY-Mpa" secondAttribute="trailing" constant="40" id="xab-Ud-TgN"/>
@@ -847,15 +871,18 @@
                     <navigationItem key="navigationItem" title="Feedback" id="PWh-PE-Ubi"/>
                     <connections>
                         <outlet property="deviceLabel" destination="XPl-TP-epw" id="JM7-HD-KH0"/>
-                        <outlet property="drugOneLabel" destination="CoZ-3m-2L4" id="hQ1-LL-Anh"/>
-                        <outlet property="drugThreeLabel" destination="6tz-Hg-eOG" id="iVN-lF-7DG"/>
-                        <outlet property="drugTwoLabel" destination="LTU-hf-A5k" id="daO-E5-VoO"/>
+                        <outlet property="drugOneLabel" destination="24Z-fO-Hat" id="oow-Ty-cEt"/>
+                        <outlet property="drugThreeLabel" destination="GVb-Rh-RRL" id="B42-89-sje"/>
+                        <outlet property="drugTwoLabel" destination="jw3-s5-Y2z" id="ZGL-Vw-XQC"/>
                         <outlet property="firstViewDrugOne" destination="4p3-4f-YaU" id="B4S-dW-YoR"/>
                         <outlet property="firstViewDrugThree" destination="OOu-GS-7t3" id="fhH-kP-80v"/>
                         <outlet property="firstViewDrugTwo" destination="TOS-Bd-KlW" id="QmJ-Rf-Lx9"/>
                         <outlet property="fourthViewDrugOne" destination="hlV-mC-TmG" id="osT-XM-pEf"/>
                         <outlet property="fourthViewDrugThree" destination="gjJ-s0-sNm" id="Xfa-ON-jbV"/>
                         <outlet property="fourthViewDrugTwo" destination="D7t-pb-Huo" id="tZj-Hb-0sg"/>
+                        <outlet property="percentageOneLabel" destination="LTU-hf-A5k" id="unc-d2-Bef"/>
+                        <outlet property="percentageThreeLabel" destination="6tz-Hg-eOG" id="Msw-Jm-8No"/>
+                        <outlet property="percentageTwoLabel" destination="LTU-hf-A5k" id="n50-7a-r40"/>
                         <outlet property="secondViewDrugOne" destination="9EZ-ZA-OdG" id="euP-2K-0kU"/>
                         <outlet property="secondViewDrugThree" destination="stv-MF-dIt" id="hya-lt-MfX"/>
                         <outlet property="secondViewDrugTwo" destination="0BG-xj-BxT" id="eZr-Y6-bxP"/>

@@ -14,11 +14,22 @@
 
 @implementation SetupWRCViewController
 
+static SetupWRCViewController *_shareSetupVC;
+
++(SetupWRCViewController *) shareSetupVC {
+    
+    if (!_shareSetupVC) {
+        _shareSetupVC = [[SetupWRCViewController alloc] init];
+    }
+    return _shareSetupVC;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.drugPickerTextField.delegate = self;
     self.percentagePickerTextField.delegate = self;
     [self hideKeyboardWhenBackgroundIsTapped];
+    //_shareSetupVC.chambers = self.chambers;
     _drugPickerTextField.chambers = self.chambers;
     
     NSArray *percentages = [NSArray arrayWithObjects:@"25",@"50",@"75",@"100", nil];
@@ -187,7 +198,7 @@
     else {
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Error" message:@"Drug delivery has failed" preferredStyle:UIAlertControllerStyleAlert];
         UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-            self.tabBarController.selectedIndex = 3;
+            [self.navigationController  popViewControllerAnimated:YES];
         }];
         [alert addAction:okAction];
         [self presentViewController:alert animated:YES completion:nil];

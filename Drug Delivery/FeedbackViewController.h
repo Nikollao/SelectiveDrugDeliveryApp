@@ -49,9 +49,14 @@
 @property (strong, nonatomic) IBOutlet UIView *fourthViewDrugThree;
 
 // Labels
+@property (strong, nonatomic) IBOutlet UILabel *percentageOneLabel;
+@property (strong, nonatomic) IBOutlet UILabel *percentageTwoLabel;
+@property (strong, nonatomic) IBOutlet UILabel *percentageThreeLabel;
 @property (strong, nonatomic) IBOutlet UILabel *drugOneLabel;
 @property (strong, nonatomic) IBOutlet UILabel *drugTwoLabel;
 @property (strong, nonatomic) IBOutlet UILabel *drugThreeLabel;
+
+
 @property (strong, nonatomic) IBOutlet UILabel *deviceLabel;
 @property (strong, nonatomic) IBOutlet UILabel *temperatureLabel;
 

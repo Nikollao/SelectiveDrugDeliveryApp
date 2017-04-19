@@ -25,7 +25,19 @@
 -(void) viewWillAppear:(BOOL)animated {
     
     [super viewWillAppear:animated];
-    self.feedbackTimer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(getFeedbackFromWRC) userInfo:nil repeats:YES];
+    
+    if (self.svc.connectedPeripheral) {
+         self.feedbackTimer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(getFeedbackFromWRC) userInfo:nil repeats:YES];
+    }
+    else {
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"" message:@"No MCR devices connected" preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            
+            self.tabBarController.selectedIndex = 1;
+        }];
+        [alert addAction:okAction];
+        [self presentViewController:alert animated:YES completion:nil];
+    }
 }
 
 -(void) viewDidDisappear:(BOOL)animated {
@@ -33,6 +45,79 @@
     [super viewDidDisappear:animated];
     [self.feedbackTimer invalidate];
     self.feedbackTimer = nil;
+}
+
+-(void)getFeedbackFromWRC {
+    
+    self.feedback = self.svc.rxString;
+    NSString *drugsRem = [self.svc.drugsRemaining substringToIndex:4];
+    self.drugsRemaining = [drugsRem substringFromIndex:1];
+    self.temperature = [self.svc.temperature substringFromIndex:1];
+    self.tempThreshold = [self.svc.tempThreshold substringToIndex:2];
+    NSLog(@"feedback is: %@ Temp: %@, DrugsRem: %@, threshold :%@",self.feedback,self.temperature,self.drugsRemaining,self.tempThreshold);
+    
+    self.message = @"t";
+    self.peripheral = self.svc.connectedPeripheral;
+    NSData *data = [NSData dataWithBytes:[_message UTF8String] length:[_message length]];
+    CBCharacteristic *writeChar = [self.svc.bleService.characteristics firstObject];//objectAtIndex:0
+    [self.peripheral writeValue:data forCharacteristic:writeChar type:CBCharacteristicWriteWithResponse];
+    
+    self.message = @"d";
+    data = [NSData dataWithBytes:[_message UTF8String] length:[_message length]];
+    [self.peripheral writeValue:data forCharacteristic:writeChar type:CBCharacteristicWriteWithResponse];
+    
+    self.message = @"h";
+    data = [NSData dataWithBytes:[_message UTF8String] length:[_message length]];
+    [self.peripheral writeValue:data forCharacteristic:writeChar type:CBCharacteristicWriteWithResponse];
+    
+    [self setupValuesForViews];
+    [self formatViews];
+}
+
+-(void) setupValuesForViews {
+    
+    char drugOne = [self.drugsRemaining characterAtIndex:0];
+    char drugeTwo = [self.drugsRemaining characterAtIndex:1];
+    char drugThree = [self.drugsRemaining characterAtIndex:2];
+    
+    if (drugOne == '1') {
+        self.drugOneQuantity = 25;
+    }
+    else if (drugOne == '2') {
+        self.drugOneQuantity = 50;
+    }
+    else if (drugOne == '3') {
+        self.drugOneQuantity = 75;
+    }
+    else if (drugOne == '4') {
+        self.drugOneQuantity = 100;
+    }
+    
+    if (drugeTwo == '1') {
+        self.drugTwoQuantity = 25;
+    }
+    else if (drugeTwo == '2') {
+        self.drugTwoQuantity = 50;
+    }
+    else if (drugThree == '3') {
+        self.drugTwoQuantity = 75;
+    }
+    else if (drugThree == '4') {
+        self.drugTwoQuantity = 100;
+    }
+    
+    if (drugThree == '1') {
+        self.drugThreeQuantity = 25;
+    }
+    else if (drugThree == '2') {
+        self.drugThreeQuantity = 50;
+    }
+    else if (drugThree == '3') {
+        self.drugThreeQuantity = 75;
+    }
+    else if (drugThree == '4') {
+        self.drugThreeQuantity = 100;
+    }
 }
 
 -(void) formatViews {
@@ -122,43 +207,11 @@
         self.thirdViewDrugThree.backgroundColor = [UIColor greenColor];
         self.fourthViewDrugThree.backgroundColor = [UIColor greenColor];
     }
+    
+    self.temperatureLabel.text = [NSString stringWithFormat:@"Temperature: %@ C",self.temperature];
+    self.deviceLabel.text = [NSString stringWithFormat:@"Device: %@",self.svc.peripheralNameDisplay];
 }
 
--(void)getFeedbackFromWRC {
-    
-    self.feedback = self.svc.rxString;
-    self.drugsRemaining = [self.svc.drugsRemaining substringToIndex:4];
-    self.temperature = self.svc.temperature;
-    self.tempThreshold = [self.svc.tempThreshold substringToIndex:2];
-    NSLog(@"feedback is: %@ Temp: %@, DrugsRem: %@, threshold :%@",self.feedback,self.temperature,self.drugsRemaining,self.tempThreshold);
-    self.drugOneQuantity = 25;
-    self.drugTwoQuantity = 50;
-    self.drugThreeQuantity = 100;
-    self.temperatureFloat = 25;
-    //self.connectedPeripheral = ;
-    
-    self.message = @"t";
-    self.peripheral = self.svc.connectedPeripheral;
-    NSData *data = [NSData dataWithBytes:[_message UTF8String] length:[_message length]];
-    CBCharacteristic *writeChar = [self.svc.bleService.characteristics firstObject];//objectAtIndex:0
-    [self.peripheral writeValue:data forCharacteristic:writeChar type:CBCharacteristicWriteWithResponse];
-    
-    self.message = @"d";
-    data = [NSData dataWithBytes:[_message UTF8String] length:[_message length]];
-    [self.peripheral writeValue:data forCharacteristic:writeChar type:CBCharacteristicWriteWithResponse];
-   
-    self.message = @"h";
-    data = [NSData dataWithBytes:[_message UTF8String] length:[_message length]];
-    [self.peripheral writeValue:data forCharacteristic:writeChar type:CBCharacteristicWriteWithResponse];
-
-    [self formatViews];
-    
-    [self setupValuesForViews];
-}
-
--(void) setupValuesForViews {
-    
-}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

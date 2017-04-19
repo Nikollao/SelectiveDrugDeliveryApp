@@ -31,4 +31,6 @@
 
 - (IBAction)didPressDeliverDrug:(id)sender;
 
++(SetupWRCViewController *) shareSetupVC;
+
 @end
