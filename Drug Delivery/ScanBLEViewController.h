@@ -20,6 +20,12 @@
 @property (strong, nonatomic) NSMutableArray *peripheralsArray;
 @property (strong, nonatomic) NSMutableArray *charsArray;
 @property (strong, nonatomic) NSString *rxString;
+
+// feedback from device
+@property (strong, nonatomic) NSString *temperature;
+@property (strong, nonatomic) NSString *confirmDrugDelivery;
+@property (strong, nonatomic) NSString *drugsRemaining;
+
 //@property (strong, nonatomic) NSMutableArray *bleServices;
 //@property (strong, nonatomic) NSMutableArray *bleCharacteristics;
 

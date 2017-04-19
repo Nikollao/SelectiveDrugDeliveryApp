@@ -17,10 +17,22 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.svc = [ScanBLEViewController shareSvc];
-    // Do any additional setup after loading the view.
-    [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(getFeedbackFromWRC) userInfo:nil repeats:YES];
+    // Do any additional setup after loading the views
     
     //[self formatViews];
+}
+
+-(void) viewWillAppear:(BOOL)animated {
+    
+    [super viewWillAppear:animated];
+    self.feedbackTimer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(getFeedbackFromWRC) userInfo:nil repeats:YES];
+}
+
+-(void) viewDidDisappear:(BOOL)animated {
+    
+    [super viewDidDisappear:animated];
+    [self.feedbackTimer invalidate];
+    self.feedbackTimer = nil;
 }
 
 -(void) formatViews {
@@ -119,8 +131,14 @@
     self.drugOneQuantity = 25;
     self.drugTwoQuantity = 50;
     self.drugThreeQuantity = 100;
-    self.temperature = 25;
+    self.temperatureFloat = 25;
     //self.connectedPeripheral = ;
+    
+    self.message = @"t";
+    self.peripheral = self.svc.connectedPeripheral;
+    NSData *data = [NSData dataWithBytes:[_message UTF8String] length:[_message length]];
+    CBCharacteristic *writeChar = [self.svc.bleService.characteristics firstObject];//objectAtIndex:0
+    [self.peripheral writeValue:data forCharacteristic:writeChar type:CBCharacteristicWriteWithResponse];
     
     [self formatViews];
 }
@@ -139,5 +157,35 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+#pragma mark - CBCentralManager functions
+
+- (void)centralManagerDidUpdateState:(CBCentralManager *)central
+{
+    // Determine the state of the peripheral
+    if ([central state] == CBManagerStatePoweredOff) {
+        NSLog(@"CoreBluetooth BLE hardware is powered off");
+        //self.scanButton.enabled = NO;
+    }
+    else if ([central state] == CBManagerStatePoweredOn) {
+        NSLog(@"CoreBluetooth BLE hardware is powered on and ready");
+        //self.scanButton.enabled = YES;
+        if (central == self.svc.centralManager) {//used for debug to understand the CB framework
+            NSLog(@"central is equal to centralManager");
+        }else {
+            NSLog(@"central not equal to property!");
+        }
+    }
+    else if ([central state] == CBManagerStateUnauthorized) {
+        NSLog(@"CoreBluetooth BLE state is unauthorized");
+    }
+    else if ([central state] == CBManagerStateUnknown) {
+        NSLog(@"CoreBluetooth BLE state is unknown");
+    }
+    else if ([central state] == CBManagerStateUnsupported) {
+        NSLog(@"CoreBluetooth BLE hardware is unsupported on this platform");
+    }
+}
+
 
 @end

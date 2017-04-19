@@ -8,17 +8,25 @@
 
 #import <UIKit/UIKit.h>
 #import "ScanBLEViewController.h"
+#import <CoreBluetooth/CoreBluetooth.h>
 
-@interface FeedbackViewController : UIViewController
+@interface FeedbackViewController : UIViewController <CBCentralManagerDelegate, CBPeripheralDelegate>
 
 @property (strong, nonatomic) ScanBLEViewController *svc;
 @property (strong, nonatomic) NSString *feedback;
+
+@property (strong, nonatomic) CBPeripheral *peripheral;
+@property (strong, nonatomic) NSString *message;
 
 // parameters
 @property NSInteger drugOneQuantity;
 @property NSInteger drugTwoQuantity;
 @property NSInteger drugThreeQuantity;
-@property float temperature;
+@property float temperatureFloat;
+
+@property (strong, nonatomic) NSTimer *feedbackTimer;
+@property (strong, nonatomic) NSString *temperature;
+@property (strong, nonatomic) NSString *drugsRemaining;
 
 // views
 // first drug

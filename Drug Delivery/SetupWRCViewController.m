@@ -168,7 +168,10 @@
 
 -(void) verifyMessage {
     
-    if ([_message isEqualToString:self.svc.rxString]) {
+    NSString *checkMessage = [self.svc.confirmDrugDelivery substringToIndex:4];
+    NSLog(@"check message: %@",checkMessage);
+   
+    if ([_message isEqualToString:checkMessage]) {
         NSString *ok = @"o";
         NSData *data = [NSData dataWithBytes:[ok UTF8String] length:[ok length]];
         CBCharacteristic *writeChar = [self.svc.bleService.characteristics firstObject];//objectAtIndex:0

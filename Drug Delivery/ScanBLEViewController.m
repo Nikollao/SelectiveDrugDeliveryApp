@@ -264,6 +264,18 @@ static ScanBLEViewController *_shareSvc;
         DataExchangeViewController *devc = [DataExchangeViewController shareDevc];
         NSLog(@"%@",devc.rxLabel.text);
         devc.rxLabel.text = _rxString;
+        
+        NSString *firstChar = [self.rxString substringToIndex:1];
+        
+        if ([firstChar isEqualToString:@"?"]) {
+            self.confirmDrugDelivery = self.rxString;
+        }
+        else if ([firstChar isEqualToString:@"d"]) {
+            self.drugsRemaining = self.rxString;
+        }
+        else if ([firstChar isEqualToString:@"t"]) {
+            self.temperature = self.rxString;
+        }
     }
     /*
      if ([characteristic.UUID isEqual:[CBUUID UUIDWithString:DEVICE_REMAINING_DRUG_CHARACTERISTIC_UUID]]) { // 1
