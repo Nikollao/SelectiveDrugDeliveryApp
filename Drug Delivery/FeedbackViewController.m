@@ -130,7 +130,7 @@
     self.drugsRemaining = [self.svc.drugsRemaining substringToIndex:4];
     self.temperature = self.svc.temperature;
     self.tempThreshold = [self.svc.tempThreshold substringToIndex:2];
-    NSLog(@"feedback is: %@ Temp: %@, DrugsRem: %@",self.feedback,self.temperature,self.drugsRemaining);
+    NSLog(@"feedback is: %@ Temp: %@, DrugsRem: %@, threshold :%@",self.feedback,self.temperature,self.drugsRemaining,self.tempThreshold);
     self.drugOneQuantity = 25;
     self.drugTwoQuantity = 50;
     self.drugThreeQuantity = 100;
