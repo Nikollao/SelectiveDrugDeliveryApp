@@ -23,6 +23,7 @@
 @property NSInteger drugTwoQuantity;
 @property NSInteger drugThreeQuantity;
 @property float temperatureFloat;
+@property BOOL threshold;
 
 @property (strong, nonatomic) NSTimer *feedbackTimer;
 @property (strong, nonatomic) NSString *temperature;

@@ -37,6 +37,12 @@
     self.deviceLabel.text = nil;
     
     if (self.svc.connectedPeripheral) {
+        
+        SetupWRCViewController *setupVC = [SetupWRCViewController shareSetupVC];
+        self.drugOneLabel.text = [setupVC.chambers objectAtIndex:0];
+        self.drugTwoLabel.text = [setupVC.chambers objectAtIndex:1];
+        self.drugThreeLabel.text = [setupVC.chambers objectAtIndex:2];
+
          self.feedbackTimer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(getFeedbackFromWRC) userInfo:nil repeats:YES];
     }
     else {
@@ -250,16 +256,28 @@
     self.temperatureLabel.text = [NSString stringWithFormat:@"Temperature: %@ C",self.temperature];
     self.deviceLabel.text = [NSString stringWithFormat:@"Device: %@",self.svc.peripheralNameDisplay];
     
-    SetupWRCViewController *setupVC = [SetupWRCViewController shareSetupVC];
-    self.drugOneLabel.text = [setupVC.chambers objectAtIndex:0];
-    self.drugTwoLabel.text = [setupVC.chambers objectAtIndex:1];
-    self.drugThreeLabel.text = [setupVC.chambers objectAtIndex:2];
-    
     if (self.temperature == nil) {
         self.temperatureLabel.text = @"";
     }
     if (!self.svc.connectedPeripheral) {
         self.deviceLabel.text = @"";
+    }
+    
+    self.percentageOneLabel.text = [NSString stringWithFormat:@"%ld %%",self.drugOneQuantity];
+    self.percentageTwoLabel.text = [NSString stringWithFormat:@"%ld %%",self.drugTwoQuantity];
+    self.percentageThreeLabel.text = [NSString stringWithFormat:@"%ld %%",self.drugThreeQuantity];
+    
+    if ([self.tempThreshold isEqualToString:@"h1"] && !_threshold) {
+        _threshold = YES;
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Warning" message:@"Temperature threshold has been exceeded" preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *disconnect = [UIAlertAction actionWithTitle:@"Disconnect capsule" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            
+            if (self.svc.connectedPeripheral) {
+                [self.svc.centralManager cancelPeripheralConnection:self.svc.connectedPeripheral];
+            }
+        }];
+        [alert addAction:disconnect];
+        [self presentViewController:alert animated:YES completion:nil];
     }
 }
 
