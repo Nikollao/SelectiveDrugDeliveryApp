@@ -7,6 +7,7 @@
 //
 
 #import "FeedbackViewController.h"
+#import "SetupWRCViewController.h"
 
 @interface FeedbackViewController ()
 
@@ -26,14 +27,23 @@
     
     [super viewWillAppear:animated];
     
+    self.drugOneLabel.text = nil;
+    self.drugTwoLabel.text = nil;
+    self.drugThreeLabel.text = nil;
+    self.percentageOneLabel.text = nil;
+    self.percentageTwoLabel.text = nil;
+    self.percentageThreeLabel.text = nil;
+    self.temperatureLabel.text = nil;
+    self.deviceLabel.text = nil;
+    
     if (self.svc.connectedPeripheral) {
          self.feedbackTimer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(getFeedbackFromWRC) userInfo:nil repeats:YES];
     }
     else {
-        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"" message:@"No MCR devices connected" preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"" message:@"No devices connected" preferredStyle:UIAlertControllerStyleAlert];
         UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
             
-            self.tabBarController.selectedIndex = 1;
+            self.tabBarController.selectedIndex = 0;
         }];
         [alert addAction:okAction];
         [self presentViewController:alert animated:YES completion:nil];
@@ -77,7 +87,7 @@
 -(void) setupValuesForViews {
     
     char drugOne = [self.drugsRemaining characterAtIndex:0];
-    char drugeTwo = [self.drugsRemaining characterAtIndex:1];
+    char drugTwo = [self.drugsRemaining characterAtIndex:1];
     char drugThree = [self.drugsRemaining characterAtIndex:2];
     
     if (drugOne == '1') {
@@ -91,19 +101,23 @@
     }
     else if (drugOne == '4') {
         self.drugOneQuantity = 100;
+    } else {
+        self.drugOneQuantity = 0;
     }
     
-    if (drugeTwo == '1') {
+    if (drugTwo == '1') {
         self.drugTwoQuantity = 25;
     }
-    else if (drugeTwo == '2') {
+    else if (drugTwo == '2') {
         self.drugTwoQuantity = 50;
     }
-    else if (drugThree == '3') {
+    else if (drugTwo == '3') {
         self.drugTwoQuantity = 75;
     }
-    else if (drugThree == '4') {
+    else if (drugTwo == '4') {
         self.drugTwoQuantity = 100;
+    } else {
+        self.drugTwoQuantity = 0;
     }
     
     if (drugThree == '1') {
@@ -118,11 +132,21 @@
     else if (drugThree == '4') {
         self.drugThreeQuantity = 100;
     }
+    else {
+        _drugThreeQuantity = 0;
+    }
 }
 
 -(void) formatViews {
     
-    if (self.drugOneQuantity == 25) {
+    if (_drugOneQuantity == 0) {
+        self.firstViewDrugOne.backgroundColor = [UIColor whiteColor];
+        self.secondViewDrugOne.backgroundColor = [UIColor whiteColor];
+        self.thirdViewDrugOne.backgroundColor = [UIColor whiteColor];
+        self.fourthViewDrugOne.backgroundColor = [UIColor whiteColor];
+    }
+    
+    else if (self.drugOneQuantity == 25) {
         
         self.firstViewDrugOne.backgroundColor = [UIColor redColor];
         self.secondViewDrugOne.backgroundColor = [UIColor whiteColor];
@@ -151,7 +175,15 @@
         self.fourthViewDrugOne.backgroundColor = [UIColor greenColor];
     }
     
-    if (self.drugTwoQuantity == 25) {
+    if (self.drugTwoQuantity == 0) {
+        
+        self.firstViewDrugTwo.backgroundColor = [UIColor whiteColor];
+        self.secondViewDrugTwo.backgroundColor = [UIColor whiteColor];
+        self.thirdViewDrugTwo.backgroundColor = [UIColor whiteColor];
+        self.fourthViewDrugTwo.backgroundColor = [UIColor whiteColor];
+    }
+    
+    else if (self.drugTwoQuantity == 25) {
         
         self.firstViewDrugTwo.backgroundColor = [UIColor redColor];
         self.secondViewDrugTwo.backgroundColor = [UIColor whiteColor];
@@ -176,11 +208,18 @@
         
         self.firstViewDrugTwo.backgroundColor = [UIColor greenColor];
         self.secondViewDrugTwo.backgroundColor = [UIColor greenColor];
-        self.secondViewDrugTwo.backgroundColor = [UIColor greenColor];
-        self.secondViewDrugTwo.backgroundColor = [UIColor greenColor];
+        self.thirdViewDrugTwo.backgroundColor = [UIColor greenColor];
+        self.fourthViewDrugTwo.backgroundColor = [UIColor greenColor];
     }
     
-    if (self.drugThreeQuantity == 25) {
+    if (self.drugThreeQuantity == 0) {
+        
+        self.firstViewDrugThree.backgroundColor = [UIColor whiteColor];
+        self.secondViewDrugThree.backgroundColor = [UIColor whiteColor];
+        self.thirdViewDrugThree.backgroundColor = [UIColor whiteColor];
+        self.fourthViewDrugThree.backgroundColor = [UIColor whiteColor];
+    }
+    else if (self.drugThreeQuantity == 25) {
         
         self.firstViewDrugThree.backgroundColor = [UIColor redColor];
         self.secondViewDrugThree.backgroundColor = [UIColor whiteColor];
@@ -210,6 +249,18 @@
     
     self.temperatureLabel.text = [NSString stringWithFormat:@"Temperature: %@ C",self.temperature];
     self.deviceLabel.text = [NSString stringWithFormat:@"Device: %@",self.svc.peripheralNameDisplay];
+    
+    SetupWRCViewController *setupVC = [SetupWRCViewController shareSetupVC];
+    self.drugOneLabel.text = [setupVC.chambers objectAtIndex:0];
+    self.drugTwoLabel.text = [setupVC.chambers objectAtIndex:1];
+    self.drugThreeLabel.text = [setupVC.chambers objectAtIndex:2];
+    
+    if (self.temperature == nil) {
+        self.temperatureLabel.text = @"";
+    }
+    if (!self.svc.connectedPeripheral) {
+        self.deviceLabel.text = @"";
+    }
 }
 
 

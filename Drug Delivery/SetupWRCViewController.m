@@ -47,9 +47,9 @@ static SetupWRCViewController *_shareSetupVC;
 -(void)didPressBackButton:(id)sender {
     
     NSLog(@"Did press back button :)");
-    [self.secureConnectionTimer invalidate];
-    self.secureConnectionTimer = nil;
-    [self.navigationController popViewControllerAnimated:YES];
+   // [self.secureConnectionTimer invalidate];
+   // self.secureConnectionTimer = nil;
+   [self.navigationController popViewControllerAnimated:YES];
 }
 
 -(void) viewWillAppear:(BOOL)animated {
@@ -58,6 +58,10 @@ static SetupWRCViewController *_shareSetupVC;
     
     [self.secureConnectionTimer invalidate];
     self.secureConnectionTimer = nil; // reset
+    
+    if (self.svc.connectedPeripheral) {
+        _shareSetupVC.chambers = self.chambers;
+    }
 
     if (!self.secureConnectionTimer) {
         self.secureConnectionTimer = [NSTimer scheduledTimerWithTimeInterval:2.0 target:self selector:@selector(ensurePeripheralIsConnected) userInfo:nil repeats:YES];

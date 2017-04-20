@@ -29,6 +29,7 @@
     
     // peripheral 1 identifier: 5E357913-7FEC-436D-9ED3-4E8134D1DC4B
     // peripheral 2 identifier: 55B57661-ADC0-4070-8AB1-77AF16F0EA6F
+    // peripheral 3 identifier: 38D76015-A3DD-4547-B2EA-B9D1D6B3D080
 
 }
 
@@ -91,7 +92,10 @@
         titleCell = @"MCR Prototype 1";
     }
     else if ([idPeripheral isEqualToString:@"55B57661-ADC0-4070-8AB1-77AF16F0EA6F"]) {
-         titleCell = @"MCR Prototype 2";
+         titleCell = @"MCR Prototype iOS";
+    }
+    else if ([idPeripheral isEqualToString:@"38D76015-A3DD-4547-B2EA-B9D1D6B3D080"]) {
+        titleCell = @"MCR Prototype 2";
     }
     
     if (peripheral.state == CBPeripheralStateConnected) {
@@ -155,6 +159,9 @@
             displayName = @"MCR Prototype 1";
         }
         else if ([idPeripheral isEqualToString:@"55B57661-ADC0-4070-8AB1-77AF16F0EA6F"]) {
+            displayName = @"MCR Prototype iOS";
+        }
+        else if ([idPeripheral isEqualToString:@"38D76015-A3DD-4547-B2EA-B9D1D6B3D080"]) {
             displayName = @"MCR Prototype 2";
         }
         self.svc.peripheralNameDisplay = displayName;

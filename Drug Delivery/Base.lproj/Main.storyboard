@@ -880,7 +880,7 @@
                         <outlet property="fourthViewDrugOne" destination="hlV-mC-TmG" id="osT-XM-pEf"/>
                         <outlet property="fourthViewDrugThree" destination="gjJ-s0-sNm" id="Xfa-ON-jbV"/>
                         <outlet property="fourthViewDrugTwo" destination="D7t-pb-Huo" id="tZj-Hb-0sg"/>
-                        <outlet property="percentageOneLabel" destination="LTU-hf-A5k" id="unc-d2-Bef"/>
+                        <outlet property="percentageOneLabel" destination="CoZ-3m-2L4" id="Q4s-OQ-7iR"/>
                         <outlet property="percentageThreeLabel" destination="6tz-Hg-eOG" id="Msw-Jm-8No"/>
                         <outlet property="percentageTwoLabel" destination="LTU-hf-A5k" id="n50-7a-r40"/>
                         <outlet property="secondViewDrugOne" destination="9EZ-ZA-OdG" id="euP-2K-0kU"/>
