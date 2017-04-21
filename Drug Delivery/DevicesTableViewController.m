@@ -128,11 +128,19 @@
         if (self.svc.connectedPeripheral) {
             [self.svc.centralManager cancelPeripheralConnection:self.svc.connectedPeripheral];
         }
-        [self.svc.centralManager connectPeripheral:peripheral options:nil];
         self.svc.connectedPeripheral = peripheral;
         self.peripheral = peripheral;
-    }
+        [self.svc.centralManager connectPeripheral:peripheral options:nil];
+        }
     else if (peripheral.state == CBPeripheralStateConnected) {
+        
+        NSString *message = @"b"; // inform MCR that bluetooth connection is lost
+        NSData *data = [NSData dataWithBytes:[message UTF8String] length:[message length]];
+        CBCharacteristic *writeChar = [self.svc.bleService.characteristics firstObject];//objectAtIndex:0
+        if (self.svc.connectedPeripheral.state == CBPeripheralStateConnected) {// check that message is sent to the correct peripheral
+            [self.svc.connectedPeripheral writeValue:data forCharacteristic:writeChar type:CBCharacteristicWriteWithResponse];
+            //[self.svc.centralManager cancelPeripheralConnection:self.svc.connectedPeripheral];
+        }
         [self.svc.centralManager cancelPeripheralConnection:peripheral];
         self.svc.connectedPeripheral = nil;
     }
@@ -168,8 +176,6 @@
     }
     else if (!self.svc.connectedPeripheral) {
         self.svc.peripheralNameDisplay = nil;
-        message = @"d";
-        NSLog(@"message: %@",message);
     }
 }
 

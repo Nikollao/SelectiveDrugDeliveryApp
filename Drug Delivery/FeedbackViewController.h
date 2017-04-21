@@ -29,6 +29,7 @@
 @property (strong, nonatomic) NSString *temperature;
 @property (strong, nonatomic) NSString *drugsRemaining;
 @property (strong, nonatomic) NSString *tempThreshold;
+@property (strong, nonatomic) NSString *success;
 
 // views
 // first drug

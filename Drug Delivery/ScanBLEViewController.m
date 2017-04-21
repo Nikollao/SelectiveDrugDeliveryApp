@@ -279,6 +279,9 @@ static ScanBLEViewController *_shareSvc;
         else if ([firstChar isEqualToString:@"h"]) {
             self.tempThreshold = self.rxString;
         }
+        else if ([firstChar isEqualToString:@"s"]) {
+            self.success = @"s";
+        }
     }
     /*
      if ([characteristic.UUID isEqual:[CBUUID UUIDWithString:DEVICE_REMAINING_DRUG_CHARACTERISTIC_UUID]]) { // 1

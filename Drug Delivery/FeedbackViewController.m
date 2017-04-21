@@ -70,6 +70,7 @@
     self.drugsRemaining = [drugsRem substringFromIndex:1];
     self.temperature = [self.svc.temperature substringFromIndex:1];
     self.tempThreshold = [self.svc.tempThreshold substringToIndex:2];
+    self.success = self.svc.success;
     NSLog(@"feedback is: %@ Temp: %@, DrugsRem: %@, threshold :%@",self.feedback,self.temperature,self.drugsRemaining,self.tempThreshold);
     
     self.message = @"t";
@@ -272,11 +273,27 @@
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Warning" message:@"Temperature threshold has been exceeded" preferredStyle:UIAlertControllerStyleAlert];
         UIAlertAction *disconnect = [UIAlertAction actionWithTitle:@"Disconnect capsule" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
             
-            if (self.svc.connectedPeripheral) {
+            if (self.svc.connectedPeripheral.state == CBPeripheralStateConnected) {
+                [self.feedbackTimer invalidate];
+                self.feedbackTimer = nil;
+                NSString *message = @"b";
+                NSData *data = [NSData dataWithBytes:[message UTF8String] length:[message length]];
+                CBCharacteristic *writeChar = [self.svc.bleService.characteristics firstObject];//objectAtIndex:0
+                [self.svc.connectedPeripheral writeValue:data forCharacteristic:writeChar type:CBCharacteristicWriteWithResponse];
+                NSLog(@"b message sent to MCR!");
                 [self.svc.centralManager cancelPeripheralConnection:self.svc.connectedPeripheral];
             }
         }];
         [alert addAction:disconnect];
+        [self presentViewController:alert animated:YES completion:nil];
+    }
+    
+    if ([self.success isEqualToString:@"s"]) {
+        self.success = nil;
+        self.svc.success = nil;
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Success" message:@"Drug Delivery process has finished" preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleCancel handler:nil];
+        [alert addAction:okAction];
         [self presentViewController:alert animated:YES completion:nil];
     }
 }

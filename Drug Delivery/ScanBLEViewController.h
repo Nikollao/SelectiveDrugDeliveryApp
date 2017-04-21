@@ -26,6 +26,7 @@
 @property (strong, nonatomic) NSString *tempThreshold;
 @property (strong, nonatomic) NSString *confirmDrugDelivery;
 @property (strong, nonatomic) NSString *drugsRemaining;
+@property (strong, nonatomic) NSString *success;
 
 //@property (strong, nonatomic) NSMutableArray *bleServices;
 //@property (strong, nonatomic) NSMutableArray *bleCharacteristics;
