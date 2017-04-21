@@ -43,7 +43,7 @@
         self.drugTwoLabel.text = [setupVC.chambers objectAtIndex:1];
         self.drugThreeLabel.text = [setupVC.chambers objectAtIndex:2];
 
-         self.feedbackTimer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(getFeedbackFromWRC) userInfo:nil repeats:YES];
+         self.feedbackTimer = [NSTimer scheduledTimerWithTimeInterval:5.0 target:self selector:@selector(getFeedbackFromWRC) userInfo:nil repeats:YES];
     }
     else {
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"" message:@"No devices connected" preferredStyle:UIAlertControllerStyleAlert];
@@ -268,25 +268,25 @@
     self.percentageTwoLabel.text = [NSString stringWithFormat:@"%ld %%",self.drugTwoQuantity];
     self.percentageThreeLabel.text = [NSString stringWithFormat:@"%ld %%",self.drugThreeQuantity];
     
-    if ([self.tempThreshold isEqualToString:@"h1"] && !_threshold) {
-        _threshold = YES;
-        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Warning" message:@"Temperature threshold has been exceeded" preferredStyle:UIAlertControllerStyleAlert];
-        UIAlertAction *disconnect = [UIAlertAction actionWithTitle:@"Disconnect capsule" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-            
-            if (self.svc.connectedPeripheral.state == CBPeripheralStateConnected) {
-                [self.feedbackTimer invalidate];
-                self.feedbackTimer = nil;
-                NSString *message = @"b";
-                NSData *data = [NSData dataWithBytes:[message UTF8String] length:[message length]];
-                CBCharacteristic *writeChar = [self.svc.bleService.characteristics firstObject];//objectAtIndex:0
-                [self.svc.connectedPeripheral writeValue:data forCharacteristic:writeChar type:CBCharacteristicWriteWithResponse];
-                NSLog(@"b message sent to MCR!");
-                [self.svc.centralManager cancelPeripheralConnection:self.svc.connectedPeripheral];
-            }
-        }];
+    if ([self.tempThreshold isEqualToString:@"h1"]) {
+       // _threshold = YES;
+        
+        /*if (self.svc.connectedPeripheral.state == CBPeripheralStateConnected) {
+            [self.feedbackTimer invalidate];
+            self.feedbackTimer = nil;
+            NSString *message = @"b";
+            NSData *data = [NSData dataWithBytes:[message UTF8String] length:[message length]];
+            CBCharacteristic *writeChar = [self.svc.bleService.characteristics firstObject];//objectAtIndex:0
+            [self.svc.connectedPeripheral writeValue:data forCharacteristic:writeChar type:CBCharacteristicWriteWithResponse];
+            NSLog(@"b message sent to MCR!");
+            [self.svc.centralManager cancelPeripheralConnection:self.svc.connectedPeripheral];
+        }*/
+
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Warning" message:@"Temperature threshold has been exceeded!" preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *disconnect = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleCancel handler:nil];
         [alert addAction:disconnect];
         [self presentViewController:alert animated:YES completion:nil];
-    }
+        }
     
     if ([self.success isEqualToString:@"s"]) {
         self.success = nil;
