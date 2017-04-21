@@ -43,7 +43,7 @@
         self.drugTwoLabel.text = [setupVC.chambers objectAtIndex:1];
         self.drugThreeLabel.text = [setupVC.chambers objectAtIndex:2];
 
-         self.feedbackTimer = [NSTimer scheduledTimerWithTimeInterval:5.0 target:self selector:@selector(getFeedbackFromWRC) userInfo:nil repeats:YES];
+         self.feedbackTimer = [NSTimer scheduledTimerWithTimeInterval:2.0 target:self selector:@selector(getFeedbackFromWRC) userInfo:nil repeats:YES];
     }
     else {
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"" message:@"No devices connected" preferredStyle:UIAlertControllerStyleAlert];
