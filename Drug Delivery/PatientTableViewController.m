@@ -70,7 +70,7 @@
     
     [title replaceOccurrencesOfString:@"(null)" withString:@"" options:0 range:NSMakeRange(0, [title length])];
     cell.textLabel.text = title;
-    cell.detailTextLabel.text = patient.dateOfBirth;
+    cell.detailTextLabel.text = patient.disease;
     
     // update the tableView assign patient so the setup tableView updates automatically if you change the drug to a patient
     return cell;

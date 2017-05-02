@@ -1,4 +1,5 @@
 //
+//  Patient.h
 //  Drug Delivery
 //
 //  Created by Nikollao Sulollari on 23/01/2017.
@@ -22,9 +23,11 @@
 @property (nullable, nonatomic, copy) NSString *address;
 
 @property (nonatomic) int64_t numberOfDrugs;
-
+// first medication relationship
 @property (nullable, nonatomic, retain) Medication *medication;
+// second medication relationship
 @property (nullable, nonatomic, retain) Medication *medicationTwo;
+// third medication relationship
 @property (nullable, nonatomic, retain) Medication *medicationThree;
 
 @end

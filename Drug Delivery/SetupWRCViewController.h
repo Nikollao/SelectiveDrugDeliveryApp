@@ -32,5 +32,6 @@
 - (IBAction)didPressDeliverDrug:(id)sender;
 
 +(SetupWRCViewController *) shareSetupVC;
+@property (nonatomic) BOOL buttonPressed;
 
 @end

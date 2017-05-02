@@ -194,6 +194,7 @@ static SetupWRCViewController *_shareSetupVC;
         
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Command sent" message:@"Drug delivery process has started" preferredStyle:UIAlertControllerStyleAlert];
         UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            _shareSetupVC.buttonPressed = YES;
             self.tabBarController.selectedIndex = 3;
              }];
         [alert addAction:okAction];
@@ -202,6 +203,7 @@ static SetupWRCViewController *_shareSetupVC;
     else {
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Error" message:@"Drug delivery has failed" preferredStyle:UIAlertControllerStyleAlert];
         UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            _shareSetupVC.buttonPressed = NO;
             [self.navigationController  popViewControllerAnimated:YES];
         }];
         [alert addAction:okAction];

@@ -12,6 +12,7 @@
 
 @interface FeedbackViewController : UIViewController <CBCentralManagerDelegate, CBPeripheralDelegate>
 
+// device
 @property (strong, nonatomic) ScanBLEViewController *svc;
 @property (strong, nonatomic) NSString *feedback;
 
@@ -26,6 +27,7 @@
 @property BOOL threshold;
 
 @property (strong, nonatomic) NSTimer *feedbackTimer;
+@property (strong, nonatomic) NSTimer *dateTimer;
 @property (strong, nonatomic) NSString *temperature;
 @property (strong, nonatomic) NSString *drugsRemaining;
 @property (strong, nonatomic) NSString *tempThreshold;
@@ -57,12 +59,11 @@
 @property (strong, nonatomic) IBOutlet UILabel *drugOneLabel;
 @property (strong, nonatomic) IBOutlet UILabel *drugTwoLabel;
 @property (strong, nonatomic) IBOutlet UILabel *drugThreeLabel;
+@property (strong, nonatomic) IBOutlet UILabel *dateLabel;
 
 
 @property (strong, nonatomic) IBOutlet UILabel *deviceLabel;
 @property (strong, nonatomic) IBOutlet UILabel *temperatureLabel;
-
-// device
 
 
 @end

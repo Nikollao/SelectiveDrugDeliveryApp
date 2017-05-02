@@ -1,5 +1,5 @@
 //
-//  Patient+CoreDataClass.m
+//  Patient.m
 //  Drug Delivery
 //
 //  Created by Nikollao Sulollari on 23/01/2017.
@@ -26,3 +26,4 @@
 @dynamic medicationThree;
 
 @end
+

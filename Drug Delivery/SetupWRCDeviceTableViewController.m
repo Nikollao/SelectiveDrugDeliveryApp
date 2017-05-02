@@ -148,6 +148,7 @@ static SetupWRCDeviceTableViewController *_sharedInstance;
         }
     }
     cell.textLabel.text = titleCell;
+    cell.detailTextLabel.textColor = [UIColor blueColor];
     cell.detailTextLabel.text = subTitle;
     return cell;
 }

@@ -19,7 +19,7 @@
     [super viewDidLoad];
     self.svc = [ScanBLEViewController shareSvc];
     // Do any additional setup after loading the views
-    
+    self.dateLabel.text = nil;
     //[self formatViews];
 }
 
@@ -44,15 +44,23 @@
         self.drugThreeLabel.text = [setupVC.chambers objectAtIndex:2];
 
          self.feedbackTimer = [NSTimer scheduledTimerWithTimeInterval:2.0 target:self selector:@selector(getFeedbackFromWRC) userInfo:nil repeats:YES];
+        
+        if (setupVC.buttonPressed) {
+         self.dateTimer = [NSTimer scheduledTimerWithTimeInterval:10.0 target:self selector:@selector(updateTheDate) userInfo:nil repeats:YES];
+        }
     }
     else {
-        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"" message:@"No devices connected" preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Warning" message:@"No devices connected" preferredStyle:UIAlertControllerStyleAlert];
         UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
             
             self.tabBarController.selectedIndex = 0;
         }];
         [alert addAction:okAction];
         [self presentViewController:alert animated:YES completion:nil];
+    }
+    if (![self.dateLabel.text length]) {
+        NSString *getLastDate = [[NSUserDefaults standardUserDefaults] stringForKey:@"lastDate"];
+        self.dateLabel.text = [NSString stringWithFormat:@"Last Drug Delivery: %@",getLastDate];
     }
 }
 
@@ -64,14 +72,6 @@
 }
 
 -(void)getFeedbackFromWRC {
-    
-    self.feedback = self.svc.rxString;
-    NSString *drugsRem = [self.svc.drugsRemaining substringToIndex:4];
-    self.drugsRemaining = [drugsRem substringFromIndex:1];
-    self.temperature = [self.svc.temperature substringFromIndex:1];
-    self.tempThreshold = [self.svc.tempThreshold substringToIndex:2];
-    self.success = self.svc.success;
-    NSLog(@"feedback is: %@ Temp: %@, DrugsRem: %@, threshold :%@",self.feedback,self.temperature,self.drugsRemaining,self.tempThreshold);
     
     self.message = @"t";
     self.peripheral = self.svc.connectedPeripheral;
@@ -86,6 +86,14 @@
     self.message = @"h";
     data = [NSData dataWithBytes:[_message UTF8String] length:[_message length]];
     [self.peripheral writeValue:data forCharacteristic:writeChar type:CBCharacteristicWriteWithResponse];
+    
+    self.feedback = self.svc.rxString;
+    NSString *drugsRem = [self.svc.drugsRemaining substringToIndex:4];
+    self.drugsRemaining = [drugsRem substringFromIndex:1];
+    self.temperature = [self.svc.temperature substringFromIndex:1];
+    self.tempThreshold = [self.svc.tempThreshold substringToIndex:2];
+    self.success = self.svc.success;
+    NSLog(@"feedback is: %@ Temp: %@, DrugsRem: %@, threshold :%@",self.feedback,self.temperature,self.drugsRemaining,self.tempThreshold);
     
     [self setupValuesForViews];
     [self formatViews];
@@ -296,6 +304,17 @@
         [alert addAction:okAction];
         [self presentViewController:alert animated:YES completion:nil];
     }
+}
+
+-(void) updateTheDate {
+    
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    dateFormatter.dateFormat = @"dd-MM-YYYY 'at' HH:mm";
+    NSDate *date = [NSDate date];
+    NSString *stringDate = [dateFormatter stringFromDate:date];
+    self.dateLabel.text = [NSString stringWithFormat:@"Last Drug Delivery: %@",stringDate];
+    [[NSUserDefaults standardUserDefaults] setObject:stringDate forKey:@"lastDate"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 

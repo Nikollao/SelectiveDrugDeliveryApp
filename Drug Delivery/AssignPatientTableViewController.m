@@ -93,7 +93,7 @@ static AssignPatientTableViewController *_sharedInstance;
     
     [title replaceOccurrencesOfString:@"(null)" withString:@"" options:0 range:NSMakeRange(0, [title length])];
     cell.textLabel.text = title;
-    cell.detailTextLabel.text = patient.dateOfBirth;
+    cell.detailTextLabel.text = patient.disease;
     
     return cell;
 }

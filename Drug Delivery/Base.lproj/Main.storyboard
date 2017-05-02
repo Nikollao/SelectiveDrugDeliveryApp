@@ -88,7 +88,7 @@
                                 <rect key="frame" x="0.0" y="28" width="768" height="67"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="2gn-nI-YJn" id="B7T-gU-qnm">
-                                    <rect key="frame" x="0.0" y="0.0" width="768" height="67"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="768" height="66"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4s8-mv-HKH">
@@ -823,6 +823,12 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zVs-2O-5aa">
+                                <rect key="frame" x="366" y="114" width="36" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -844,9 +850,11 @@
                             <constraint firstItem="wqQ-1A-dAX" firstAttribute="centerX" secondItem="9dr-Xn-Erq" secondAttribute="centerX" id="UNa-v7-rSp"/>
                             <constraint firstAttribute="trailingMargin" secondItem="OOu-GS-7t3" secondAttribute="trailing" constant="40" id="VIi-DY-r0u"/>
                             <constraint firstItem="D7t-pb-Huo" firstAttribute="top" secondItem="jw3-s5-Y2z" secondAttribute="bottom" constant="30" id="WLL-AB-BD1"/>
+                            <constraint firstItem="zVs-2O-5aa" firstAttribute="centerX" secondItem="9dr-Xn-Erq" secondAttribute="centerX" id="XGc-5G-bOl"/>
                             <constraint firstItem="4b7-vY-Mpa" firstAttribute="top" secondItem="gjJ-s0-sNm" secondAttribute="bottom" id="axj-QE-8rl"/>
                             <constraint firstItem="XPl-TP-epw" firstAttribute="leading" secondItem="9dr-Xn-Erq" secondAttribute="leadingMargin" constant="40" id="bwP-kI-AgG"/>
                             <constraint firstItem="SZH-nb-KkU" firstAttribute="leading" secondItem="9dr-Xn-Erq" secondAttribute="leadingMargin" constant="40" id="c5f-V7-evb"/>
+                            <constraint firstItem="zVs-2O-5aa" firstAttribute="top" secondItem="6YT-Xt-zvq" secondAttribute="bottom" constant="50" id="d0b-Pf-4a8"/>
                             <constraint firstItem="9EZ-ZA-OdG" firstAttribute="top" secondItem="SZH-nb-KkU" secondAttribute="bottom" id="eSh-cL-8sq"/>
                             <constraint firstItem="D7t-pb-Huo" firstAttribute="centerX" secondItem="9dr-Xn-Erq" secondAttribute="centerX" id="gNp-hP-wwd"/>
                             <constraint firstAttribute="trailingMargin" secondItem="rGk-fY-gjq" secondAttribute="trailing" constant="40" id="h7W-JY-Yhw"/>
@@ -870,6 +878,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Feedback" id="PWh-PE-Ubi"/>
                     <connections>
+                        <outlet property="dateLabel" destination="zVs-2O-5aa" id="IeV-ZN-Qmw"/>
                         <outlet property="deviceLabel" destination="XPl-TP-epw" id="JM7-HD-KH0"/>
                         <outlet property="drugOneLabel" destination="24Z-fO-Hat" id="oow-Ty-cEt"/>
                         <outlet property="drugThreeLabel" destination="GVb-Rh-RRL" id="B42-89-sje"/>
