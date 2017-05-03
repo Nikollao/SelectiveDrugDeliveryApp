@@ -36,6 +36,10 @@
     self.temperatureLabel.text = nil;
     self.deviceLabel.text = nil;
     
+    if (self.svc.connectedPeripheral.state == CBPeripheralStateConnected) {
+        self.deviceLabel.text = [NSString stringWithFormat:@"Device: %@",self.svc.peripheralNameDisplay];
+    }
+    
     if (self.svc.connectedPeripheral) {
         
         SetupWRCViewController *setupVC = [SetupWRCViewController shareSetupVC];
